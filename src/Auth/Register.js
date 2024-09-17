@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Register() {
     return (
@@ -10,8 +11,8 @@ export default function Register() {
                         <form action="/">
                             <div class="input-box">
                                 <i class='bx bxs-user'></i>
-                                <label for="/">Username</label>
-                                <input type="text" placeholder="Enter Your Username*" />
+                                <label for="/">Full Name</label>
+                                <input type="text" placeholder="Enter Your Full Name*" />
 
 
                             </div>
@@ -37,9 +38,8 @@ export default function Register() {
                         <div class="social-media">
                             <i class='bx bxl-facebook'></i>
                             <i class='bx bxl-google'></i>
-                            <i class='bx bxl-twitter'></i>
                         </div>
-                        <p class="LoginBtn"><a href="index.html">Go back to login</a></p>
+                        <p class="LoginBtn"><Link to='/login-page'>Go back to login</Link></p>
                     </div>
                 </div>
             </div>

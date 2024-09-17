@@ -10,9 +10,10 @@ export default function Login() {
                         <h2>Login</h2>
                         <form action="/">
                             <div class="input-box">
-                                <i class='bx bxs-user'></i>
-                                <label for="/">Username</label>
-                                <input type="text" placeholder="Enter Your Username*" />
+                                <i class='bx bxs-envelope'></i>
+                                <label for="/">Email</label>
+                                <input type="email" placeholder="Enter Your Email*" />
+
                             </div>
                             <div class="input-box">
                                 <i class='bx bxs-lock-alt'></i>
@@ -29,7 +30,6 @@ export default function Login() {
                         <div class="social-media">
                             <i class='bx bxl-facebook'></i>
                             <i class='bx bxl-google'></i>
-                            <i class='bx bxl-twitter'></i>
                         </div>
                         <p class="RegisterBtn "><Link to='/register-page'>Don't have an account? Sign Up</Link></p>
                     </div>
