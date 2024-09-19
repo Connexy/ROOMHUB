@@ -4,12 +4,14 @@ import axios from 'axios';
 import TextInput from '../../components/TextInput';
 import PasswordInput from '../../components/PasswordInput';
 import Button from '../../components/Button';
+import { showDangerMessage, showSuccessMessage } from '../../utils/Notification';
+
 
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -27,9 +29,11 @@ export default function Login() {
             const response = await axios.post('http://localhost:5000/api/login', formData);
             console.log(response.data.message);
             navigate('/landing-page');
+            showSuccessMessage("Login Successful");
         } catch (error) {
             console.error("Login error", error);
-            setError("Login failed. Please check your credentials and try again.");
+
+            showDangerMessage("Login failed. Please check your credentials and try again.");
         }
     };
 
@@ -58,7 +62,7 @@ export default function Login() {
                             <span><input type="checkbox" name="remember" id="checked" />Remember Me</span>
                             <span><a href="/">Forgot Password ?</a></span>
                         </div>
-                        {error && <p className="error">{error}</p>}
+
                         <Button
                             id='login-btn'
                             name='Login'

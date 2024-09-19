@@ -1,4 +1,6 @@
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -15,6 +17,7 @@ function App() {
           <Route path='/landing-page' element={<LandingPage />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </>
 
   );

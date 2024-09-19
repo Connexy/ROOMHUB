@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import PasswordInput from '../../components/PasswordInput';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
+import { showDangerMessage, showSuccessMessage } from '../../utils/Notification';
+import { validateEmail } from '../../utils/Common';
 
 export default function Register() {
     const navigate = useNavigate();
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -25,14 +27,32 @@ export default function Register() {
 
     const handleRegister = async (event) => {
         event.preventDefault();
+        // validation check
+        if (!fullname) {
+            toast.error("Full Name is required");
+            return;
+        }
+        if (!email) {
+            toast.error("Email is required");
+            return;
+        }
+        if (!validateEmail(email)) {
+            toast.error("Invalid email format");
+            return;
+        }
+        if (!password) {
+            toast.error("Password is required");
+            return;
+        }
         const formData = { fullname, email, password };
         try {
             const response = await axios.post('http://localhost:5000/api/register', formData);
             console.log(response.data.message);
             navigate('/login-page');
+            showSuccessMessage("Registration Successful");
         } catch (error) {
             console.error("Registration error", error);
-            setError("Registration failed. Please try again.");
+            showDangerMessage("Registration failed. Please try again.")
         }
     };
 
@@ -69,7 +89,7 @@ export default function Register() {
                             <span><input type="checkbox" name="remember" id="checked" />Remember Me</span>
                             <span><a href="/">Forgot Password ?</a></span>
                         </div>
-                        {error && <p className="error">{error}</p>}
+
                         <Button
                             id='register-btn'
                             name='Register'
@@ -79,6 +99,7 @@ export default function Register() {
                     <p className="LoginBtn"><Link to='/login-page'>Go back to login</Link></p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
