@@ -10,6 +10,7 @@ export default function PasswordInput(props) {
                     type='password'
                     name={props.name}
                     value={props.value}
+                    onChange={props.handleInputChange}
                     {...props}
                 />
             </div>

@@ -5,6 +5,7 @@ export default function Button(props) {
         <>
             <button class="btn"
                 id={props.id}
+                onClick={props.onClick}
             >
                 {props.name}
             </button>
