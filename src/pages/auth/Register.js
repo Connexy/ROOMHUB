@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import PasswordInput from '../components/PasswordInput';
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
+import PasswordInput from '../../components/PasswordInput';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
 
 export default function Register() {
     const navigate = useNavigate();
