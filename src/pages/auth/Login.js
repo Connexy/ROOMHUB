@@ -5,7 +5,7 @@ import TextInput from '../../components/TextInput';
 import PasswordInput from '../../components/PasswordInput';
 import Button from '../../components/Button';
 import { showDangerMessage, showSuccessMessage } from '../../utils/Notification';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -82,7 +82,7 @@ export default function Login() {
                     <p className="RegisterBtn"><Link to='/register-page'>Don't have an account? Sign Up</Link></p>
                 </div>
             </div>
-            <ToastContainer />
+
         </div>
     );
 }

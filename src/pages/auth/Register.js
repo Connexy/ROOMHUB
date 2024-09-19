@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import PasswordInput from '../../components/PasswordInput';
 import TextInput from '../../components/TextInput';
@@ -99,7 +99,6 @@ export default function Register() {
                     <p className="LoginBtn"><Link to='/login-page'>Go back to login</Link></p>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 }
