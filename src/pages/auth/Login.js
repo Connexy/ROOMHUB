@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TextInput from '../../components/TextInput';
-import PasswordInput from '../../components/PasswordInput';
 import Button from '../../components/Button';
-import { showDangerMessage, showSuccessMessage } from '../../utils/Notification';
-import { toast } from 'react-toastify';
+import { showSuccessMessage } from '../../utils/Notification';
+import ViMessage from '../../components/ViMessage';
 
 
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errrorMessage, setErrorMessage] = useState('');
 
 
     const handleInputChange = (event) => {
@@ -27,11 +27,11 @@ export default function Login() {
         event.preventDefault();
         // validation check
         if (!email) {
-            toast.error("Email  is required");
+            setErrorMessage("Email  is required");
             return;
         }
         if (!password) {
-            toast.error("Password is required");
+            setErrorMessage("Password is required");
             return;
         }
         const formData = { email, password };
@@ -42,8 +42,7 @@ export default function Login() {
             showSuccessMessage("Login Successful");
         } catch (error) {
             console.error("Login error", error);
-
-            showDangerMessage("Login failed. Please check your credentials and try again.");
+            setErrorMessage("Please check your credentials and try again.")
         }
     };
 
@@ -52,6 +51,7 @@ export default function Login() {
             <div className="container">
                 <div className="Form login-form">
                     <h2>Login</h2>
+                    {errrorMessage && <ViMessage message={errrorMessage} />}
                     <form >
                         <TextInput
                             logo='bx bxs-envelope'
@@ -61,10 +61,11 @@ export default function Login() {
                             placeholder='Enter Your Email'
                             onChange={handleInputChange}
                         />
-                        <PasswordInput
+                        <TextInput
                             logo='bx bxs-lock-alt'
                             label='Password'
                             name='password'
+                            type='password'
                             placeholder='Enter Your Password'
                             onChange={handleInputChange}
                         />
@@ -82,7 +83,6 @@ export default function Login() {
                     <p className="RegisterBtn"><Link to='/register-page'>Don't have an account? Sign Up</Link></p>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -13,8 +13,8 @@
     background-color: #707374; 
 }
 .container{
-    height: 550px;
-    width: 380px;  
+    height: 600px;
+    width: 400px;  
     background: #eee;
     border-radius: 15px;
     display: flex;
@@ -59,6 +59,7 @@ h2{
     border-bottom: 2px solid rgba(0,0,0,.5);
     position: relative;
 }
+
 .input-box input{
     width: 90%;
     height: 100%;
@@ -67,15 +68,25 @@ h2{
     outline: none;
     font-size: 15px;
     color: rgba(0,0,0,.9);
-  
     padding: 5px 0;
     background: transparent;
+}
+.input-box input[type='file']{
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px 0;
+    margin-top: 10px;
 }
 .input-box label{
     position: absolute;
     left: 0;
-    transform: translateY(-56%);
-    font-size: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
     font-weight: 500;
     color: #333;
 }
@@ -96,7 +107,7 @@ input#checked{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: -20px;
+    margin-top: 10px;
 }
 .forgot-section span{
     display: flex;
@@ -132,17 +143,6 @@ input#checked{
 #register-btn{
     background-color: #60BB46;
 }
-/* .btn::before{
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0%;
-    height: 100%;
-    width: 00%;
-    background: linear-gradient(45deg ,#f417de,60% ,#098dc1);
-    transition: .5s ease;
-    z-index: -1;
-} */
 
 p{
     color: rgba(0,0,0,.5);
@@ -244,7 +244,7 @@ p{
         font-size: 15px;
     }
     p{
-        font-size: 11px;
+        font-size: 13px;
     }
     .social-media i{
         font-size: 20px;
@@ -331,3 +331,21 @@ p{
     }
  
 }
+/* CSS for error messages */
+.alert-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    width: 300px;
+    margin-top: 5px;
+    background: rgb(229, 108, 108);
+    border: 1px solid rgb(255, 42, 42);
+    border-radius: 10px;
+  }
+  .label-danger {
+    color: rgb(229, 38, 38);
+  }
+ 
+
