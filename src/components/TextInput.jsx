@@ -4,7 +4,6 @@ export default function TextInput(props) {
     return (
         <>
             <div className="input-box">
-
                 <label htmlFor={props.name}>{props.label}</label>
                 <i className={props.logo}></i>
                 <input

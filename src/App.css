@@ -56,9 +56,16 @@ h2{
     margin: 45px 0;
     height: 40px;
     width: 300px;
-    border-bottom: 2px solid rgba(0,0,0,.5);
+    /* border-bottom: 2px solid rgba(0,0,0,.5); */
     position: relative;
+    
 }
+.input-box input[type='text'],
+.input-box input[type='email'],
+.input-box input[type='password'] {
+    padding-left: 30px;
+    border-bottom: 2px solid rgba(0,0,0,.5); /* Only add bottom border for these inputs */
+} 
 
 .input-box input{
     width: 90%;
@@ -70,17 +77,18 @@ h2{
     color: rgba(0,0,0,.9);
     padding: 5px 0;
     background: transparent;
+    
+   
 }
 .input-box input[type='file']{
     width: 100%;
     padding: 10px;
     font-size: 13px;
-    border: 2px solid #333;
+    border: 2px solid rgba(0,0,0,.5);
     border-radius: 4px;
     cursor: pointer;
     box-sizing: border-box;
-    padding: 5px 0;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 .input-box label{
     position: absolute;
