@@ -152,7 +152,7 @@ input#checked{
     background-color: #60BB46;
 }
 
-p{
+.Register-form p{
     color: rgba(0,0,0,.5);
     font-size: 13px;
     font-weight: 500;
@@ -734,7 +734,6 @@ header {
     text-align: center;
     font-size: 20px;
   }
- 
   
   .large_container {
     padding-top: 70px;
@@ -812,9 +811,122 @@ header {
   .user_details p {
     color: #6c757d;
     margin-left: 10px;
+    padding: 10px;
     border-bottom: 1px solid #6c757d;
   }
   
   .user_details p strong {
     color: #1a202c;
   }
+
+  /* css for rental listing */
+  
+  .big-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+    margin-top: 100px;
+  }
+  
+  .big-container h1 {
+    margin-left: 30px;
+  }
+  
+  .containers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .heading-text {
+    margin-top: 100px;
+  }
+  
+  .card {
+    line-height: 1.7;
+    height: 360px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .button {
+    height: 40px;
+    width: 150px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    border-radius: 20px;
+    border: 1px solid rgb(159, 159, 159);
+    box-shadow: black;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    /* Change background color on hover */
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .price-button {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #cont-btn {
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    border: none;
+  }
+  
+  #cont-btn:hover {
+    color: #007bff;
+    border: 1px solid white;
+  }
+  
+  /* for the image section  */
+  .card img {
+    width: 100%;
+    height: 200px;
+    transition: transform 0.25s ease;
+  }
+  .card img:hover {
+    transform: scale(1.1);
+  }
+  
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .availability {
+    font-size: 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+  }
+  
+  .doubt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    line-height: 3;
+  }
+  .doubt a {
+    text-decoration: none;
+    color: white;
+  }
+  

@@ -25,8 +25,7 @@ function App() {
           <Route path='/how-it-works-page' element={<HowitWorks />} />
           <Route path='/contact-page' element={<Contact />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
-          <Route path='/room-detail-page' element={<RoomDetails />} />
-
+          <Route path='/room-detail-page/:index' element={<RoomDetails />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
