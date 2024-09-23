@@ -13,7 +13,7 @@ const Navbar = () => {
             showSuccessMessage("Logout successfully");
             localStorage.removeItem('isLogin');
             setisLoggedIn(false);
-            navigate('/logout-page');
+            navigate('/login-page');
         }
     }
 
