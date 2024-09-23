@@ -930,3 +930,188 @@ header {
     color: white;
   }
   
+  /* css for room details */
+  .room-detail-headings {
+    text-align: center;
+    padding-top: 80px;
+    
+  }
+  .detail-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+  
+  .detail-image {
+    height: 400px;
+    width: 600px;
+    
+  }
+  
+  .detail-content {
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+    width: 600px;
+  }
+  .sub-image {
+    display: flex;
+    margin: 10px;
+    height: 200px;
+    width: 580px;
+    /* border: 1px solid #0090BD; */
+  }
+  .sub-image-box {
+    margin: 10px;
+    height: 150px;
+    width: 200px;
+    border: 1px solid #0090bd;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.25s ease;
+  }
+  .sub-image-box:hover {
+    transform: scale(1.1);
+  }
+  .sub-box {
+    margin: 10px;
+    height: 200px;
+    width: 300px;
+    /* border: 1px solid #0090BD; */
+  }
+  .sub-box i {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .sub-box div {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .room-detail-contents {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+  
+    /* border: 1px solid black; */
+  }
+  .room-features-content {
+    height: 300px;
+    width: 600px;
+    /* border: 1px solid black; */
+  }
+  .room-description {
+    height: 300px;
+    width: 600px;
+    /* border: 1px solid black; */
+  }
+  .room-features i {
+    margin-left: 20px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  .features-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .features-grid div {
+    font-size: 14px;
+  }
+  
+  .room-description-text {
+    margin-top: 10px;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Adds vertical scrollbar if content overflows */
+    word-wrap: break-word;
+    text-align: justify; /* Aligns the text evenly on both the left and right margins */
+    padding: 0 20px; /* Adds 20px of space to the left and right of the text */
+  }
+  
+  .room-description p {
+    line-height: 1.5; /* Adjusts the space between lines */
+    margin: 10px 0; /* Adds 10px of space above and below each paragraph */
+    font-size: 14px;
+  }
+  
+  .location-checkout {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+  }
+  .room-location {
+    height: 650px;
+    width: 600px;
+    /* border: 1px solid black; */
+  }
+  .room-checkout {
+    height: 650px;
+    width: 600px;
+    /* border: 1px solid black; */
+  }
+  #map {
+    height: auto;
+    width: 550px;
+  }
+  .location-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-box {
+    height: 100%;
+    width: 500px;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* css for contact form */
+
+  .contact-form {
+    margin-top: 30px;
+    height: auto;
+    background-color: #ffffff;
+    width: 550px;
+    padding: 20px;
+    color: #404040;
+    border: 1px solid #404040;
+    border-radius: 5px;
+  }
+  
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form input[type="number"],
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .contact-form button {
+    background-color: #404040;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  

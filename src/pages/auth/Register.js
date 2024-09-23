@@ -80,7 +80,7 @@ export default function Register() {
                 <div className="Form Register-form">
                     <h2>Register</h2>
                     {errorMessages.general && <ViMessage message={errorMessages.general} />}
-                    <form onSubmit={handleRegister}>
+                    <form >
                         <TextInput
                             logo='bx bxs-user'
                             label='Full Name'
@@ -125,7 +125,7 @@ export default function Register() {
                         <Button
                             id='register-btn'
                             name='Register'
-                            type='submit'
+                            onClick={handleRegister}
                         />
                     </form>
                     <p className="LoginBtn"><Link to='/login-page'>Go back to login</Link></p>
