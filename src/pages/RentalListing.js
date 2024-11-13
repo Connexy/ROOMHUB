@@ -35,7 +35,7 @@ const RentalListing = () => {
                 <div className="doubt">
                     <h2>Have any doubts or looking for something specific?</h2>
                     <p style={{ fontSize: "16px" }}>Our agents are here to help you.</p>
-                    <button className="button" id="cont-btn">
+                    <button className="card-btn" id="cont-btn">
                         <Link to="/contact-page">Contact Us</Link>
                     </button>
                 </div>

@@ -14,9 +14,10 @@ const RoomCard = ({ index, roomImage, avaliabilityDate, location, description, p
             <p style={{ color: "gray", fontSize: "14px" }}>private room</p>
             <h3>{location}</h3>
             <p style={{ fontSize: "16px" }}>{description}</p>
-            <div className="price-button">
-                <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
-                <button onClick={goDetailPage} className="button">View Details</button>
+            <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
+            <div className="card-button">
+                <button onClick={goDetailPage} className="card-btn">View Details</button>
+                <button className="card-btn">Share Now</button>
             </div>
         </div>
 
