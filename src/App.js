@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import LandingPage from './pages/LandingPage';
-import Layout from './pages/Layout';
 import RentalListing from './pages/RentalListing';
 import HowitWorks from './pages/HowitWorks';
 import Contact from './pages/Contact';
@@ -17,7 +16,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout />} />
+          <Route path='/' element={<LandingPage />} />
           <Route path='/login-page' element={<Login />} />
           <Route path='/register-page' element={<Register />} />
           <Route path='/landing-page' element={<LandingPage />} />
