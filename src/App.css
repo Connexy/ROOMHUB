@@ -404,12 +404,12 @@ input#checked{
   }
   
   .auth {
-    margin-left: 380px;
+    margin-left: 450px;
     height: 60px;
     width: 200px;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     justify-content: center;
   }
   
@@ -531,14 +531,14 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 40px;
+    height: 50px;
     width: 300px;
     border-radius: 30px;
     background-color: white;
   }
   
   .searchbox button {
-    width: 80px;
+    width: 95px;
     padding: 5px;
     border-radius: 20px;
     border: none;
@@ -688,7 +688,7 @@ header {
     /* display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap; */
-    gap: 10px;
+    padding: 30px;
   }
   .review-card {
     border: 1px solid #ddd;
