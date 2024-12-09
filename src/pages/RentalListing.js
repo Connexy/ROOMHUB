@@ -6,9 +6,13 @@ import Footer from "../components/Footer";
 import RoomCard from "../components/RoomCard";
 import { Link } from "react-router-dom";
 import roomsData from "../room.json";
+import Filter from "../components/Filter";
+
+
 
 
 const RentalListing = () => {
+
     const images = {
         RI1: room1,
         RI2: room2,
@@ -21,6 +25,10 @@ const RentalListing = () => {
             <div className="big-container">
                 <div classNameName="heading-text">
                     <h1>Are you looking for rooms ?</h1>
+                </div>
+
+                <div className="filter-thau">
+                    <Filter />
                 </div>
 
                 <div className="containers">
@@ -39,7 +47,7 @@ const RentalListing = () => {
                         <Link to="/contact-page">Contact Us</Link>
                     </button>
                 </div>
-            </div>
+            </div >
 
             <Footer />
         </>
