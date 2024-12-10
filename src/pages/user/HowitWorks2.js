@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 
-export default function HowitWorks() {
+export default function HowitWorks2() {
     return (
         <>
             <Navbar />
@@ -14,13 +14,13 @@ export default function HowitWorks() {
                         {/* <p><i class="fa-solid fa-user"></i> Do you need Help</p> */}
                     </div>
                     <div class="btn-wrapper">
-                        <button class="tenant">tenant</button>
-                        <Link to='/how-it-works-page-landlord'> <button class="landlord">Landlord</button></Link>
+                        <Link to='/how-it-works-page-tenant'><button class="tenant">tenant</button></Link>
+                        <button class="landlord">Landlord</button>
                     </div>
                     <div class="text-wrapper">
 
                         <div class="text-part">
-                            <h3>1. Warranty</h3>
+                            <h3>1. Post</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -32,7 +32,7 @@ export default function HowitWorks() {
                                 you can book online in complete safety
                             </p>
 
-                            <h3>2. search</h3>
+                            <h3>2. Receive Rental Request</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -44,7 +44,7 @@ export default function HowitWorks() {
                                 you can book online in complete safety
                             </p>
 
-                            <h3>3. Book</h3>
+                            <h3>3. Deal Closed</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -56,29 +56,7 @@ export default function HowitWorks() {
                                 you can book online in complete safety
                             </p>
 
-                            <h3>4. Confirm</h3>
-                            <p>
-                                The properties on the room less platform are all verified by our
-                                team
-                            </p>
-                            <br />
-                            <p>
-                                This means that we guarantee the reality, the authencity of the
-                                photos and the accuracy of the information in the listing so htath
-                                you can book online in complete safety
-                            </p>
 
-                            <h3>5. Post Confirmation</h3>
-                            <p>
-                                The properties on the room less platform are all verified by our
-                                team
-                            </p>
-                            <br />
-                            <p>
-                                This means that we guarantee the reality, the authencity of the
-                                photos and the accuracy of the information in the listing so htath
-                                you can book online in complete safety
-                            </p>
                         </div>
                     </div>
 

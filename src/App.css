@@ -376,7 +376,7 @@ input#checked{
   }
   
   .home-content {
-    margin-left: 160px;
+    margin-left: 155px;
   }
   
   .home-content ul {
@@ -397,13 +397,15 @@ input#checked{
   }
   
   /* hover effect for list item*/
-  .home-content ul li a:hover {
+   .home-content ul li a:hover {
     overflow: hidden;
     background-color: black;
     color: white;
     transform: scale(1);
     
-  }
+  } 
+ 
+
   
   .auth {
     margin-left: 450px;

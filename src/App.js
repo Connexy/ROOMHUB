@@ -13,6 +13,7 @@ import RoomDetails from './pages/user/RoomDetails';
 import Dashboard from './pages/admin/Dashboard';
 import UserList from './pages/admin/UserList';
 import PostRoom from './pages/admin/PostRoom';
+import HowitWorks2 from './pages/user/HowitWorks2';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Route path='/register-page' element={<Register />} />
           <Route path='/landing-page' element={<LandingPage />} />
           <Route path='/rental-listing-page' element={<RentalListing />} />
-          <Route path='/how-it-works-page' element={<HowitWorks />} />
+          <Route path='/how-it-works-page-tenant' element={<HowitWorks />} />
+          <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
           <Route path='/contact-page' element={<Contact />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
           <Route path='/room-detail-page/:index' element={<RoomDetails />} />

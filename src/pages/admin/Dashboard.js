@@ -24,7 +24,7 @@ export default function Dashboard() {
                             <p>340</p> {/* Replace with dynamic data */}
                         </div>
                         <div className="admin-card">
-                            <h3>Active Bookings</h3>
+                            <h3>Booked Rooms</h3>
                             <p>45</p> {/* Replace with dynamic data */}
                         </div>
                         <div className="admin-card">

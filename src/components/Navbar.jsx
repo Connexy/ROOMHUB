@@ -25,8 +25,8 @@ const Navbar = () => {
                 <div className="home-content">
                     <ul>
                         <li><Link to='/landing-page'>Home</Link></li>
-                        <li><Link to='/rental-listing-page'>Rental Listing</Link></li>
-                        <li><Link to='/how-it-works-page'>How it Works</Link></li>
+                        <li><Link to='/rental-listing-page'>Available Rooms</Link></li>
+                        <li><Link to='/how-it-works-page-tenant'>How it Works</Link></li>
                         <li><Link to='/contact-page'>Contact</Link></li>
                         {/* <div className="dropdown">
                             <i style={{ fontSize: "20px", cursor: "pointer" }} className="fa-solid fa-bell"></i>
