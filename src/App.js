@@ -4,12 +4,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import LandingPage from './pages/LandingPage';
-import RentalListing from './pages/RentalListing';
-import HowitWorks from './pages/HowitWorks';
-import Contact from './pages/Contact';
-import UserDetail from './pages/UserDetail';
-import RoomDetails from './pages/RoomDetails';
+import LandingPage from './pages/user/LandingPage';
+import RentalListing from './pages/user/RentalListing';
+import HowitWorks from './pages/user/HowitWorks';
+import Contact from './pages/user/Contact';
+import UserDetail from './pages/user/UserDetail';
+import RoomDetails from './pages/user/RoomDetails';
+import Dashboard from './pages/admin/Dashboard';
+import UserList from './pages/admin/UserList';
+import PostRoom from './pages/admin/PostRoom';
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
           <Route path='/contact-page' element={<Contact />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
           <Route path='/room-detail-page/:index' element={<RoomDetails />} />
+          <Route path='/admin-dashboard-page' element={<Dashboard />} />
+          <Route path='/user-list' element={<UserList />} />
+          <Route path='/post-room' element={<PostRoom />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

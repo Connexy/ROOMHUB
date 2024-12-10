@@ -5,21 +5,21 @@ const RoomCard = ({ index, roomImage, avaliabilityDate, location, description, p
     const goDetailPage = () => {
         navigate(`/room-detail-page/${index}`);
     }
-    const handleShare = () => {
-        const shareData = {
-            title: `Room in ${location}`,
-            text: `Check out this room in ${location}. Available from ${avaliabilityDate}.`,
-            url: `${window.location.origin}/room-detail-page/${index}`, // Generates the URL dynamically
-        };
-        if (navigator.share) {
-            navigator
-                .share(shareData)
-                .then(() => console.log('shared successfully'))
-                .catch((error) => console.error('error sharing: ', error));
-        } else {
-            alert('Sharing not supported on this browser. copy the url: ' + shareData.url);
-        }
-    };
+    // const handleShare = () => {
+    //     const shareData = {
+    //         title: `Room in ${location}`,
+    //         text: `Check out this room in ${location}. Available from ${avaliabilityDate}.`,
+    //         url: `${window.location.origin}/room-detail-page/${index}`, // Generates the URL dynamically
+    //     };
+    //     if (navigator.share) {
+    //         navigator
+    //             .share(shareData)
+    //             .then(() => console.log('shared successfully'))
+    //             .catch((error) => console.error('error sharing: ', error));
+    //     } else {
+    //         alert('Sharing not supported on this browser. copy the url: ' + shareData.url);
+    //     }
+    // };
     return (
         <div className="card">
             <div className="image-container">
@@ -32,7 +32,7 @@ const RoomCard = ({ index, roomImage, avaliabilityDate, location, description, p
             <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
             <div className="card-button">
                 <button onClick={goDetailPage} className="card-btn">View Details</button>
-                <button onClick={handleShare} className="card-btn">Share Now</button>
+
             </div>
         </div>
 

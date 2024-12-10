@@ -1,12 +1,12 @@
-import room1 from "../assets/images/image1.jpg"
-import room2 from "../assets/images/image2.jpg"
-import room3 from "../assets/images/image3.jpg"
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import RoomCard from "../components/RoomCard";
+import room1 from "../../assets/images/image1.jpg"
+import room2 from "../../assets/images/image2.jpg"
+import room3 from "../../assets/images/image3.jpg"
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import RoomCard from "../../components/RoomCard";
 import { Link } from "react-router-dom";
-import roomsData from "../room.json";
-import Filter from "../components/Filter";
+import roomsData from "../../room.json";
+import Filter from "../../components/Filter";
 
 
 

@@ -1,13 +1,13 @@
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import { showSuccessMessage } from "../utils/Notification";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
+import { showSuccessMessage } from "../../utils/Notification";
 import { useNavigate, useParams } from "react-router-dom";
-import { DetailImage } from "../components/DetailImage";
-import roomsData from "../room.json";
+import { DetailImage } from "../../components/DetailImage";
+import roomsData from "../../room.json";
 import { useEffect } from "react";
-import room1 from "../assets/images/image1.jpg"
-import room2 from "../assets/images/image2.jpg"
-import room3 from "../assets/images/image3.jpg"
+import room1 from "../../assets/images/image1.jpg"
+import room2 from "../../assets/images/image2.jpg"
+import room3 from "../../assets/images/image3.jpg"
 
 
 
@@ -118,7 +118,7 @@ const RoomDetails = () => {
                                 <label for="email">Email *</label>
                                 <input type="email" id="email" />
                             </div>
-                           
+
                             <div className="form-group">
                                 <label for="message">Message</label>
                                 <textarea id="message"></textarea>

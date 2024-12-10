@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 export default function UserDetail() {
     return (
@@ -20,7 +20,7 @@ export default function UserDetail() {
                     </div>
                     <div className="user_details">
                         <div classNameName="user_heading">
-                            <h3 style={{marginLeft:"10px"}}>User Details</h3>
+                            <h3 style={{ marginLeft: "10px" }}>User Details</h3>
                         </div>
                         <p><strong>Name:</strong> Kiswor Chhetri</p>
                         <p><strong>Email:</strong> kisworchhetri.2001@example.com</p>

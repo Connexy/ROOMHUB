@@ -1,12 +1,12 @@
 import React from 'react'
-import Footer from '../components/Footer'
-import Review from '../components/Review'
-import Navbar from '../components/Navbar'
-import lux1 from '../assets/images/image1.jpg'
-import lux2 from '../assets/images/image2.jpg'
-import lux3 from '../assets/images/image3.jpg'
-import lux4 from '../assets/images/image1.jpg'
-import LuxuryRoom from '../components/LuxuryRoom'
+import Footer from '../../components/Footer'
+import Review from '../../components/Review'
+import Navbar from '../../components/Navbar'
+import lux1 from '../../assets/images/image1.jpg'
+import lux2 from '../../assets/images/image2.jpg'
+import lux3 from '../../assets/images/image3.jpg'
+import lux4 from '../../assets/images/image1.jpg'
+import LuxuryRoom from '../../components/LuxuryRoom'
 export default function LandingPage() {
     return (
         <>
