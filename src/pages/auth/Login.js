@@ -38,6 +38,9 @@ export default function Login() {
         try {
             const response = await axios.post('http://localhost:5000/api/login', formData);
             console.log(response.data.message);
+
+            localStorage.setItem('isLogin', 1);
+
             navigate('/landing-page');
             showSuccessMessage("Login Successful");
         } catch (error) {

@@ -861,7 +861,7 @@ header {
   .card-btn {
     height: 35px;
     width: 120px;
-    background-color: #007bff;
+    background-color: #1782b8;
     color: white;
     border: none;
     border-radius: 20px;
@@ -874,7 +874,7 @@ header {
   .room-detail-btn {
     height: 35px;
     width: 150px;
-    background-color: #007bff;
+    background-color: #1782b8;
     color: white;
     border: none;
     border-radius: 20px;
@@ -1251,7 +1251,7 @@ select {
 
 .filter-button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #1782b8;
   color: #ffffff;
   font-size: 16px;
   border: none;
