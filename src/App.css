@@ -1415,6 +1415,9 @@ tr:nth-child(even) {
   position: relative;       /* Makes it stay within its container */
   margin-top: 20px;         /* Adjust top margin for spacing */
   padding: 1rem 0;
+  bottom: 20px;
+  left: 0;
+  right: 0;
 }
 .pagination-number,
 .pagination-button{

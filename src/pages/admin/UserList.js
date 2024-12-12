@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar';
+import axios from 'axios';
 
 export default function UserList() {
-    // Example data for users
-    const userData = Array.from({ length: 30 }, (_, i) => ({
-        id: i + 1,
-        fullName: `User ${i + 1}`,
-        userName: `username${i + 1}`,
-        password: `password${i + 1}`,
-    }));
-
-    const itemsPerPage = 12; // Items to display per page
+    const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10); // Match backend limit
+    const [totalPages, setTotalPages] = useState(0);
+    const [error, setError] = useState(null);
 
-    // Calculate total pages
-    const totalPages = Math.ceil(userData.length / itemsPerPage);
+    useEffect(() => {
+        // Fetch paginated user data from backend
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:5000/api/users?page=${currentPage}&limit=${itemsPerPage}`
+                );
+                setUsers(response.data.users);
+                setTotalPages(Math.ceil(response.data.total / itemsPerPage));
+            } catch (err) {
+                console.error("Error fetching users:", err);
+                setError("Failed to load user data.");
+            }
+        };
 
-    // Get the current page data
-    const currentData = userData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
+        fetchUsers();
+    }, [currentPage, itemsPerPage]);
 
-    // Handle page navigation
     const handleNext = () => {
         if (currentPage < totalPages) {
             setCurrentPage((prevPage) => prevPage + 1);
@@ -40,41 +44,48 @@ export default function UserList() {
     };
 
     return (
-        <>
-            <div className='admin-part'>
-                <Sidebar />
-                <div id="main-content">
-                    <div className="dashboard-header">
-                        <h1>List of Users</h1>
-                    </div>
+        <div className='admin-part'>
+            <Sidebar />
+            <div id="main-content">
+                <div className="dashboard-header">
+                    <h1>List of Users</h1>
+                </div>
 
-                    <div className="dash-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Fullname</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Action</th>
+                <div className="dash-content">
+                    {error && <p className="error-message">{error}</p>}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fullname</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.map((user) => (
+                                <tr key={user.id}>
+                                    <td>{user.id}</td>
+                                    <td>{user.fullname}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.password}</td>
+                                    <td>
+                                        {user.image ? (
+                                            <img src={user.image} alt={user.fullname} width="50" />
+                                        ) : (
+                                            "No Image"
+                                        )}
+                                    </td>
+                                    <td>
+                                        <a href="/" className="btn-edit">Edit</a>
+                                        <a href="/" className="btn-delete">Delete</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {currentData.map((user) => (
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.fullName}</td>
-                                        <td>{user.userName}</td>
-                                        <td>{user.password}</td>
-                                        <td>
-                                            <a href="/" class="btn-edit">Edit</a>
-                                            <a href="/" class="btn-delete">Delete</a>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
 
                     {/* Pagination */}
                     <nav className="pagination-container">
@@ -93,8 +104,7 @@ export default function UserList() {
                             {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
                                 <button
                                     key={number}
-                                    className={`pagination-number ${currentPage === number ? 'active' : ''
-                                        }`}
+                                    className={`pagination-number ${currentPage === number ? 'active' : ''}`}
                                     onClick={() => handlePageClick(number)}
                                 >
                                     {number}
@@ -115,6 +125,6 @@ export default function UserList() {
                     </nav>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
