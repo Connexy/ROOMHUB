@@ -362,7 +362,7 @@ input#checked{
     position: fixed;
     height: 70px;
     width: 100%;
-    background-color: #e5e3e4;
+    background-color: #2A9D8F ;
     color: black;
     display: flex;
     align-items: center;
@@ -474,7 +474,7 @@ input#checked{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #404040;
+    background-color: #333333;
     color: white;
     text-align: center;
     padding: 5px 0;
@@ -575,7 +575,7 @@ header {
   }
   
   .section h1 {
-    margin-left: 30px;
+    text-align: center;
   }
   
   .categories {
@@ -586,6 +586,7 @@ header {
   }
   
   .category {
+    background-color: #F9F9F9;
     margin-top: 20px;
     padding: 8px;
     height: auto;
@@ -597,6 +598,7 @@ header {
   }
   
   .section p {
+    text-align: center;
     color: #7a7a7a;
     font-size: 14px;
   }
@@ -660,7 +662,7 @@ header {
   
   /* css for count section */
   .count-container {
-    height: 300px;
+    height: 200px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -683,19 +685,22 @@ header {
     font-weight: bold;
   }
   /* css for reviws section */
+  .reviews-section{
+    background-color:#d7e6e4 ;
+    
+  }
   
   .review-box {
+   margin-left: 100px;
+   margin-right: 100px;
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    /* display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap; */
     padding: 30px;
   }
   .review-card {
-    border: 1px solid #ddd;
+    background-color: white;
     border-radius: 5px;
     padding: 10px;
     height: 250px;
@@ -789,7 +794,7 @@ header {
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
-    background-color: #007bff;
+    background-color: #2A9D8F;
   }
   
   .user_details {
@@ -810,7 +815,7 @@ header {
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
-    background-color: #1782b8;
+    background-color: #2A9D8F;
   }
   
   .user_details p {
@@ -861,11 +866,10 @@ header {
   .card-btn {
     height: 35px;
     width: 120px;
-    background-color: #1782b8;
+    background-color: #2A9D8F;
     color: white;
     border: none;
     border-radius: 20px;
-    border: 1px solid rgb(159, 159, 159);
     box-shadow: black;
     text-decoration: none;
     font-size: 14px;
@@ -874,11 +878,10 @@ header {
   .room-detail-btn {
     height: 35px;
     width: 150px;
-    background-color: #1782b8;
+    background-color: #2A9D8F;
     color: white;
     border: none;
     border-radius: 20px;
-    border: 1px solid rgb(159, 159, 159);
     box-shadow: black;
     text-decoration: none;
     font-size: 14px;
@@ -887,15 +890,15 @@ header {
   
   .card-btn:hover {
     /* Change background color on hover */
-    background-color: white;
-    color: #007bff;
-    border: 1px solid #007bff;
+    background-color: #158074; /* Slightly darker teal */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: scale(1.05);
   }
   .room-detail-btn:hover {
     /* Change background color on hover */
-    background-color: white;
-    color: #007bff;
-    border: 1px solid #007bff;
+    background-color: #158074; /* Slightly darker teal */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: scale(1.05);
   }
   
   .card-button {
@@ -905,15 +908,16 @@ header {
   }
   
   #cont-btn {
-    background-color: #007bff;
+    background-color: #2A9D8F;
     color: white;
     box-shadow: none;
     border: none;
   }
   
   #cont-btn:hover {
-    color: #007bff;
-    border: 1px solid white;
+    background-color: #158074; /* Slightly darker teal */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: scale(1.05);
   }
   
   /* for the image section  */
@@ -1251,7 +1255,7 @@ select {
 
 .filter-button {
   padding: 10px 20px;
-  background-color: #1782b8;
+  background-color: #2A9D8F;
   color: #ffffff;
   font-size: 16px;
   border: none;
@@ -1262,7 +1266,9 @@ select {
 }
 
 .filter-button:hover {
-  background-color: #0056b3;
+  background-color: #158074; /* Slightly darker teal */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transform: scale(1.05);
 }
 
 /* Ensure responsiveness */

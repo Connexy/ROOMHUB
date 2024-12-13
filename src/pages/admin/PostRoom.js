@@ -1,7 +1,42 @@
-import React from 'react'
-import Sidebar from '../../components/Sidebar'
+
+import Sidebar from '../../components/Sidebar';
 
 export default function PostRoom() {
+
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent the page from reloading
+        const formData = new FormData(event.target); // Get the form data
+
+        // Convert checkbox fields to arrays
+        const amenities = formData.getAll('amenities');
+        const parking = formData.getAll('parking');
+
+        // Append checkbox values to FormData
+        formData.delete('amenities');
+        amenities.forEach(item => formData.append('amenities', item));
+
+        formData.delete('parking');
+        parking.forEach(item => formData.append('parking', item));
+
+        try {
+            const response = await fetch('http://localhost:5000/api/rooms', {
+                method: 'POST',
+                body: formData, // Send FormData directly
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Room posted successfully!');
+            } else {
+                alert(`Failed to post room: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error posting room:', error);
+            alert('An error occurred while posting the room.');
+        }
+    };
+
+
     return (
         <>
             <div className='admin-part'>
@@ -11,111 +46,110 @@ export default function PostRoom() {
                         <h1>Post Room</h1>
                     </div>
 
-                    <div class="box">
+                    <div className="box">
+                        <form className="dProdAddFormBody fg1 flex fdc bor" onSubmit={handleSubmit}>
+                            <label htmlFor="room-address">Enter Full Address</label>
+                            <input type="text" id="room-address" name="roomaddress" required />
 
-                        <form action="../user?page=addroom" class="dProdAddFormBody fg1 flex fdc bor" enctype="multipart/form-data" method="post">
+                            <label htmlFor="city">City</label>
+                            <input type="text" id="city" name="city" required />
 
-                            <label for="room-title">Enter Full Address</label>
-                            <input type="text" id="room-address" name="roomaddress" value="Dhobighat, 04, Lalitpur" required />
-
-                            <label for="room-location">City</label>
-                            <input type="text" id="city" name="city" value="Ktm" required />
-
-                            {/* <label for="room-size">Room Type</label>
-                            <input type="text" id="room-type" name="roomsize" min="0" step="0.01" value="255" required /> */}
-                            <label for="room-type">Room Type</label>
-                            <select id="option" name="roomtype" required>
+                            <label htmlFor="room-type">Room Type</label>
+                            <select id="room-type" name="roomtype" required>
                                 <option value="">Select Room Type</option>
                                 <option value="single">Single</option>
                                 <option value="double">Double</option>
-                                <option value="double">Shared</option>
+                                <option value="shared">Shared</option>
                             </select>
 
-                            <label for="total-bedroom">Total number of Bedroom </label>
-                            <select id="option" name="bedroom" required>
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>
-                                <option >3+</option>
+                            <label htmlFor="bedroom">Total Number of Bedrooms</label>
+                            <select id="bedroom" name="bedroom" required>
+                                <option value="">Select</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3+">3+</option>
                             </select>
 
-                            <label for="total-bathroom">Total Number of Bathroom </label>
-                            <select id="option" name="bathroom" required>
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>
-                                <option >3+</option>
+                            <label htmlFor="bathroom">Total Number of Bathrooms</label>
+                            <select id="bathroom" name="bathroom" required>
+                                <option value="">Select</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3+">3+</option>
                             </select>
 
-                            <label for="kitchenroom">Kitchen Room </label>
-                            <select id="option" name="kitchenroom" required>
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>
-                                <option >N/A</option>
+                            <label htmlFor="kitchenroom">Kitchen Room</label>
+                            <select id="kitchenroom" name="kitchenroom" required>
+                                <option value="">Select</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="N/A">N/A</option>
                             </select>
 
-                            <label for="property">Floor </label>
-                            <select id="option" name="floor" required>
-                                <option >First</option>
-                                <option >Second</option>
-                                <option >Third</option>
-                                <option >Fourth</option>
-                                <option >Fifth</option>
+                            <label htmlFor="floor">Floor</label>
+                            <select id="floor" name="floor" required>
+                                <option value="">Select</option>
+                                <option value="Ground">Ground</option>
+                                <option value="First">First</option>
+                                <option value="Second">Second</option>
+                                <option value="Third">Third</option>
+                                <option value="Fourth">Fourth</option>
                             </select>
 
-                            <label for="property-status">Property Status </label>
-                            <select id="option" name="status" required>
-                                <option >Available</option>
-                                <option >Booked</option>
+                            <label htmlFor="status">Property Status</label>
+                            <select id="status" name="status" required>
+                                <option value="">Select</option>
+                                <option value="Available">Available</option>
+                                <option value="Booked">Booked</option>
                             </select>
 
-                            <label for="room-rent">Rent per month</label>
-                            <input type="number" id="room-rent" name="roomprice" value="2500" required />
+                            <label htmlFor="room-rent">Rent per Month</label>
+                            <input type="number" id="room-rent" name="roomprice" required />
 
-
-                            <label>Property amenities</label>
+                            <label>Property Amenities</label>
                             <div>
-                                <input type="checkbox" id="wifi" name="amenities" value="wifi" />
-                                <label for="wifi">Wifi</label>
+                                <input type="checkbox" id="wifi" name="amenities" value="Wifi" />
+                                <label htmlFor="wifi">Wifi</label>
 
-                                <input type="checkbox" id="balcony" name="amenities" value="balcony" />
-                                <label for="balcony">Balcony</label>
+                                <input type="checkbox" id="balcony" name="amenities" value="Balcony" />
+                                <label htmlFor="balcony">Balcony</label>
 
-                                <input type="checkbox" id="garden" name="amenities" value="garden" />
-                                <label for="garden">Garden</label>
+                                <input type="checkbox" id="garden" name="amenities" value="Garden" />
+                                <label htmlFor="garden">Garden</label>
 
-                                <input type="checkbox" id="no-amenities" name="amenities" value="no-amenities" />
-                                <label for="no-amenities">No amenities</label>
+                                <input type="checkbox" id="no-amenities" name="amenities" value="No amenities" />
+                                <label htmlFor="no-amenities">No amenities</label>
                             </div>
 
                             <label>Parking</label>
                             <div>
-                                <input type="checkbox" id="bike" name="amenities" value="bike" />
-                                <label for="bike">Bike</label>
+                                <input type="checkbox" id="bike" name="parking" value="Bike" />
+                                <label htmlFor="bike">Bike</label>
 
-                                <input type="checkbox" id="car" name="amenities" value="car" />
-                                <label for="car">Car</label>
+                                <input type="checkbox" id="car" name="parking" value="Car" />
+                                <label htmlFor="car">Car</label>
 
-                                <input type="checkbox" id="cycle" name="amenities" value="cycle" />
-                                <label for="cycle">Cycle</label>
+                                <input type="checkbox" id="cycle" name="parking" value="Cycle" />
+                                <label htmlFor="cycle">Cycle</label>
 
-                                <input type="checkbox" id="no-amenities" name="amenities" value="no-amenities" />
-                                <label for="no-amenities">No Parking Space</label>
+                                <input type="checkbox" id="no-parking" name="parking" value="No Parking Space" />
+                                <label htmlFor="no-parking">No Parking Space</label>
                             </div>
 
-                            <label for="room-location">Available from</label>
+                            <label htmlFor="availability">Available From</label>
                             <input type="date" id="availability" name="availability" required />
 
-                            <label for="room-description">Description</label>
-                            <textarea id="room-description" name="roomdescription" rows="5" value="aksdaksdkajsfdhjkas" required ></textarea>
+                            <label htmlFor="room-description">Description</label>
+                            <textarea id="room-description" name="roomdescription" rows="5" required></textarea>
 
-                            <label for="room-image">Front Image</label>
-                            <input type="file" class="dProdAddFromImageUploadBtn dProdAddInpImg" oninput="dProdAddFormOnchange(event)" accept="image/jpeg, image/png, image/jpg" name="file" />
+                            <label htmlFor="frontImage">Front Image</label>
+                            <input type="file" id="frontImage" className="img" accept="image/jpeg, image/png, image/jpg" name="frontImage" required />
 
-                            <label for="room-image">Galary </label>
-                            <input type="file" class="dProdAddFromImageUploadBtn dProdAddInpImg" oninput="dProdAddFormOnchange(event)" accept="image/jpeg, image/png, image/jpg" name="file" />
-
+                            <label htmlFor="galleryImages">Gallery Image</label>
+                            <input type="file" id="galleryImages" className="img" accept="image/jpeg, image/png, image/jpg" name="galleryImages" multiple />
 
                             <button type="submit">Post Room</button>
                         </form>
@@ -123,5 +157,5 @@ export default function PostRoom() {
                 </div>
             </div>
         </>
-    )
-};
+    );
+}

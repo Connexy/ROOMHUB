@@ -80,8 +80,8 @@ export default function LandingPage() {
             </div> */}
 
             <section className="reviews-section">
-                <h1 style={{ marginLeft: "30px" }}>Guaranteed by our reviews</h1>
-                <p style={{ marginLeft: "30px", color: "#7A7A7A" }}>Our customers are 100% satisfied and our reviews speak for us!</p>
+                <h1 style={{ textAlign: "center", marginTop: "40px" }}>Guaranteed by our reviews</h1>
+                <p style={{ textAlign: "center", color: "#7A7A7A" }}>Our customers are 100% satisfied and our reviews speak for us!</p>
                 <div className="review-box">
 
                     <Review

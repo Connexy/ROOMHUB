@@ -20,7 +20,7 @@ const Navbar = () => {
         <div>
             <div className="navbar">
                 <div className="logo">
-                    <h1>RoomLess</h1>
+                    <h1 style={{ color: "white" }}>RoomLess</h1>
                 </div>
                 <div className="home-content">
                     <ul>
