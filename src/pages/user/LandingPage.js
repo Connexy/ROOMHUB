@@ -26,7 +26,7 @@ export default function LandingPage() {
 
             <div className="section">
                 <h1>Find the apartments that fits your lifestyle</h1>
-                <p style={{ marginLeft: "30px", color: "#7a7a7a" }}>We have a solution for every needs</p>
+                <p style={{ textAlign: "center", color: "#7a7a7a" }}>We have a solution for every needs</p>
 
                 <div className="categories">
 

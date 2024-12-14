@@ -381,7 +381,7 @@ input#checked{
   
   .home-content ul {
     display: flex;
-    gap: 60px;
+    gap: 50px;
   }
   
   .home-content ul li {
@@ -392,15 +392,15 @@ input#checked{
   
   .home-content ul li a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 16px;
   }
   
   /* hover effect for list item*/
    .home-content ul li a:hover {
-    overflow: hidden;
-    background-color: black;
-    color: white;
+    /* overflow: hidden; */
+    background-color: white;
+    color: #158074;
     transform: scale(1);
     
   } 
@@ -420,8 +420,8 @@ input#checked{
   .auth i {
     height: 35px;
     width: 35px;
-    color: black;
-    border: 1px solid gray;
+    color: white;
+    border: 1px solid white;
     border-radius: 50px;
     font-size: 20px;
     display: flex;
@@ -431,8 +431,8 @@ input#checked{
   }
   
   .auth i:hover {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: #158074;
   }
   
   /*css for user dropdown  */
@@ -547,7 +547,7 @@ header {
     border-radius: 20px;
     border: none;
     color: white;
-    background-color: black;
+    background-color: #2A9D8F;
     cursor: pointer;
   }
   
@@ -598,7 +598,7 @@ header {
   }
   
   .section p {
-    text-align: center;
+   
     color: #7a7a7a;
     font-size: 14px;
   }
@@ -727,18 +727,6 @@ header {
     font-weight: bold;
   }
   
-  /* .review-card img {
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 3px solid white;
-  } */
-  
-  
 /* css for user detail */
 .user_heading {
     text-align: center;
@@ -844,9 +832,11 @@ header {
   }
   
   .containers {
+    background-color: #d7e6e4;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
   }
   
@@ -855,12 +845,16 @@ header {
   }
   
   .card {
+    background-color: #F9F9F9;
     line-height: 1.7;
     height: 360px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     width: 300px;
     padding: 10px;
     margin: 10px;
+  }
+  .card-text{
+    line-height: 1.3;
   }
   
   .card-btn {
@@ -869,11 +863,12 @@ header {
     background-color: #2A9D8F;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: black;
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
+    margin-top: 5px;
   }
   .room-detail-btn {
     height: 35px;
@@ -1212,7 +1207,7 @@ padding-top: 90px;
   background: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  /* border: 1px solid black; */
+  margin-bottom: 20px;
 }
 
 #filter-form {
