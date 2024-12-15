@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 
 export default function HowitWorks() {
+
     return (
         <>
             <Navbar />
@@ -11,11 +12,11 @@ export default function HowitWorks() {
                 <div class="ci-container">
                     <div class="hiw-heading">
                         <h1>How it works</h1>
-                        {/* <p><i class="fa-solid fa-user"></i> Do you need Help</p> */}
+                        <p><i class="fa-solid fa-user"></i> Do you need Help</p>
                     </div>
                     <div class="btn-wrapper">
-                        <button class="tenant">tenant</button>
-                        <Link to='/how-it-works-page-landlord'> <button class="landlord">Landlord</button></Link>
+                        <button style={{ border: "none", backgroundColor: "#2A9D8F", color: "white" }} class="tenant">Tenant</button>
+                        <Link to='/how-it-works-page-landlord'> <button style={{ border: "none", backgroundColor: "#d7e6e4", color: "white" }} class="landlord">Landlord</button></Link>
                     </div>
                     <div class="text-wrapper">
 

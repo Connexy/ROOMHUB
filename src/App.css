@@ -468,7 +468,7 @@ input#checked{
   }
 /* css for footer*/
 .footer {
-    margin-top: auto;
+    margin-top: 30px;
     height: 70px;
     position: sticky;
     left: 0;
@@ -1171,11 +1171,11 @@ padding-top: 90px;
   margin-right: 20px;
 }
 .btn-wrapper {
-  background-color: rgb(220, 212, 212);
+  background-color: #d7e6e4;
   display: flex;
   justify-content: space-between;
   border-radius: 15px;
-  border: 1px solid #000;
+  border: 1px solid #2A9D8F;
   width: 300px;
   margin: auto;
   padding: 4px 8px;
@@ -1183,13 +1183,13 @@ padding-top: 90px;
 }
 .btn-wrapper .tenant,
 .landlord {
-  font-size: 24px;
-  background-color: #fff;
-  border: 1px solid black;  
+  font-size: 24px; 
   border-radius: 25px;
   padding: 2px 24px;
   cursor: pointer;
 }
+
+
 .text-wrapper {
   width: 400px;
   display: flex;
