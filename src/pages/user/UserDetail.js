@@ -9,7 +9,6 @@ export default function UserDetail() {
             <div>
 
                 <div className="large_container">
-
                     <div className="user_profile">
                         <div className="avatar">
 

@@ -828,7 +828,7 @@ header {
   }
   
   .big-container h1 {
-    margin-left: 30px;
+    margin-left: 50px;
   }
   
   .containers {
@@ -876,7 +876,7 @@ header {
     background-color: #2A9D8F;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: black;
     text-decoration: none;
     font-size: 14px;
@@ -928,15 +928,20 @@ header {
   .image-container {
     position: relative;
     overflow: hidden;
+    height: 200px;
+    width: auto;
+    object-fit: cover;
   }
+  
   
   .availability {
     font-size: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: #2A9D8F;
+    color: white;
     padding: 5px;
   }
   
@@ -1129,7 +1134,7 @@ header {
     box-sizing: border-box;
   }
   .contact-form button {
-    background-color: #404040;
+    background-color: #2A9D8F;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -1137,6 +1142,11 @@ header {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+  }
+  .contact-form button:hover{
+    background-color: #158074; /* Slightly darker teal */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: scale(1.);
   }
 
 /* how it works page */
@@ -1440,7 +1450,7 @@ tr:nth-child(even) {
 
 .pagination-number.active {
   color: #fff;
-  background: #333;
+  background: #2A9D8F;
 }
 /* edit and delete btn in user list */
 a {
