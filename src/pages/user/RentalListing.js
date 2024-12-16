@@ -95,6 +95,7 @@ const RentalListing = () => {
                             frontImage={`http://localhost:5000/uploads/${room.front_image}`}
                             status={room.status}
                             type={room.room_type}
+                            city={room.city}
                             location={room.room_address}
                             price={room.room_price}
                             description={room.room_description}

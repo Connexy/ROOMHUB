@@ -1,6 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
-const RoomCard = ({ index, frontImage, availabilityDate, status, type, location, description, price }) => {
+const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, location, description, price }) => {
     const navigate = useNavigate();
     const goDetailPage = () => {
         navigate(`/room-detail-page/${index}`);
@@ -14,7 +14,7 @@ const RoomCard = ({ index, frontImage, availabilityDate, status, type, location,
             </div>
             <div className='card-text'>
                 <p style={{ color: "gray", fontSize: "14px" }}> {type}</p>
-                <h3>{location}</h3>
+                <h3>{city}({location})</h3>
                 <p style={{ color: "gray", fontSize: "16px" }}>{description}</p>
                 <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
                 <div className="card-button">

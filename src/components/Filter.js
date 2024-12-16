@@ -9,10 +9,10 @@ const Filter = () => {
                         <label for="city">City:</label>
                         <select id="city" name="city">
                             <option value="">Select a City</option>
-                            <option value="new-york">New York</option>
-                            <option value="los-angeles">Los Angeles</option>
-                            <option value="chicago">Chicago</option>
-                            <option value="san-francisco">San Francisco</option>
+                            <option value="new-york">Kathmandu</option>
+                            <option value="los-angeles">Pokhara</option>
+                            <option value="chicago">Beni</option>
+                            <option value="san-francisco">Butwal</option>
                         </select>
                     </div>
 
@@ -23,7 +23,7 @@ const Filter = () => {
                             <option value="">Select a Type</option>
                             <option value="single">Single Room</option>
                             <option value="double">Double Room</option>
-                            <option value="suite">Suite</option>
+                            <option value="shared">Shared</option>
                         </select>
                     </div>
 
