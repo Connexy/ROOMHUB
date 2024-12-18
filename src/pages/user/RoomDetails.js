@@ -50,10 +50,11 @@ const RoomDetails = () => {
                 />
             </div>
 
-            <div className="room-detail-contents">
+            {/* <div className="room-detail-contents">
                 <div className="room-features-content">
+
                     <div className="room-features">
-                        <h2> Room Features</h2>
+                        <h2> Room Amenities</h2>
                         <div className="features-grid">
                             <div><i className="fas fa-bed fa-fw"></i> 2 Bedroom</div>
                             <div><i className="fas fa-bath fa-fw"></i> 1 Bathroom</div>
@@ -68,6 +69,7 @@ const RoomDetails = () => {
                         </div>
                     </div>
                 </div>
+
 
                 <div className="room-description">
                     <h2> Room Description</h2>
@@ -96,7 +98,7 @@ const RoomDetails = () => {
                 </div>
                 <div className="room-checkout">
                     <div className="checkout-box">
-                        <div className="checkout-header"><h2>Contact to House Owner</h2></div>
+                        <div className="checkout-header"><h2>Contact Owner (Book Room)</h2></div>
                         <div className="contact-form">
                             <h3>Contact Form</h3>
                             <div className="form-group">
@@ -119,6 +121,172 @@ const RoomDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div> */}
+            <div class="room-detail-contents">
+                <div class="room-features-content">
+
+                    <div class="room-features">
+                        <h2> Room Features</h2>
+                        <div class="features-grid">
+                            <div><i class="fas fa-bed fa-fw"></i> 2 Bedroom</div>
+                            <div><i class="fas fa-bath fa-fw"></i> 1 Bathroom</div>
+                            <div><i class="fas fa-wifi fa-fw"></i> Free Wi-Fi</div>
+                            <div><i class="fas fa-utensils fa-fw"></i> Kitchen Access</div>
+                            <div><i class="fas fa-parking fa-fw"></i> Free Parking</div>
+                            <div><i class="fas fa-smoking-ban fa-fw"></i> Non-Smoking</div>
+
+                        </div>
+                    </div>
+                    <div class="owner-features">
+                        <h2> Meet Your Owner</h2>
+                        <p>Feel free to contact house owner for booking.</p>
+                        <div class="owner-box">
+                            <div class="owner">
+                                <div class="owner-image">
+
+                                </div>
+                                <div class="owner-text">
+                                    <h4><i class="fas fa-user"></i> Kiswor Chhetri</h4>
+                                    <h4><i class="fas fa-phone-alt"></i> 9805153434</h4>
+                                    <h4><i class="fas fa-envelope"></i> ckiswor@gmail.com </h4>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="owner-book">
+
+                                <button class="owner-book-btn">Contact</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-location">
+                    <div class="location-header"><h2>Location</h2></div>
+                    <div id="map">
+                        <iframe
+                            className="map-frame"
+                            title="Google Maps Location - Dhobighat, Lalitpur"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.645074638183!2d85.32024431453747!3d27.68230098279939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a1c8b22d4d%3A0x228b22a745a72a9f!2sDhobighat%2C%20Lalitpur%2044600!5e0!3m2!1sen!2snp!4v1641253411111!5m2!1sen!2snp"
+                            width="600"
+                            height="300"
+                            style={{ border: "0" }}
+                            allowFullScreen=""
+                            loading="lazy"
+                        ></iframe>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="room-review">
+                <h2>Reviews</h2>
+                <div class="room-reviews-box">
+                    <div class="room-review-card">
+                        <div class="room-reviewer-info">
+                            <img src="/" alt="room-reviewer " class="room-reviewer-image" />
+                            <div class="room-reviewer-details">
+                                <h3 class="room-reviewer-name">Chunhua</h3>
+                                <p class="room-review-date">March 2024</p>
+                                <p class="room-review-stay">Stayed about a week</p>
+                            </div>
+                        </div>
+                        <div class="room-review-content">
+                            <p class="room-review-text">The landlord Santa is very friendly and kind, with an angelic smile. She
+                                provided
+                                a lot of local travel tips and took me to many local activities. She can provide meals at any
+                                time,
+                                which...</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="room-review-card">
+                        <div class="room-reviewer-info">
+                            <img src="/" alt="room-reviewer" class="room-reviewer-image" />
+                            <div class="room-reviewer-details">
+                                <h3 class="room-reviewer-name">Chunhua</h3>
+                                <p class="room-review-date">March 2024</p>
+                                <p class="room-review-stay">Stayed about a week</p>
+                            </div>
+                        </div>
+                        <div class="room-review-content">
+                            <p class="room-review-text">The landlord Santa is very friendly and kind, with an angelic smile. She
+                                provided
+                                a lot of local travel tips and took me to many local activities. She can provide meals at any
+                                time,
+                                which...</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="room-review-card">
+                        <div class="room-reviewer-info">
+                            <img src="/" alt="room-reviewer" class="room-reviewer-image" />
+                            <div class="room-reviewer-details">
+                                <h3 class="room-reviewer-name">Chunhua</h3>
+                                <p class="room-review-date">March 2024</p>
+                                <p class="room-review-stay">Stayed about a week</p>
+                            </div>
+                        </div>
+                        <div class="room-review-content">
+                            <p class="room-review-text">The landlord Santa is very friendly and kind, with an angelic smile. She
+                                provided
+                                a lot of local travel tips and took me to many local activities. She can provide meals at any
+                                time,
+                                which...</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="room-review-card">
+                        <div class="room-reviewer-info">
+                            <img src="/" alt="room-reviewer" class="room-reviewer-image" />
+                            <div class="room-reviewer-details">
+                                <h3 class="room-reviewer-name">Chunhua</h3>
+                                <p class="room-review-date">March 2024</p>
+                                <p class="room-review-stay">Stayed about a week</p>
+                            </div>
+                        </div>
+                        <div class="room-review-content">
+                            <p class="room-review-text">The landlord Santa is very friendly and kind, with an angelic smile. She
+                                provided
+                                a lot of local travel tips and took me to many local activities. She can provide meals at any
+                                time,
+                                which...</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
             <Footer />

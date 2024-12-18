@@ -36,7 +36,7 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
                             <img
                                 src={`http://localhost:5000${image}`}
                                 style={{ height: "150px", width: "200px", objectFit: "cover" }}
-                                alt={`view image ${index + 1}`}
+                                alt={"gallery img"}
                             />
                         </div>
                     ))}

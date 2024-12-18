@@ -51,7 +51,7 @@
 }
 h2{
     color: #333;
-    font-size: 32px;
+    /* font-size: 32px; */
 }
 .input-box{
     margin: 45px 0;
@@ -1026,86 +1026,226 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 400px;
+    height: 500px;
     width: 100%;
-  
+    
     /* border: 1px solid black; */
-  }
-  .room-features-content {
-    height: 300px;
+}
+.room-features-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
     width: 600px;
     /* border: 1px solid black; */
-  }
-  .room-description {
-    height: 300px;
-    width: 600px;
+}
+
+.room-features{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
     /* border: 1px solid black; */
-  }
-  .room-features i {
+    height: 130px;
+    padding-bottom: 20px;
+}
+.owner-features{
+    height: 250px;
+    display: flex;
+    /* justify-content: space-evenly; */
+    flex-direction: column;
+    /* border: 1px solid black; */
+    line-height: 1;
+}
+.owner-features p{
+    color: gray;
+}
+.room-features i {
     margin-left: 20px;
     margin-right: 10px;
     font-size: 16px;
-  }
-  .features-grid {
+}
+.features-grid {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-  }
-  .features-grid div {
+}
+.features-grid div{
     font-size: 14px;
-  }
-  
-  .room-description-text {
-    margin-top: 10px;
-    max-height: 300px; /* Adjust as needed */
-    overflow-y: auto; /* Adds vertical scrollbar if content overflows */
-    word-wrap: break-word;
-    text-align: justify; /* Aligns the text evenly on both the left and right margins */
-    padding: 0 20px; /* Adds 20px of space to the left and right of the text */
-  }
-  
-  .room-description p {
-    line-height: 1.5; /* Adjusts the space between lines */
-    margin: 10px 0; /* Adds 10px of space above and below each paragraph */
-    font-size: 14px;
-  }
-  
-  .location-checkout {
-    margin-top: 50px;
+}
+.owner{
+    height: 180px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(41, 40, 40, 0.1);
+    border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-    height: auto;
-  }
-  .room-location {
-    height: 650px;
+    padding-left: 20px;
+    /* border: 1px solid black; */
+}
+.owner-image{
+    background-color: grey;
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+}
+.owner-text{
+    margin-top: 10px;
+    margin-left: 10px;
+    line-height: 1.5;
+}
+.owner-box{
+    display: flex;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.owner-book{
+    height: 180px;
+    width: 200px;
+    position: relative;
+    /* border: 1px solid black; */
+   
+}
+
+.owner-book-btn{
+    position: absolute;
+    top: 130px;
+    left: 10px;
+    background-color: #2A9D8F;
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Centered text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Make the link look like a button */
+        font-size: 16px; /* Increase font size */
+        /* margin: 10px 2px; Some margin */
+        cursor: pointer; /* Pointer/hand icon */
+        border-radius: 5px; /* Rounded corners */
+
+}
+    
+    .book-button:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+    
+
+
+.room-location{
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    height: 400px;
     width: 600px;
     /* border: 1px solid black; */
-  }
-  .room-checkout {
-    height: 650px;
-    width: 600px;
-    /* border: 1px solid black; */
-  }
-  #map {
-    height: auto;
-    width: 550px;
-  }
-  .location-header {
+}
+.location-header {
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  
-  .checkout-box {
-    height: 100%;
-    width: 500px;
-    border-radius: 10px;
+}
+
+#map {
+    height: 350px;
+    width: 100%;
+    /* border: 1px solid black; */
+}
+
+
+.room-review {
+    background-color: #d7e6e4;
+    margin-top: 20px;
+    height: auto;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.room-review h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.room-review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    
+}
+
+.room-reviewer-info {
+    display: flex;
     align-items: center;
-  }
+    margin-bottom: 15px;
+}
+
+.room-reviewer-image {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.room-reviewer-details {
+    flex-grow: 1;
+}
+
+.room-reviewer-name {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.room-review-date {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.room-review-stay {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.room-review-content {
+    margin-top: 15px;
+}
+
+.room-review-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.rating {
+    margin-top: 10px;
+    color: #ff9800;
+}
+
+.rating i {
+    margin-right: 2px;
+}
+.room-reviews-box{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
   
   /* css for contact form */
 
@@ -1399,19 +1539,28 @@ select {
 }
 
 /* css for table */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed; /* Ensures the table layout is fixed */
 }
+
 th, td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
+  word-wrap: break-word; /* Ensures long text breaks into new lines */
 }
+
 th {
   background-color: #ddd;
-  
 }
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -1429,8 +1578,9 @@ tr:nth-child(even) {
   left: 0;
   right: 0;
 }
+
 .pagination-number,
-.pagination-button{
+.pagination-button {
   font-size: 1.1rem;
   background-color: transparent;
   border: none;
@@ -1451,6 +1601,7 @@ tr:nth-child(even) {
   color: #fff;
   background: #2A9D8F;
 }
+
 /* edit and delete btn in user list */
 a {
   color: #333;

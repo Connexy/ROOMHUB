@@ -53,39 +53,35 @@ export default function UserList() {
 
                 <div className="dash-content">
                     {error && <p className="error-message">{error}</p>}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Fullname</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user) => (
-                                <tr key={user.id}>
-                                    <td>{user.id}</td>
-                                    <td>{user.fullname}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.password}</td>
-                                    <td>
-                                        {user.image ? (
-                                            <img src={user.image} alt={user.fullname} width="50" />
-                                        ) : (
-                                            "No Image"
-                                        )}
-                                    </td>
-                                    <td>
-                                        <a href="/" className="btn-edit">Edit</a>
-                                        <a href="/" className="btn-delete">Delete</a>
-                                    </td>
+                    <div className="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>FullName</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {users.map((user) => (
+                                    <tr key={user.id}>
+                                        <td>{user.id}</td>
+                                        <td>{user.fullname}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.password}</td>
+                                        <td>{user.image}</td>
+                                        <td>
+                                            <a href="/" className="btn-edit">Edit</a>
+                                            <a href="/" className="btn-delete">Delete</a>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
 
                     {/* Pagination */}
                     <nav className="pagination-container">
@@ -125,6 +121,7 @@ export default function UserList() {
                     </nav>
                 </div>
             </div>
+
         </div>
     );
 }
