@@ -92,6 +92,7 @@ const RentalListing = () => {
                     {rooms.map((room) => (
                         <RoomCard
                             key={room.id}
+                            index={room.id}
                             frontImage={`http://localhost:5000/uploads/${room.front_image}`}
                             status={room.status}
                             type={room.room_type}

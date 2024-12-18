@@ -31,7 +31,7 @@ function App() {
           <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
           <Route path='/contact-page' element={<Contact />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
-          <Route path='/room-detail-page/:index' element={<RoomDetails />} />
+          <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
           <Route path='/admin-dashboard-page' element={<Dashboard />} />
           <Route path='/user-list' element={<UserList />} />
           <Route path='/post-room' element={<PostRoom />} />

@@ -735,10 +735,11 @@ header {
   
   .large_container {
     padding-top: 70px;
-    height: calc(100vh - 70px - 80px);
+    height: calc(100vh - 70px - 110px);
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
   }
   
   .user_profile {
@@ -823,8 +824,6 @@ header {
     background-color: white;
     display: flex;
     flex-direction: column;
-    margin-bottom: 70px;
-    margin-top: 100px;
   }
   
   .big-container h1 {

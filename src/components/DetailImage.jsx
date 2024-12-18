@@ -1,21 +1,19 @@
+import React from 'react';
 
-export const DetailImage = ({ roomdetailimage, price, location, nearBy }) => {
+export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy }) => {
     const handleShare = () => {
-        // Construct the shareable link
         const shareableLink = `${window.location.origin}/room-details?price=${price}&location=${encodeURIComponent(location)}&nearBy=${encodeURIComponent(nearBy)}`;
 
-        // Use the Web Share API if supported
         if (navigator.share) {
             navigator
                 .share({
                     title: "Room Details",
-                    text: `Check out this room: \nPrice: Rs ${price}/month\nLocation: ${location}\nNearby: ${nearBy}`,
+                    text: `Check out this room: /nPrice: Rs ${price}/month/nLocation: ${location}/nNearby: ${nearBy}`,
                     url: shareableLink,
                 })
                 .then(() => console.log("Shared successfully"))
                 .catch((error) => console.error("Error sharing:", error));
         } else {
-            // Fallback: Copy the link to the clipboard
             navigator.clipboard
                 .writeText(shareableLink)
                 .then(() => alert("Link copied to clipboard! Share it with your friends."))
@@ -24,23 +22,25 @@ export const DetailImage = ({ roomdetailimage, price, location, nearBy }) => {
     };
 
     return (
-
         <>
             <div className="detail-image">
-                <img style={{ height: "400px", width: "600px" }} src={roomdetailimage} alt="network error" />
+                <img src={`http://localhost:5000${frontImage}`} style={{ height: "400px", width: "600px", objectFit: "cover" }} alt="Room front view" />
+
+                {/* <img style={{ height: "400px", width: "600px", objectFit: "cover" }} src={frontImage} alt="Room front view" /> */}
             </div>
 
             <div className="detail-content">
                 <div className="sub-image">
-                    <div className="sub-image-box">
-                        <img src={roomdetailimage} style={{ height: "150px", width: "200px" }} alt=" url error" />
-                    </div>
-                    <div className="sub-image-box">
-                        <img src={roomdetailimage} style={{ height: "150px", width: "200px" }} alt=" url error" />
-                    </div>
-                    <div className="sub-image-box">
-                        <img src={roomdetailimage} style={{ height: "150px", width: "200px" }} alt=" url error" />
-                    </div>
+                    {galleryImages.map((image, index) => (
+                        <div key={index} className="sub-image-box">
+                            <img
+                                src={`http://localhost:5000${image}`}
+                                style={{ height: "150px", width: "200px", objectFit: "cover" }}
+                                alt={`view image ${index + 1}`}
+                            />
+                        </div>
+                    ))}
+
                 </div>
                 <div className="sub-box">
                     <div><i className="fas fa-money-bill-wave fa-fw"></i> Rs {price} per month</div>
@@ -50,7 +50,5 @@ export const DetailImage = ({ roomdetailimage, price, location, nearBy }) => {
                 </div>
             </div>
         </>
-
-
     );
-}
+};

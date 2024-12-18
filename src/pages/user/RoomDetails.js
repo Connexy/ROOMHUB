@@ -1,34 +1,36 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { showSuccessMessage } from "../../utils/Notification";
-import { useNavigate, useParams } from "react-router-dom";
 import { DetailImage } from "../../components/DetailImage";
-import roomsData from "../../room.json";
-import { useEffect } from "react";
-import room1 from "../../assets/images/image1.jpg"
-import room2 from "../../assets/images/image2.jpg"
-import room3 from "../../assets/images/image3.jpg"
-
-
 
 const RoomDetails = () => {
-    const images = {
-        RI1: room1,
-        RI2: room2,
-        RI3: room3
-    }
-    const { index } = useParams();
-    const room = roomsData[index];
-    if (!room) {
-        <div>Room not found</div>;
-    }
+    const { roomId } = useParams();
+    const [roomData, setRoomData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-    const navigate = useNavigate();
-    const formSubmit = () => {
-        showSuccessMessage("Booking Form Submitted Successfully");
-        navigate('/landing-page');
+        axios.get(`http://localhost:5000/api/roomdetails/${roomId}`)
+            .then(response => {
+                console.log("Room data:", response.data);
+                setRoomData(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching room data:", error);
+                setError(error.response ? error.response.data : error.message);
+                setLoading(false);
+            });
+    }, [roomId]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error loading room data: {error}</div>;
     }
 
     return (
@@ -39,22 +41,17 @@ const RoomDetails = () => {
             </div>
 
             <div className="detail-container">
-
                 <DetailImage
-                    roomdetailimage={images[room.roomImage]}
-                    price={room.price}
-                    location={room.location}
-                    nearBy="Road"
+                    frontImage={roomData.front_image}
+                    galleryImages={roomData.gallery_images}
+                    price={roomData.room_price}
+                    location={roomData.room_address}
+                    nearBy={roomData.nearBy || 'not specified'}
                 />
-
-
             </div>
-
-
 
             <div className="room-detail-contents">
                 <div className="room-features-content">
-
                     <div className="room-features">
                         <h2> Room Features</h2>
                         <div className="features-grid">
@@ -72,21 +69,17 @@ const RoomDetails = () => {
                     </div>
                 </div>
 
-
                 <div className="room-description">
                     <h2> Room Description</h2>
                     <div className="room-description-text">
-
                         <p>The room is spacious with a large window that offers a stunning view of the city skyline.</p>
                         <p>It features a comfortable double bed with a premium mattress to ensure a good night's sleep.</p>
                         <p>The room has a bathroom with a walk-in shower, fresh towels, and complimentary toiletries.</p>
                         <p>There's a work desk with a lamp and a chair, making it a perfect spot for business travelers.</p>
                         <p>The room is equipped with a flat-screen TV and free Wi-Fi for your entertainment.</p>
                         <p>A small kitchenette area includes a mini-fridge, and a coffee maker for your convenience.</p>
-
                     </div>
                 </div>
-
             </div>
 
             <div className="location-checkout">
@@ -107,35 +100,30 @@ const RoomDetails = () => {
                         <div className="contact-form">
                             <h3>Contact Form</h3>
                             <div className="form-group">
-                                <label for="name">Name *</label>
+                                <label htmlFor="name">Name *</label>
                                 <input type="text" id="name" />
                             </div>
                             <div className="form-group">
-                                <label for="contact-number">Contact number *</label>
+                                <label htmlFor="contact-number">Contact number *</label>
                                 <input type="number" id="contact-number" />
                             </div>
                             <div className="form-group">
-                                <label for="email">Email *</label>
+                                <label htmlFor="email">Email *</label>
                                 <input type="email" id="email" />
                             </div>
-
                             <div className="form-group">
-                                <label for="message">Message</label>
+                                <label htmlFor="message">Message</label>
                                 <textarea id="message"></textarea>
                             </div>
-                            <button
-                                onClick={formSubmit}
-                                className="contact-form-button" >Submit</button>
+                            <button className="contact-form-button">Submit</button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
 
-
             <Footer />
         </div>
     );
-}
+};
+
 export default RoomDetails;
