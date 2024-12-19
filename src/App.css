@@ -1035,7 +1035,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 400px;
+    height: 450px;
     width: 600px;
     /* border: 1px solid black; */
 }
@@ -1051,7 +1051,7 @@ header {
 .owner-features{
     height: 250px;
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     flex-direction: column;
     /* border: 1px solid black; */
     line-height: 1;
@@ -1062,7 +1062,7 @@ header {
 .room-features i {
     margin-left: 20px;
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 .features-grid {
     margin-top: 20px;
@@ -1071,7 +1071,7 @@ header {
     gap: 10px;
 }
 .features-grid div{
-    font-size: 14px;
+    font-size: 16px;
 }
 .owner{
     height: 180px;
@@ -1085,14 +1085,15 @@ header {
     /* border: 1px solid black; */
 }
 .owner-image{
+  margin-top: 5px;
     background-color: grey;
     border-radius: 50%;
     height: 75px;
     width: 75px;
 }
 .owner-text{
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
+    /* margin-left: 10px; */
     line-height: 1.5;
 }
 .owner-box{
@@ -1100,6 +1101,7 @@ header {
     padding-left: 20px;
     margin-top: 10px;
 }
+
 .owner-book{
     height: 180px;
     width: 200px;
@@ -1123,11 +1125,13 @@ header {
         /* margin: 10px 2px; Some margin */
         cursor: pointer; /* Pointer/hand icon */
         border-radius: 5px; /* Rounded corners */
-
+        
 }
     
-    .book-button:hover {
-        background-color: #45a049; /* Darker green on hover */
+    .owner-book-btn:hover {
+      background-color: #158074; /* Slightly darker teal */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      transform: scale(1.);
     }
     
 
@@ -1135,8 +1139,7 @@ header {
 .room-location{
     display: flex;
     flex-direction: column; 
-    justify-content: space-evenly;
-    height: 400px;
+    height: 450px;
     width: 600px;
     /* border: 1px solid black; */
 }
@@ -1144,11 +1147,11 @@ header {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #map {
-    height: 350px;
+    height: 400px;
     width: 100%;
     /* border: 1px solid black; */
 }
@@ -1316,9 +1319,7 @@ padding-top: 90px;
 .text-number{
   margin-top: 25px;
 }
-.fa-user {
-  margin-right: 20px;
-}
+
 .btn-wrapper {
   background-color: #d7e6e4;
   display: flex;
@@ -1679,4 +1680,10 @@ a {
 
 .box button[type="submit"]:hover {
   background-color: #0069d9;
+}
+
+/* css for booking form*/
+.booking-heading{
+  margin-top: 100px;
+  text-align: center;
 }

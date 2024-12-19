@@ -4,12 +4,18 @@ import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { DetailImage } from "../../components/DetailImage";
+import { useNavigate } from 'react-router-dom';
+
 
 const RoomDetails = () => {
+    const navigate = useNavigate();
     const { roomId } = useParams();
     const [roomData, setRoomData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const handleBook = () => {
+        navigate(`/book-room`);
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:5000/api/roomdetails/${roomId}`)
@@ -157,7 +163,7 @@ const RoomDetails = () => {
                             </div>
                             <div class="owner-book">
 
-                                <button class="owner-book-btn">Contact</button>
+                                <button onClick={handleBook} class="owner-book-btn">Contact</button>
 
                             </div>
                         </div>
@@ -172,7 +178,7 @@ const RoomDetails = () => {
                             title="Google Maps Location - Dhobighat, Lalitpur"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.645074638183!2d85.32024431453747!3d27.68230098279939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a1c8b22d4d%3A0x228b22a745a72a9f!2sDhobighat%2C%20Lalitpur%2044600!5e0!3m2!1sen!2snp!4v1641253411111!5m2!1sen!2snp"
                             width="600"
-                            height="300"
+                            height="380"
                             style={{ border: "0" }}
                             allowFullScreen=""
                             loading="lazy"

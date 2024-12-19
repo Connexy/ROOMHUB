@@ -15,6 +15,7 @@ import UserList from './pages/admin/UserList';
 import PostRoom from './pages/admin/PostRoom';
 import HowitWorks2 from './pages/user/HowitWorks2';
 import PrivateRoute from './routes/PrivateRoute';
+import BookingForm from './pages/user/BookingForm';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/admin-dashboard-page' element={<Dashboard />} />
           <Route path='/user-list' element={<UserList />} />
           <Route path='/post-room' element={<PostRoom />} />
+          <Route path='/book-room' element={<BookingForm />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
