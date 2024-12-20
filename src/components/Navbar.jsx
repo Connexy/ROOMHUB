@@ -42,8 +42,8 @@ const Navbar = () => {
                     <div className="dropdown">
                         <i className="fa-solid fa-user"></i>
                         <div className="dropdown-content">
-
                             <Link to='/user-detail-page' >UserDetail</Link>
+                            <Link to='/user-booking-status-page' >Bookings</Link>
                         </div>
                     </div>
 
