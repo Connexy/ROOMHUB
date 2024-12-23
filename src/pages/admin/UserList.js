@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 export default function UserList() {
+
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10); // Match backend limit
@@ -68,14 +71,15 @@ export default function UserList() {
                             <tbody>
                                 {users.map((user) => (
                                     <tr key={user.id}>
+
                                         <td>{user.id}</td>
                                         <td>{user.fullname}</td>
                                         <td>{user.email}</td>
                                         <td>{user.password}</td>
                                         <td>{user.image}</td>
                                         <td>
-                                            <a href="/" className="btn-edit">Edit</a>
-                                            <a href="/" className="btn-delete">Delete</a>
+                                            <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>
+                                            <Link to='/' className="btn-delete">Delete</Link>
                                         </td>
                                     </tr>
                                 ))}
@@ -122,6 +126,6 @@ export default function UserList() {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 }

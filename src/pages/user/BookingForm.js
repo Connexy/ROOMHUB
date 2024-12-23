@@ -1,8 +1,15 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import { showSuccessMessage } from '../../utils/Notification'
+import { useNavigate } from 'react-router-dom'
 
 export default function BookingForm() {
+    const navigate = useNavigate();
+    const handleSubmit = () => {
+        showSuccessMessage("booked  successfully");
+        navigate(`/landing-page`);
+    }
     return (
         <>
             <Navbar />
@@ -22,7 +29,7 @@ export default function BookingForm() {
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+                            <input type="number" id="phone" name="phone" placeholder="Enter your phone number" required />
                         </div>
 
                         <div class="form-group">
@@ -41,7 +48,7 @@ export default function BookingForm() {
                         </div>
 
                         <div class="form-group">
-                            <button type="submit">Submit Booking</button>
+                            <button onClick={handleSubmit} type="submit">Submit Booking</button>
                         </div>
                     </form>
                 </div>

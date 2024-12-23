@@ -17,6 +17,7 @@ import HowitWorks2 from './pages/user/HowitWorks2';
 import PrivateRoute from './routes/PrivateRoute';
 import BookingForm from './pages/user/BookingForm';
 import BookingStatus from './pages/user/BookingStatus';
+import EditUser from './pages/admin/EditUser';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path='/post-room' element={<PostRoom />} />
           <Route path='/book-room' element={<BookingForm />} />
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
+          <Route path='/admin-edit-user/:userId' element={<EditUser />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
