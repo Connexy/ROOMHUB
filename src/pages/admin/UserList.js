@@ -12,6 +12,21 @@ export default function UserList() {
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState(null);
 
+    const handleDelete = async (userId) => {
+        if (window.confirm("Are you sure you want to delete this user?")) {
+            try {
+                const response = await axios.delete(`http://localhost:5000/api/users/delete/${userId}`);
+                alert(response.data.message);
+                // Refresh the user list after deletion
+                setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+            } catch (err) {
+                console.error("Error deleting user:", err);
+                alert("Failed to delete user.");
+            }
+        }
+    };
+
+
     useEffect(() => {
         // Fetch paginated user data from backend
         const fetchUsers = async () => {
@@ -46,6 +61,9 @@ export default function UserList() {
         setCurrentPage(page);
     };
 
+
+
+
     return (
         <div className='admin-part'>
             <Sidebar />
@@ -79,7 +97,16 @@ export default function UserList() {
                                         <td>{user.image}</td>
                                         <td>
                                             <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>
-                                            <Link to='/' className="btn-delete">Delete</Link>
+
+
+                                            <Link
+                                                className="btn-delete"
+                                                onClick={() => handleDelete(user.id)}
+                                            >
+                                                Delete
+                                            </Link>
+
+
                                         </td>
                                     </tr>
                                 ))}

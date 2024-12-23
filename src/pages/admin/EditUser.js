@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Sidebar from '../../components/Sidebar';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -48,51 +49,58 @@ export default function EditUser() {
     }
 
     return (
-        <div>
-            <h1>Edit User</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Full Name:
-                    <input
-                        type="text"
-                        name="fullname"
-                        value={user.fullname || ''}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Email:
-                    <input
-                        type="email"
-                        name="email"
-                        value={user.email || ''}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input
-                        type="password"
-                        name="password"
-                        value={user.password || ''}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <br />
-                {/* <label>
-                    Image URL:
-                    <input
-                        type="text"
-                        name="image"
-                        value={user.image || ''}
-                        onChange={handleInputChange}
-                    />
-                </label> */}
-                <br />
-                <button type="submit">Save Changes</button>
-            </form>
-        </div>
+        <>
+            <div className='admin-part'>
+                <Sidebar />
+                <div id="main-content">
+                    <div className="dashboard-header">
+                        <h1>Edit User</h1>
+                    </div>
+
+                    <div className="dash-content"></div>
+
+                    <div className="box">
+                        <form className="dProdAddFormBody fg1 flex fdc bor" onSubmit={handleSubmit}>
+                            <label>
+                                Full Name:
+                            </label>
+                            <input
+                                type="text"
+                                name="fullname"
+                                value={user.fullname || ''}
+                                onChange={handleInputChange}
+                            />
+
+
+                            <label>
+                                Email:
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={user.email || ''}
+                                onChange={handleInputChange}
+                            />
+
+
+                            <label>
+                                Password:
+                            </label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={user.password || ''}
+                                onChange={handleInputChange}
+                            />
+
+
+
+                            <br />
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
