@@ -1765,3 +1765,19 @@ a {
   font-size: 12px;
   margin-top: 5px;
 }
+
+/* error message css for rental listing*/
+.error-message {
+  color: #e74c3c; /* A professional red tone for the error */
+  background-color: #fce4e4; /* Light red background to make it subtle */
+  border: 1px solid #e74c3c; /* Border matches the text color */
+  padding: 10px 15px; /* Padding for a better look */
+  border-radius: 5px; /* Smooth corners */
+  font-size: 16px; /* Readable font size */
+  font-weight: 500; /* Slightly bold to highlight */
+  text-align: center; /* Center alignment */
+  margin: 20px auto; /* Spacing around the message */
+  width: 100%; /* Adjust width based on content */
+  max-width: 80%; /* Prevent it from being too wide */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}

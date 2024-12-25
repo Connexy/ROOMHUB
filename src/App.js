@@ -19,6 +19,7 @@ import BookingForm from './pages/user/BookingForm';
 import BookingStatus from './pages/user/BookingStatus';
 import EditUser from './pages/admin/EditUser';
 import RoomList from './pages/admin/RoomList';
+import EditRoom from './pages/admin/EditRoom';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
           <Route path='/admin-edit-user/:userId' element={<EditUser />} />
           <Route path='/admin-room-list' element={<RoomList />} />
+          <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
