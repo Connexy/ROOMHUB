@@ -36,7 +36,8 @@ const Navbar = () => {
                     <div className="dropdown">
                         <i className="fa-solid fa-user"></i>
                         <div className="dropdown-content">
-                            <Link to='/user-detail-page' >UserDetail</Link>
+                            <Link to='/user-detail-page'>
+                                UserDetail</Link>
                             <Link onClick={doLogout} ><i style={{ color: "black", border: "1px solid black" }} className="fa-solid fa-right-from-bracket"></i></Link>
                         </div>
                     </div>

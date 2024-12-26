@@ -885,7 +885,7 @@ header {
     margin-top: 5px;
   }
   .room-detail-btn {
-    height: 35px;
+    height: 40px;
     width: 150px;
     background-color: #2A9D8F;
     color: white;
@@ -898,7 +898,6 @@ header {
   }
   
   .card-btn:hover {
-    /* Change background color on hover */
     background-color: #158074; /* Slightly darker teal */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
     transform: scale(1.05);
@@ -983,37 +982,36 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 500px;
+    height: 650px;
     width: 100%;
     /* border: 1px solid black; */
   }
   
   .detail-image {
-    height: 400px;
-    width: 600px;
-    
+    height: 600px;
+    width: 750px;
+    /* border: 1px solid red; */
   }
   
   .detail-content {
-    line-height: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 400px;
+    height: 600px;
     width: 600px;
+    /* border: 1px solid red; */
   }
   .sub-image {
     display: flex;
-    margin: 10px;
-    height: 200px;
-    width: 580px;
+    padding: 10px;
+    height: auto;
+    width: 730px;
     /* border: 1px solid #0090BD; */
   }
   .sub-image-box {
     margin: 10px;
     height: 150px;
-    width: 200px;
-    border: 1px solid #0090bd;
+    width: auto;
+    /* border: 1px solid #0090bd; */
     border-radius: 5px;
     overflow: hidden;
     transition: transform 0.25s ease;
@@ -1022,10 +1020,14 @@ header {
     transform: scale(1.1);
   }
   .sub-box {
-    margin: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
     height: 200px;
     width: 300px;
     /* border: 1px solid #0090BD; */
+  }
+  .sub-box-detail{
+    margin-left: 10px;
   }
   .sub-box i {
     font-size: 20px;
@@ -1049,8 +1051,8 @@ header {
 .room-features-content{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 450px;
+    /* justify-content: space-evenly; */
+    height: 400px;
     width: 600px;
     /* border: 1px solid black; */
 }
@@ -1059,17 +1061,20 @@ header {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    /* border: 1px solid black; */
     height: 130px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+}
+.room-reg-text{
+  margin-left: 20px;
+  line-height: 2;
 }
 .owner-features{
-    height: 250px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    /* border: 1px solid black; */
-    line-height: 1;
+  padding-left: 10px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
 }
 .owner-features p{
     color: gray;
@@ -1089,10 +1094,9 @@ header {
     font-size: 16px;
 }
 .owner{
-    height: 180px;
+    height: 220px;
     width: 200px;
-    box-shadow: 0 4px 8px rgba(41, 40, 40, 0.1);
-    border-radius: 5px;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -1101,7 +1105,7 @@ header {
 }
 .owner-image{
   margin-top: 5px;
-    background-color: grey;
+    background-color: #2A9D8F;
     border-radius: 50%;
     height: 75px;
     width: 75px;
@@ -1109,44 +1113,45 @@ header {
 .owner-text{
     margin-top: 5px;
     /* margin-left: 10px; */
-    line-height: 1.5;
+    line-height: 2;
 }
 .owner-box{
-    display: flex;
-    padding-left: 20px;
-    margin-top: 10px;
+  display: flex;
+  padding-left: 10px;
+  margin-top: 10px;
+  height: 400px;
 }
 
 .owner-book{
-    height: 180px;
+    height: 220px;
     width: 200px;
     position: relative;
     /* border: 1px solid black; */
-   
 }
 
 .owner-book-btn{
     position: absolute;
-    top: 130px;
+    margin-left: 10px;
+    top: 150px;
     left: 10px;
     background-color: #2A9D8F;
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 10px 20px; /* Some padding */
     text-align: center; /* Centered text */
-        text-decoration: none; /* Remove underline */
-        display: inline-block; /* Make the link look like a button */
-        font-size: 16px; /* Increase font size */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the link look like a button */
+    font-size: 16px; /* Increase font size */
         /* margin: 10px 2px; Some margin */
-        cursor: pointer; /* Pointer/hand icon */
-        border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 5px; /* Rounded corners */
         
 }
     
     .owner-book-btn:hover {
       background-color: #158074; /* Slightly darker teal */
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-      transform: scale(1.);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transform: scale(1.05);
     }
     
 
@@ -1154,7 +1159,7 @@ header {
 .room-location{
     display: flex;
     flex-direction: column; 
-    height: 450px;
+    height: 400px;
     width: 600px;
     /* border: 1px solid black; */
 }
