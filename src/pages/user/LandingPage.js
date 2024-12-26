@@ -14,8 +14,8 @@ export default function LandingPage() {
                 <Navbar />
                 <div className="cont">
                     <div className="element">
-                        <h1 style={{ fontWeight: "bolder" }}>The best home everywhere</h1>
-                        <p style={{ fontSize: "20px", fontWeight: "bolder" }} >Room bookable directly online</p>
+                        <h1 style={{ marginBottom: "0", fontWeight: "bolder" }}>The best home everywhere</h1>
+                        <p style={{ fontSize: "30px", fontWeight: "bolder" }} >Room bookable directly online</p>
                         <div className="searchbox">
                             <input type="text" name="search " placeholder="Enter city" />
                             <button>Search</button>
