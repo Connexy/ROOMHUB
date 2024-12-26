@@ -16,7 +16,7 @@ export default function HowitWorks() {
                     </div>
                     <div class="btn-wrapper">
                         <button style={{ border: "none", backgroundColor: "#2A9D8F", color: "white" }} class="tenant">Tenant</button>
-                        <Link to='/how-it-works-page-landlord'> <button style={{ border: "none", backgroundColor: "#d7e6e4", color: "white" }} class="landlord">Landlord</button></Link>
+                        <Link to='/how-it-works-page-landlord'> <button style={{ border: "none", background: "none", color: "black" }} class="landlord">Landlord</button></Link>
                     </div>
                     <div class="text-wrapper">
 

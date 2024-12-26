@@ -33,7 +33,7 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
                 <div className="availability">{status} from {formatDate(availabilityDate)}</div>
             </div>
             <div className='card-text'>
-                <p style={{ color: "gray", fontSize: "14px" }}> {type}</p>
+                <p style={{ color: "gray", fontSize: "14px" }}>{type} room</p>
                 <h3>{city},{location}</h3>
                 <p style={{ color: "gray", fontSize: "16px" }}>{description}</p>
                 <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>

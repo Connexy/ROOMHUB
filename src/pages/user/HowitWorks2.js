@@ -14,7 +14,7 @@ export default function HowitWorks2() {
                         <p><i class="fa-solid fa-user"></i> Do you need Help</p>
                     </div>
                     <div class="btn-wrapper">
-                        <Link to='/how-it-works-page-tenant'><button style={{ border: "none", backgroundColor: "#d7e6e4", color: "white" }} class="tenant">Tenant</button></Link>
+                        <Link to='/how-it-works-page-tenant'><button style={{ background: "none", border: "none", color: "black" }} class="tenant">Tenant</button></Link>
                         <button style={{ border: "none", backgroundColor: "#2A9D8F", color: "white" }} class="tenant">Landlord</button>
                     </div>
                     <div class="text-wrapper">
