@@ -885,6 +885,7 @@ header {
     margin-top: 5px;
   }
   .room-detail-btn {
+    margin-top: 20px;
     height: 40px;
     width: 150px;
     background-color: #2A9D8F;
@@ -1028,13 +1029,19 @@ header {
   }
   .sub-box-detail{
     margin-left: 10px;
+    line-height: 2;
   }
+  .price-text {
+    font-size: 20px; /* Make the price larger */
+    color: #2A9D8F; /* Change to your desired color */
+   
+}
   .sub-box i {
     font-size: 20px;
     margin-right: 10px;
   }
   .sub-box div {
-    padding: 10px;
+    padding-left: 10px;
     font-size: 14px;
     font-weight: bold;
   }
@@ -1115,6 +1122,9 @@ header {
     /* margin-left: 10px; */
     line-height: 2;
 }
+.icon{
+  margin-right: 10px;
+}
 .owner-box{
   display: flex;
   padding-left: 10px;
@@ -1154,7 +1164,47 @@ header {
     transform: scale(1.05);
     }
     
-
+    .hover-container {
+      position: relative;
+      display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .hover-tooltip {
+      visibility: hidden;
+      background-color: #2A9D8F;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 8px;
+      position: absolute;
+      z-index: 1;
+      bottom: 100%; /* Position above the element */
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+      line-height: 15px;
+  }
+  
+  /* Tooltip arrow */
+  .hover-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip on hover */
+  .hover-container:hover .hover-tooltip {
+      visibility: visible;
+      opacity: 1;
+  }
 
 .room-location{
     display: flex;

@@ -54,11 +54,23 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
 
                             </div>
                             <div className="owner-text">
-                                <h4><i class="fas fa-user"></i> Kiswor Chhetri</h4>
-                                <h4><i class="fas fa-phone-alt"></i> 9805153434</h4>
-                                <h4><i class="fas fa-envelope"></i> ckiswor@gmail.com </h4>
+                                <h4><i class="fas fa-user icon"></i> Kiswor Chhetri</h4>
+                                <h4 class="hover-container">
+                                    <a href="tel:9805153434" style={{ textDecoration: "none", color: "inherit" }}>
+                                        <i class="fas fa-phone-alt icon"></i> 9805153434
+                                    </a>
+                                    <span class="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>Click to Call</span>
+                                </h4>
+                                <h4 class="hover-container">
+                                    <a href="mailto:ckiswor@gmail.com" style={{ textDecoration: "none", color: "inherit" }}>
+                                        <i class="fas fa-envelope icon"></i> ckiswor@gmail.com
+                                    </a>
+                                    <span class="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>Click to Send Email</span>
+                                </h4>
 
                             </div>
+
+
                         </div>
                         <div className="owner-book">
 
@@ -70,7 +82,7 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
                 <div className="sub-box">
                     <h2>About Room</h2>
                     <div className='sub-box-detail'>
-                        <div><i class="fas fa-money-bill-wave fa-fw"></i> Rs {price} per month</div>
+                        <div><i class="fas fa-money-bill-wave fa-fw"></i> Rs <span class="price-text">{price}</span> per month</div>
                         <div><i class="fas fa-map-marker-alt fa-fw"></i> {location}</div>
                         <div><i class="fas fa-road fa-fw"></i> Nearby {nearBy}</div>
                         <button style={{ marginLeft: "10px" }} onClick={handleShare} className="room-detail-btn">Share to Friend</button>
