@@ -20,6 +20,7 @@ import BookingStatus from './pages/user/BookingStatus';
 import EditUser from './pages/admin/EditUser';
 import RoomList from './pages/admin/RoomList';
 import EditRoom from './pages/admin/EditRoom';
+import BookingList from './pages/admin/BookingList';
 
 function App() {
   return (
@@ -43,7 +44,9 @@ function App() {
           <Route path='/book-room' element={<BookingForm />} />
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
           <Route path='/admin-edit-user/:userId' element={<EditUser />} />
+          <Route path='/admin-booking-list' element={<BookingList />} />
           <Route path='/admin-room-list' element={<RoomList />} />
+
           <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
         </Routes>
       </BrowserRouter>

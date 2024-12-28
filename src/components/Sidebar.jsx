@@ -11,7 +11,7 @@ export default function Sidebar() {
                         <Link to='/user-list'> <i className="fa fa-users"></i> User List</Link>
                         <Link to="/post-room"><i className="fa fa-plus"></i> Post Room</Link>
                         <a href="/admin-room-list"><i className="fa fa-home"></i> Room List</a>
-                        <a href="/"><i className="fa fa-calendar"></i> Bookings</a>
+                        <a href="/admin-booking-list"><i className="fa fa-calendar"></i> Bookings</a>
                     </div>
                     <div className="logout">
                         <a href="/"><i className="fa fa-sign-out"></i> Logout</a>

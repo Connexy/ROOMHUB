@@ -32,7 +32,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="auth">
-                    <i className="fa-solid fa-calendar"></i>
+                    <Link to='/user-booking-status-page'><i className="fa-solid fa-calendar"></i></Link>
                     <div className="dropdown">
                         <i className="fa-solid fa-user"></i>
                         <div className="dropdown-content">

@@ -1634,7 +1634,8 @@ th, td {
 }
 
 th {
-  background-color: #ddd;
+  background-color: #2A9D8F;
+  color: white;
 }
 
 tr:nth-child(even) {
@@ -1643,6 +1644,40 @@ tr:nth-child(even) {
 
 /* css for pagination */
 
+/* .pagination-container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  position: relative;       
+  margin-top: 20px;        
+  padding: 1rem 0;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.pagination-number,
+.pagination-button {
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  margin: 0.25rem 0.25rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: .2rem;
+  color: #dfdfdf;
+}
+
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+  background: #767676;
+}
+
+.pagination-number.active {
+  color: #fff;
+  background: #2A9D8F;
+} */
 .pagination-container {
   display: flex;
   justify-content: center;  /* Centers horizontally */
@@ -1678,6 +1713,7 @@ tr:nth-child(even) {
   background: #2A9D8F;
 }
 
+
 /* edit and delete btn in user list */
 a {
   color: #333;
@@ -1687,18 +1723,20 @@ a {
 .btn-edit {
   background-color: #008CBA;
   color: #fff;
-  padding: 0.3em;
+  padding: 5px 10px;
   border-radius: 4px;
 }
 
 .btn-delete {
   background-color: #f44336;
   color: #fff;
-  padding: 0.3em;
+  padding: 5px 10px;
   border-radius: 4px;
   margin-left: 1em;
 }
-
+.table-responsive tr:hover{
+background-color: #ddd;
+}
 .btn-edit:hover,
 .btn-delete:hover {
   cursor: pointer;
@@ -1860,4 +1898,93 @@ background-position: center;
   width: 100%; /* Adjust width based on content */
   max-width: 80%; /* Prevent it from being too wide */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* booking status css */
+.status-heading{
+  margin-top: 80px;
+  text-align: center;
+}
+.booking-table {
+  margin: 0 100px; /* Gap of 100px on left and right */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-table table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.booking-table th {
+  text-align: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.booking-table th {
+  background-color: #2A9D8F;
+  color: white;
+  font-weight: bold;
+}
+
+.booking-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.booking-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.booking-table td {
+  position: relative;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.booking-table th.action,
+.booking-table td.action {
+  width: 200px; /* Set a fixed width for the Action column */
+}
+
+.booking-table .action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between buttons */
+}
+
+.booking-table .btn-accept,
+.booking-table .btn-decline {
+  display: inline-block; /* Ensures buttons are in a line */
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 14px; /* Adjust the font size */
+  cursor: pointer;
+  border: none; /* Remove default border */
+  text-align: center; /* Ensure text is centered within the button */
+  line-height: normal; /* Ensure consistent line height */
+}
+
+.booking-table .btn-accept {
+  background-color: #008CBA;
+}
+
+.booking-table .btn-accept:hover {
+  opacity: 0.8;
+}
+
+.booking-table .btn-decline {
+  background-color: #f44336;
+}
+
+.booking-table .btn-decline:hover {
+  opacity: 0.8;
 }

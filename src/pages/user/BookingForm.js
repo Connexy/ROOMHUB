@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { showSuccessMessage } from '../../utils/Notification';
+import { useNavigate } from 'react-router-dom';
 
 export default function BookingForm() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -40,6 +43,8 @@ export default function BookingForm() {
                     checkoutDate: '',
                     additionalNotes: ''
                 });
+                showSuccessMessage("Booking successful");
+                navigate(`/user-booking-status-page`);
             } else {
                 alert('Failed to submit booking. Please try again.');
             }
