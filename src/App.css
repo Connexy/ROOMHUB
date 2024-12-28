@@ -474,7 +474,6 @@ input#checked{
   }
 /* css for footer*/
 .footer {
-    margin-top: 30px;
     height: 70px;
     position: sticky;
     left: 0;
@@ -748,7 +747,7 @@ header {
   }
   
   .large_container {
-    height: calc(100vh - 258px);
+    height: calc(100vh - 228px);
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -1761,16 +1760,21 @@ a {
 }
 
 /* css for booking form*/
-.booking-outlet{
+.booking-outlet {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+  url("./assets/images/bg.png");
+background-size: cover;
+background-position: center;
+ 
 }
+
 .booking-form {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  margin-bottom: 50px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

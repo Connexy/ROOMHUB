@@ -1,59 +1,94 @@
-import React from 'react'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import { showSuccessMessage } from '../../utils/Notification'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+// import { showSuccessMessage } from '../../utils/Notification';
+// import { useNavigate } from 'react-router-dom';
 
 export default function BookingForm() {
-    const navigate = useNavigate();
-    const handleSubmit = () => {
-        showSuccessMessage("booked  successfully");
-        navigate(`/landing-page`);
-    }
+
+
+
+
     return (
         <>
             <Navbar />
-            <div className='booking-outlet'>
-                <div class="booking-form">
+            <div className="booking-outlet">
+                <div className="booking-form">
                     <h2>Book a Room</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+                    <form> {/* Use onSubmit here */}
+                        <div className="form-group">
+                            <label htmlFor="name">Full Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="fullName"
+                                placeholder="Enter your full name"
+
+                                required
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                        <div className="form-group">
+                            <label htmlFor="email">Email Address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+
+                                required
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="number" id="phone" name="phone" placeholder="Enter your phone number" required />
+                        <div className="form-group">
+                            <label htmlFor="phone">Phone Number</label>
+                            <input
+                                type="number"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+
+                                required
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <label for="checkin">Check-in Date</label>
-                            <input type="date" id="checkin" name="checkin" required />
+                        <div className="form-group">
+                            <label htmlFor="checkin">Check-in Date</label>
+                            <input
+                                type="date"
+                                id="checkin"
+                                name="checkinDate"
+                                required
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <label for="checkout">Check-out Date</label>
-                            <input type="date" id="checkout" name="checkout" required />
+                        <div className="form-group">
+                            <label htmlFor="checkout">Check-out Date</label>
+                            <input
+                                type="date"
+                                id="checkout"
+                                name="checkoutDate"
+                                required
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <label for="notes">Additional Notes</label>
-                            <textarea id="notes" name="notes" placeholder="Enter any additional information..."></textarea>
+                        <div className="form-group">
+                            <label htmlFor="notes">Additional Notes</label>
+                            <textarea
+                                id="notes"
+                                name="additionalNotes"
+                                placeholder="Enter any additional information..."
+
+                            />
                         </div>
 
-                        <div class="form-group">
-                            <button onClick={handleSubmit} type="submit">Submit Booking</button>
+                        <div className="form-group">
+                            <button type="submit">Submit Booking</button> {/* No onClick here */}
                         </div>
                     </form>
                 </div>
             </div>
             <Footer />
         </>
-    )
+    );
 }

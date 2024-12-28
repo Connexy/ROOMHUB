@@ -50,7 +50,7 @@ export default function HowitWorks2() {
                                 team
                             </p>
                             <br />
-                            <p>
+                            <p style={{ marginBottom: "50px" }}>
                                 This means that we guarantee the reality, the authencity of the
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
