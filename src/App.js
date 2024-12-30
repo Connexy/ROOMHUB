@@ -39,8 +39,8 @@ function App() {
           <Route path='/user-detail-page' element={<UserDetail />} />
           <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
           <Route path='/admin-dashboard-page' element={<Dashboard />} />
-          <Route path='/user-list' element={<UserList />} />
-          <Route path='/post-room' element={<PostRoom />} />
+          <Route path='/admin-user-list' element={<UserList />} />
+          <Route path='/admin-post-room' element={<PostRoom />} />
           <Route path='/book-room' element={<BookingForm />} />
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
           <Route path='/admin-edit-user/:userId' element={<EditUser />} />

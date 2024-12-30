@@ -6,10 +6,21 @@ import Filter from "../../components/Filter";
 
 const RentalListing = () => {
     const [rooms, setRooms] = useState([]);
+    const [reset, setReset] = useState(false);
+    const [filters, setFilters] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [error, setError] = useState(null); // Handle errors from backend
     const limit = 10;
+
+    const resetFilters = () => {
+        setFilters({});
+        setCurrentPage(1);
+        setReset(true); // Trigger reset in Filter component
+        fetchData({});
+        setTimeout(() => setReset(false), 100); // Reset the `reset` state
+    };
+
 
     const fetchData = async (filters = {}) => {
         try {
@@ -26,6 +37,7 @@ const RentalListing = () => {
                     // Show alert if no data is returned for the filter
                     alert("No rooms available for the selected filters. Please try different options.");
                     setError("No rooms available."); // Optional: set error message
+                    resetFilters();
                 } else {
                     setRooms(data.rooms);
                     setTotalPages(Math.ceil(data.total / limit));
@@ -45,9 +57,10 @@ const RentalListing = () => {
         fetchData();
     }, [currentPage]);
 
-    const handleApplyFilters = (filters) => {
-        setCurrentPage(1); // Reset to the first page
-        fetchData(filters); // Fetch filtered data
+    const handleApplyFilters = async (newFilters) => {
+        setFilters(newFilters);
+        setCurrentPage(1); // Reset to the first page on new filters
+        await fetchData(newFilters);
     };
 
     const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
@@ -63,7 +76,7 @@ const RentalListing = () => {
                 </div>
 
                 <div className="filter-thau">
-                    <Filter onApplyFilters={handleApplyFilters} />
+                    <Filter onApplyFilters={handleApplyFilters} reset={reset} />
                 </div>
 
                 {error && <div className="error-message">{error}</div>}
