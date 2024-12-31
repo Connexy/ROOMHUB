@@ -36,11 +36,13 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
     return (
         <div className="card">
             <div className="image-container">
-                <img src={frontImage} style={{ width: "300px", height: "200px", objectFit: "cover" }} alt="path error" />
+                <img src={frontImage} style={{ borderRadius: " 5px", width: "300px", height: "200px", objectFit: "cover" }} alt="path error" />
                 <div className="availability">{getRoomStatus()} from {formatDate(availabilityDate)}</div>
             </div>
             <div className='card-text'>
-                <p style={{ color: "gray", fontSize: "14px" }}>{type} room</p>
+                <div className='room-card-type'>
+                    <p >{type} room</p>
+                </div>
                 <h3>{city},{location}</h3>
                 <p style={{ color: "gray", fontSize: "16px" }}>{description}</p>
                 <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>

@@ -870,10 +870,22 @@ header {
     width: 300px;
     padding: 15px;
     margin: 10px;
+    border-radius: 5px;
+    height: 410px;
+  }
+  .room-card-type{
+    background-color: rgb(232, 231, 231);
+    border-radius: 5px;
+    color: grey;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: fit-content;
   }
   .card-text{
-    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
+    
   }
   
   .card-btn {
@@ -887,7 +899,7 @@ header {
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 10px;
   }
   .room-detail-btn {
     margin-top: 20px;
@@ -1813,13 +1825,13 @@ background-position: center;
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   width: 100%;
   margin-top: 100px;
-  background-color: #d7e6e4;
+  background-color: #e2e9e8;
 }
 
 .booking-form h2 {
@@ -1859,10 +1871,15 @@ background-position: center;
 .form-group textarea:focus {
   border-color: #2A9D8F;
 }
+.form-group-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.form-group button {
-  width: 100%;
-  padding: 10px;
+.form-group-btn button {
+  width: fit-content;
+  padding: 12px;
   font-size: 16px;
   background-color: #2A9D8F;
   color: #fff;
@@ -1870,9 +1887,10 @@ background-position: center;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
 }
 
-.form-group button:hover {
+.form-group-btn button:hover {
   background-color: #158074; /* Slightly darker teal */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
   transform: scale(1);

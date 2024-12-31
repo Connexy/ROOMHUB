@@ -143,7 +143,7 @@ export default function BookingForm() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group-btn">
                             <button type="submit">Submit Booking</button>
                         </div>
                     </form>
