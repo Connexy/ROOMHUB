@@ -41,12 +41,11 @@ function App() {
           <Route path='/admin-dashboard-page' element={<Dashboard />} />
           <Route path='/admin-user-list' element={<UserList />} />
           <Route path='/admin-post-room' element={<PostRoom />} />
-          <Route path='/book-room' element={<BookingForm />} />
+          <Route path='/book-room/:roomId' element={<BookingForm />} />
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
           <Route path='/admin-edit-user/:userId' element={<EditUser />} />
           <Route path='/admin-booking-list' element={<BookingList />} />
           <Route path='/admin-room-list' element={<RoomList />} />
-
           <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
         </Routes>
       </BrowserRouter>

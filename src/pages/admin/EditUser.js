@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { showSuccessMessage } from '../../utils/Notification';
 
 export default function EditUser() {
+    const navigate = useNavigate();
     const { userId } = useParams(); // Extract userId from URL
     const [user, setUser] = useState(null); // State to hold user data
     const [error, setError] = useState(null);
@@ -34,6 +37,8 @@ export default function EditUser() {
             // Update user details in the backend
             await axios.put(`http://localhost:5000/api/users/edit/${userId}`, user);
             alert("User updated successfully!");
+            showSuccessMessage("user updated successfully");
+            navigate(`/admin-user-list`);
         } catch (err) {
             console.error("Error updating user:", err);
             setError("Failed to update user.");

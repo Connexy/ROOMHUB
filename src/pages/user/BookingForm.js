@@ -3,8 +3,10 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { showSuccessMessage } from '../../utils/Notification';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function BookingForm() {
+    const { roomId } = useParams();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
@@ -12,7 +14,8 @@ export default function BookingForm() {
         phone: '',
         checkinDate: '',
         checkoutDate: '',
-        additionalNotes: ''
+        additionalNotes: '',
+        roomId: roomId
     });
 
     const handleChange = (e) => {
@@ -24,6 +27,7 @@ export default function BookingForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Submitting booking data:', formData); // Log data before submission
         try {
             const response = await fetch('http://localhost:5000/api/bookings', {
                 method: 'POST',
@@ -41,18 +45,22 @@ export default function BookingForm() {
                     phone: '',
                     checkinDate: '',
                     checkoutDate: '',
-                    additionalNotes: ''
+                    additionalNotes: '',
+                    roomId: roomId,
                 });
                 showSuccessMessage("Booking successful");
                 navigate(`/user-booking-status-page`);
             } else {
-                alert('Failed to submit booking. Please try again.');
+                const errorData = await response.json();
+                console.error('Error response from server:', errorData);
+                alert(`Failed to submit booking: ${errorData.error}`);
             }
         } catch (error) {
             console.error('Error submitting booking:', error);
             alert('An error occurred while submitting your booking.');
         }
     };
+
 
     return (
         <>

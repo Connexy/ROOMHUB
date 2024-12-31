@@ -13,16 +13,18 @@ export default function BookingStatus() {
                 const response = await axios.get('http://localhost:5000/api/bookings', {
                     params: { page: currentPage, limit: 5 }
                 });
-                console.log('Bookings fetched:', response.data);
+                console.log('API Response:', response.data); // Log response data
                 setBookings(response.data.bookings);
                 setTotalPages(Math.ceil(response.data.total / 5));
             } catch (error) {
-                console.error('Error fetching bookings:', error);
+                console.error('Error fetching bookings:', error); // Log error details
             }
         };
 
         fetchBookings();
     }, [currentPage]);
+
+
     const handleNext = () => {
         if (currentPage < totalPages) {
             setCurrentPage((prevPage) => prevPage + 1);
@@ -39,7 +41,6 @@ export default function BookingStatus() {
         setCurrentPage(page);
     };
 
-
     return (
         <>
             <Navbar />
@@ -50,19 +51,21 @@ export default function BookingStatus() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>FullName</th>
+                            <th>Id</th>
+                            <th>RoomId</th>
+                            <th>Full Name</th>
                             <th>Email</th>
-                            <th>Phone_No</th>
-                            <th>Check_in Date</th>
-                            <th>Check_out Date</th>
+                            <th>Phone-No</th>
+                            <th>Check-In Date</th>
+                            <th>Check-Out Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {bookings.map(booking => (
+                        {bookings.map((booking) => (
                             <tr key={booking.id}>
                                 <td>{booking.id}</td>
+                                <td>{booking.room_id}</td>
                                 <td>{booking.full_name}</td>
                                 <td>{booking.email_address}</td>
                                 <td>{booking.phone_number}</td>
@@ -73,6 +76,7 @@ export default function BookingStatus() {
                         ))}
                     </tbody>
                 </table>
+
             </div>
             <nav className="pagination-container">
                 <button
@@ -111,4 +115,4 @@ export default function BookingStatus() {
             </nav>
         </>
     );
-}
+} 

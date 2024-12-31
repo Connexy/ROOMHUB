@@ -50,6 +50,7 @@ const RoomDetails = () => {
                     price={roomData.room_price}
                     location={roomData.room_address}
                     nearBy={roomData.nearBy || 'not specified'}
+                    roomId={roomId}
                 />
             </div>
 

@@ -25,10 +25,24 @@ export default function BookingList() {
         fetchBookings();
     }, [currentPage]);
 
+    // const updateStatus = (bookingId, status) => {
+    //     const endpoint = status === 'Booked' ? 'http://localhost:5000/api/bookings/accept' : 'http://localhost:5000/api/bookings/decline';
+    //     axios.post(endpoint, { bookingId })
+    //         .then(response => {
+    //             setBookings(bookings.map(booking =>
+    //                 booking.id === bookingId ? { ...booking, status } : booking
+    //             ));
+    //         })
+    //         .catch(error => {
+    //             console.error('Error updating booking status:', error);
+    //         });
+    // };
     const updateStatus = (bookingId, status) => {
         const endpoint = status === 'Booked' ? 'http://localhost:5000/api/bookings/accept' : 'http://localhost:5000/api/bookings/decline';
+        console.log('Updating booking status:', bookingId, status);
         axios.post(endpoint, { bookingId })
             .then(response => {
+                console.log('Booking status updated:', response.data);
                 setBookings(bookings.map(booking =>
                     booking.id === bookingId ? { ...booking, status } : booking
                 ));
@@ -37,6 +51,10 @@ export default function BookingList() {
                 console.error('Error updating booking status:', error);
             });
     };
+
+
+
+
 
     const handleNext = () => {
         if (currentPage < totalPages) {
@@ -68,7 +86,8 @@ export default function BookingList() {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Id</th>
+                                        <th>Room ID</th>
                                         <th>FullName</th>
                                         <th>Email</th>
                                         <th>Phone_No</th>
@@ -82,6 +101,7 @@ export default function BookingList() {
                                     {bookings.map(booking => (
                                         <tr key={booking.id}>
                                             <td>{booking.id}</td>
+                                            <td>{booking.room_id}</td>
                                             <td>{booking.full_name}</td>
                                             <td>{booking.email_address}</td>
                                             <td>{booking.phone_number}</td>

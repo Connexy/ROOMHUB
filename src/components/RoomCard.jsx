@@ -2,6 +2,13 @@ import { useNavigate } from 'react-router-dom';
 
 const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, location, description, price }) => {
     const navigate = useNavigate();
+    const getRoomStatus = () => {
+        if (status === 'Booked') {
+            return 'Booked';
+        } else if (status === 'Rejected') {
+            return 'Available';
+        }
+    };
 
     const goDetailPage = () => {
         navigate(`/room-detail-page/${index}`);
@@ -30,7 +37,7 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
         <div className="card">
             <div className="image-container">
                 <img src={frontImage} style={{ width: "300px", height: "200px", objectFit: "cover" }} alt="path error" />
-                <div className="availability">{status} from {formatDate(availabilityDate)}</div>
+                <div className="availability">{getRoomStatus()} from {formatDate(availabilityDate)}</div>
             </div>
             <div className='card-text'>
                 <p style={{ color: "gray", fontSize: "14px" }}>{type} room</p>

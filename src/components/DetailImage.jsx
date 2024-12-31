@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy }) => {
+export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy, roomId }) => {
     const navigate = useNavigate();
     const handleShare = () => {
         const shareableLink = `${window.location.origin}/room-details?price=${price}&location=${encodeURIComponent(location)}&nearBy=${encodeURIComponent(nearBy)}`;
@@ -23,7 +23,7 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
         }
     };
     const handleBook = () => {
-        navigate(`/book-room`);
+        navigate(`/book-room/${roomId}`);
     }
 
     return (

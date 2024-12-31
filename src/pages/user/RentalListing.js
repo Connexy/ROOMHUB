@@ -32,6 +32,7 @@ const RentalListing = () => {
             const response = await fetch(`http://localhost:5000/api/room?${queryParams.toString()}`);
             const data = await response.json();
 
+
             if (response.ok) {
                 if (data.rooms.length === 0) {
                     // Show alert if no data is returned for the filter
@@ -40,6 +41,7 @@ const RentalListing = () => {
                     resetFilters();
                 } else {
                     setRooms(data.rooms);
+                    // setRooms(data.rooms);
                     setTotalPages(Math.ceil(data.total / limit));
                     setError(null); // Clear any previous errors
                 }
@@ -87,7 +89,8 @@ const RentalListing = () => {
                             key={room.id}
                             index={room.id}
                             frontImage={`http://localhost:5000/uploads/${room.front_image}`}
-                            status={room.status}
+                            // status={room.status}
+                            status={room.booking_status}
                             type={room.room_type}
                             city={room.city}
                             location={room.room_address}

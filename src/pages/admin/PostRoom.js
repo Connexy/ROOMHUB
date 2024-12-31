@@ -99,13 +99,6 @@ export default function PostRoom() {
                                 <option value="Fourth">Fourth</option>
                             </select>
 
-                            <label htmlFor="status">Property Status</label>
-                            <select id="status" name="status" required>
-                                <option value="">Select</option>
-                                <option value="Available">Available</option>
-                                <option value="Booked">Booked</option>
-                            </select>
-
                             <label htmlFor="room-rent">Rent per Month</label>
                             <input type="number" id="room-rent" name="roomprice" required />
 

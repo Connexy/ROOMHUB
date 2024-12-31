@@ -82,34 +82,40 @@ export default function UserList() {
                                     <th>FullName</th>
                                     <th>Email</th>
                                     <th>Password</th>
-                                    <th>Image</th>
+                                    {/* <th>Image</th> */}
                                     <th>Action</th>
                                 </tr>
                             </thead>
+
+
                             <tbody>
-                                {users.map((user) => (
-                                    <tr key={user.id}>
-
-                                        <td>{user.id}</td>
-                                        <td>{user.fullname}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.password}</td>
-                                        <td>{user.image}</td>
-                                        <td>
-                                            <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>
-
-
-                                            <Link
-                                                className="btn-delete"
-                                                onClick={() => handleDelete(user.id)}
-                                            >
-                                                Delete
-                                            </Link>
-
-
+                                {users.length === 0 ? (
+                                    <tr>
+                                        {/* This will span across all 6 columns */}
+                                        <td colSpan="6" className="no-users-message">
+                                            No users available
                                         </td>
                                     </tr>
-                                ))}
+                                ) : (
+                                    users.map((user) => (
+                                        <tr key={user.id}>
+                                            <td>{user.id}</td>
+                                            <td>{user.fullname}</td>
+                                            <td>{user.email}</td>
+                                            <td>{user.password}</td>
+                                            {/* <td>{user.image}</td> */}
+                                            <td>
+                                                <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>
+                                                <Link
+                                                    className="btn-delete"
+                                                    onClick={() => handleDelete(user.id)}
+                                                >
+                                                    Delete
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>

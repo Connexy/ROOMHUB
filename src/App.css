@@ -1988,3 +1988,15 @@ background-position: center;
 .booking-table .btn-decline:hover {
   opacity: 0.8;
 }
+
+/* no data message */
+
+.no-users-message {
+  text-align: center;
+  font-size: 16px;
+  color: #f44336;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+
