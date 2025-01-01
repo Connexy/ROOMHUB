@@ -1,7 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { showInformationMessage } from "../utils/Notification";
 
 export default function Sidebar() {
+    const doLogout = () => {
+        if (localStorage.getItem('isLogin')) {
+            localStorage.removeItem('isLogin');
+            showInformationMessage("Logout successfully");
+
+        }
+
+    }
     return (
         <>
             <div id="mySidebar" className="sidebar">
@@ -14,7 +23,7 @@ export default function Sidebar() {
                         <Link to="/admin-booking-list"><i className="fa fa-calendar"></i> Bookings</Link>
                     </div>
                     <div className="logout">
-                        <Link to="/"><i className="fa fa-sign-out"></i> Logout</Link>
+                        <Link onClick={doLogout} to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
                     </div>
                 </div>
 

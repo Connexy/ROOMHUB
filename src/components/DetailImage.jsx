@@ -1,16 +1,33 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy, roomId }) => {
+export const DetailImage = ({ status, frontImage, galleryImages, price, locations, roomType, roomId }) => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const [homeowner, setHomeowner] = useState(null);
+
+    useEffect(() => {
+        const fetchHomeownerDetails = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/homeowner/${roomId}`);
+                setHomeowner(response.data);
+            } catch (error) {
+                console.error("Error fetching homeowner details:", error);
+            }
+        };
+
+        fetchHomeownerDetails();
+    }, [roomId]);
+
     const handleShare = () => {
-        const shareableLink = `${window.location.origin}/room-details?price=${price}&location=${encodeURIComponent(location)}&nearBy=${encodeURIComponent(nearBy)}`;
+        const shareableLink = `${window.location.origin}${location.pathname}?roomId=${roomId}`;
 
         if (navigator.share) {
             navigator
                 .share({
                     title: "Room Details",
-                    text: `Check out this room: /nPrice: Rs ${price}/month/nLocation: ${location}/nNearby: ${nearBy}`,
+                    text: `Check out this room:\nPrice: Rs ${price}/month\nLocation: ${locations}`,
                     url: shareableLink,
                 })
                 .then(() => console.log("Shared successfully"))
@@ -22,14 +39,23 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
                 .catch((error) => console.error("Error copying link:", error));
         }
     };
+
     const handleBook = () => {
-        navigate(`/book-room/${roomId}`);
-    }
+        if (status === 'Booked') {
+            alert('Room is booked already');
+        } else {
+            navigate(`/book-room/${roomId}`);
+        }
+    };
 
     return (
         <>
             <div className="detail-image">
-                <img src={`http://localhost:5000${frontImage}`} style={{ height: "400px", width: "750px", objectFit: "cover" }} alt="Room front view" />
+                <img
+                    src={`http://localhost:5000${frontImage}`}
+                    style={{ borderRadius: "5px", height: "400px", width: "750px", objectFit: "cover" }}
+                    alt="Room front view"
+                />
                 <div className="sub-image">
                     {galleryImages.map((image, index) => (
                         <div key={index} className="sub-image-box">
@@ -40,52 +66,51 @@ export const DetailImage = ({ frontImage, galleryImages, price, location, nearBy
                             />
                         </div>
                     ))}
-
                 </div>
             </div>
 
             <div className="detail-content">
                 <div className="owner-features">
-                    <h2> Meet Your Owner</h2>
-                    <p>Feel free to contact house owner for booking.</p>
-                    <div className="owner-box">
-                        <div className="owner">
-                            <div className="owner-image">
-
+                    <h2>Meet Your Owner</h2>
+                    <p>Feel free to contact the homeowner for booking.</p>
+                    {homeowner && (
+                        <div className="owner-box">
+                            <div className="owner">
+                                <div className="owner-image">
+                                    <img
+                                        src={`http://localhost:5000/uploads/${homeowner.image}`}
+                                        alt="Owner"
+                                        style={{ height: "80px", width: "80px", borderRadius: "50%" }}
+                                    />
+                                </div>
+                                <div className="owner-text">
+                                    <h4><i className="fas fa-user icon"></i> {homeowner.fullname}</h4>
+                                    <h4 className="hover-container">
+                                        <a
+                                            href={`mailto:${homeowner.email}`}
+                                            style={{ textDecoration: "none", color: "inherit" }}
+                                        >
+                                            <i className="fas fa-envelope icon"></i> {homeowner.email}
+                                        </a>
+                                        <span className="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>
+                                            Click to Send Email
+                                        </span>
+                                    </h4>
+                                </div>
                             </div>
-                            <div className="owner-text">
-                                <h4><i class="fas fa-user icon"></i> Kiswor Chhetri</h4>
-                                <h4 class="hover-container">
-                                    <a href="tel:9805153434" style={{ textDecoration: "none", color: "inherit" }}>
-                                        <i class="fas fa-phone-alt icon"></i> 9805153434
-                                    </a>
-                                    <span class="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>Click to Call</span>
-                                </h4>
-                                <h4 class="hover-container">
-                                    <a href="mailto:ckiswor@gmail.com" style={{ textDecoration: "none", color: "inherit" }}>
-                                        <i class="fas fa-envelope icon"></i> ckiswor@gmail.com
-                                    </a>
-                                    <span class="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>Click to Send Email</span>
-                                </h4>
-
-                            </div>
-
-
                         </div>
-                        <div className="owner-book">
-
-                            <button onClick={handleBook} className="owner-book-btn">Contact</button>
-
-                        </div>
-                    </div>
+                    )}
                 </div>
                 <div className="sub-box">
                     <h2>About Room</h2>
-                    <div className='sub-box-detail'>
-                        <div><i class="fas fa-money-bill-wave fa-fw"></i> Rs <span class="price-text">{price}</span> per month</div>
-                        <div><i class="fas fa-map-marker-alt fa-fw"></i> {location}</div>
-                        <div><i class="fas fa-road fa-fw"></i> Nearby {nearBy}</div>
-                        <button style={{ marginLeft: "10px" }} onClick={handleShare} className="room-detail-btn">Share to Friend</button>
+                    <div className="sub-box-detail">
+                        <div><i className="fas fa-hotel fa-fw"></i>{roomType} Room</div>
+                        <div><i className="fas fa-map-marker-alt fa-fw"></i> {locations}</div>
+                        <div><i className="fas fa-money-bill-wave fa-fw"></i><span className="price-text">Rs {price} / per month</span></div>
+                        <div className="sub-box-btn">
+                            <button onClick={handleShare} className="room-detail-btn">Share to Friend</button>
+                            <button onClick={handleBook} className="room-detail-btn">Book Room</button>
+                        </div>
                     </div>
                 </div>
             </div>

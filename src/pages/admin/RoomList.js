@@ -46,19 +46,19 @@ export default function RoomList() {
 
         fetchRooms();
     }, [currentPage, itemsPerPage]);
-    useEffect(() => {
-        // Fetch all room data from the backend
-        axios.get('http://localhost:5000/api/room')
-            .then(response => {
-                setRooms(response.data.rooms);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Error fetching room data:", error);
-                setError(error.response ? error.response.data.error : error.message);
-                setLoading(false);
-            });
-    }, []);
+    // useEffect(() => {
+    //     // Fetch all room data from the backend
+    //     axios.get('http://localhost:5000/api/room')
+    //         .then(response => {
+    //             setRooms(response.data.rooms);
+    //             setLoading(false);
+    //         })
+    //         .catch(error => {
+    //             console.error("Error fetching room data:", error);
+    //             setError(error.response ? error.response.data.error : error.message);
+    //             setLoading(false);
+    //         });
+    // }, []);
 
     const handleNext = () => {
         if (currentPage < totalPages) {
@@ -98,7 +98,7 @@ export default function RoomList() {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Room ID</th>
+                                        <th>Id</th>
                                         <th>City</th>
                                         <th>Address</th>
                                         <th>Price</th>

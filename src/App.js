@@ -38,7 +38,7 @@ function App() {
           <Route path='/contact-page' element={<Contact />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
           <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
-          <Route path='/admin-dashboard-page' element={<Dashboard />} />
+          <Route path='/admin-dashboard-page/:userId' element={<PrivateRoute component={Dashboard} />} />
           <Route path='/admin-user-list' element={<UserList />} />
           <Route path='/admin-post-room' element={<PostRoom />} />
           <Route path='/book-room/:roomId' element={<BookingForm />} />

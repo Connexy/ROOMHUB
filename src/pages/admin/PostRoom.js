@@ -4,24 +4,33 @@ import Sidebar from '../../components/Sidebar';
 export default function PostRoom() {
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent the page from reloading
-        const formData = new FormData(event.target); // Get the form data
+        event.preventDefault();
+        const formData = new FormData(event.target);
 
         // Convert checkbox fields to arrays
         const amenities = formData.getAll('amenities');
         const parking = formData.getAll('parking');
 
-        // Append checkbox values to FormData
         formData.delete('amenities');
         amenities.forEach(item => formData.append('amenities', item));
 
         formData.delete('parking');
         parking.forEach(item => formData.append('parking', item));
 
+        // Add homeowner_id to form data
+        const userId = localStorage.getItem('userId');
+        console.log('User ID retrieved from localStorage:', userId); // Add this line for debugging
+        if (userId) {
+            formData.append('homeowner_id', userId);
+        } else {
+            alert('User not logged in. Please log in again.');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:5000/api/rooms', {
                 method: 'POST',
-                body: formData, // Send FormData directly
+                body: formData,
             });
 
             const result = await response.json();
@@ -35,6 +44,9 @@ export default function PostRoom() {
             alert('An error occurred while posting the room.');
         }
     };
+
+
+
 
 
     return (

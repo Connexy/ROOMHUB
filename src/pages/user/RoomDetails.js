@@ -48,9 +48,10 @@ const RoomDetails = () => {
                     frontImage={roomData.front_image}
                     galleryImages={roomData.gallery_images}
                     price={roomData.room_price}
-                    location={roomData.room_address}
-                    nearBy={roomData.nearBy || 'not specified'}
+                    locations={roomData.room_address}
+                    roomType={roomData.room_type}
                     roomId={roomId}
+                    status={roomData.status}
                 />
             </div>
 
@@ -92,8 +93,8 @@ const RoomDetails = () => {
                             <div><i class="fas fa-bath fa-fw"></i> {roomData.bathroom}  Bathroom</div>
                             <div><i class="fas fa-wifi fa-fw"></i> Free Wi-Fi</div>
                             <div><i class="fas fa-utensils fa-fw"></i> {roomData.kitchenroom} Kitchen room</div>
-                            <div><i class="fas fa-parking fa-fw"></i> Parking</div>
-                            <div><i class="fas fa-concierge-bell fa-fw"></i> Amenities</div>
+                            <div><i class="fas fa-parking fa-fw"></i> {roomData.parking}</div>
+                            <div><i class="fas fa-concierge-bell fa-fw"></i>{roomData.amenities}</div>
                             <div><i class="fas fa-building fa-fw"></i> {roomData.floor} Floor</div>
 
                         </div>
@@ -103,7 +104,7 @@ const RoomDetails = () => {
                         <div className='room-reg-text'>
                             <p>1.  No friends allowed.</p>
                             <p>2.  No hard drinks allowed.</p>
-                            <p>3.  No gf/bf allowed.</p>
+                            <p>3.  No pets allowed.</p>
                             <p>4.  Must clean bathrooms.</p>
                             <p>5.  No loud sound allowed.</p>
                         </div>

@@ -5,14 +5,13 @@ import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import { showSuccessMessage } from '../../utils/Notification';
 import ViMessage from '../../components/ViMessage';
-
+import { validateEmail } from '../../utils/Common';
 
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errrorMessage, setErrorMessage] = useState('');
-
+    const [errorMessages, setErrorMessages] = useState({});
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -21,69 +20,94 @@ export default function Login() {
         } else if (name === 'password') {
             setPassword(value);
         }
+        setErrorMessages((prev) => ({ ...prev, [name]: '' })); // Clear individual error message on input change
     };
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        // validation check
+
+        const errors = {};
+        let topErrorMessage = null;
+
         if (!email) {
-            setErrorMessage("Email  is required");
-            return;
+            errors.email = "Email is required";
+        } else if (!validateEmail(email)) {
+            topErrorMessage = "Invalid email format";
         }
         if (!password) {
-            setErrorMessage("Password is required");
+            errors.password = "Password is required";
+        }
+        setErrorMessages(errors);
+
+        if (topErrorMessage || Object.keys(errors).length > 0) {
+            setErrorMessages((prev) => ({ ...prev, topError: topErrorMessage }));
             return;
         }
+
         const formData = { email, password };
         try {
             const response = await axios.post('http://localhost:5000/api/login', formData);
-            console.log(response.data.message);
+            const { message, userType, userId } = response.data;
+
+            console.log(message);
 
             localStorage.setItem('isLogin', 1);
+            localStorage.setItem('userType', userType);
+            localStorage.setItem('userId', userId); // Save user ID for later use
 
-            navigate('/landing-page');
+            // Navigate to the appropriate dashboard with user ID in the path
+            if (userType === 'homeowner') {
+                navigate(`/admin-dashboard-page/${userId}`);
+            } else if (userType === 'user') {
+                navigate('/landing-page');
+            }
+
             showSuccessMessage("Login Successful");
         } catch (error) {
             console.error("Login error", error);
-            setErrorMessage("Please check your credentials and try again.")
+            setErrorMessages({ topError: "Invalid email or password. Please try again." });
         }
     };
 
+
     return (
         <div className="main-container">
-            <div className="container">
+            <div className="container login-container">
                 <div className="Form login-form">
                     <h2>Login</h2>
-                    {errrorMessage && <ViMessage message={errrorMessage} />}
-                    <form >
+                    {/* Display top error message */}
+                    {errorMessages.topError && <ViMessage message={errorMessages.topError} />}
+                    <form>
                         <TextInput
-                            logo='bx bxs-envelope'
-                            label='Email'
-                            name='email'
-                            type='email'
+                            logo="bx bxs-envelope"
+                            label="Email"
+                            name="email"
+                            type="email"
                             placeholder='Enter Your Email'
                             onChange={handleInputChange}
+                            errorMessage={errorMessages.email}
                         />
                         <TextInput
-                            logo='bx bxs-lock-alt'
-                            label='Password'
-                            name='password'
-                            type='password'
+                            logo="bx bxs-lock-alt"
+                            label="Password"
+                            name="password"
+                            type="password"
                             placeholder='Enter Your Password'
                             onChange={handleInputChange}
+                            errorMessage={errorMessages.password}
                         />
                         <div className="forgot-section">
-                            <span><input type="checkbox" name="remember" id="checked" />Remember Me</span>
+                            <span><input type="checkbox" name="remember" id="checked" /> Remember Me</span>
                             <span><a href="/">Forgot Password ?</a></span>
                         </div>
 
                         <Button
-                            id='login-btn'
-                            name='Login'
+                            id="login-btn"
+                            name="Login"
                             onClick={handleLogin}
                         />
                     </form>
-                    <p className="RegisterBtn"><Link to='/register-page'>Don't have an account? Sign Up</Link></p>
+                    <p className="RegisterBtn"><Link to="/register-page">Don't have an account? Sign Up</Link></p>
                 </div>
             </div>
         </div>

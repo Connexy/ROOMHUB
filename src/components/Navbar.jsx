@@ -1,26 +1,26 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { showSuccessMessage, showInformationMessage } from "../utils/Notification";
+import { showInformationMessage } from "../utils/Notification";
+
 
 
 const Navbar = () => {
 
-    const navigate = useNavigate();
+
     const doLogout = () => {
-        if (!localStorage.getItem('isLogin')) {
-            showInformationMessage("You have already logged out")
-        } else {
-            showSuccessMessage("Logout successfully");
+        if (localStorage.getItem('isLogin')) {
             localStorage.removeItem('isLogin');
-            navigate('/login-page');
+            showInformationMessage("Logout successfully");
+
         }
+
     }
+
 
     return (
         <div>
             <div className="navbar">
                 <div className="logo">
-                    <h1 style={{ color: "white" }}>RoomHub</h1>
+                    <Link to='/landing-page'> <h1 style={{ color: "white" }}>RoomHub</h1></Link>
                 </div>
                 <div className="home-content">
                     <ul>
@@ -37,8 +37,8 @@ const Navbar = () => {
                         <i className="fa-solid fa-user"></i>
                         <div className="dropdown-content">
                             <Link to='/user-detail-page'>
-                                UserDetail</Link>
-                            <Link onClick={doLogout} ><i style={{ color: "black", border: "1px solid black" }} className="fa-solid fa-right-from-bracket"></i></Link>
+                                User Detail</Link>
+                            <Link to='/login-page' onClick={doLogout} >Log Out</Link>
                         </div>
                     </div>
 

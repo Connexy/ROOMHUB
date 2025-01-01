@@ -14,30 +14,32 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
         navigate(`/room-detail-page/${index}`);
     };
 
-    // Format the availability date
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = date.getDate();
-        const month = date.toLocaleString('default', { month: 'long' });
+    // // Format the availability date
+    // const formatDate = (dateString) => {
+    //     const date = new Date(dateString);
+    //     const day = date.getDate();
+    //     const month = date.toLocaleString('default', { month: 'long' });
 
-        // Add suffix for day (1st, 2nd, 3rd, etc.)
-        const daySuffix =
-            day % 10 === 1 && day !== 11
-                ? 'st'
-                : day % 10 === 2 && day !== 12
-                    ? 'nd'
-                    : day % 10 === 3 && day !== 13
-                        ? 'rd'
-                        : 'th';
+    //     // Add suffix for day (1st, 2nd, 3rd, etc.)
+    //     const daySuffix =
+    //         day % 10 === 1 && day !== 11
+    //             ? 'st'
+    //             : day % 10 === 2 && day !== 12
+    //                 ? 'nd'
+    //                 : day % 10 === 3 && day !== 13
+    //                     ? 'rd'
+    //                     : 'th';
 
-        return `${day}${daySuffix} ${month}`;
-    };
+    //     return `${day}${daySuffix} ${month}`;
+    // };
 
     return (
         <div className="card">
             <div className="image-container">
                 <img src={frontImage} style={{ borderRadius: " 5px", width: "300px", height: "200px", objectFit: "cover" }} alt="path error" />
-                <div className="availability">{getRoomStatus()} from {formatDate(availabilityDate)}</div>
+                <div className={`availability ${status === 'Booked' ? 'booked' : 'available'}`}>
+                    {getRoomStatus()}
+                </div>
             </div>
             <div className='card-text'>
                 <div className='room-card-type'>
