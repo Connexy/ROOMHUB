@@ -5,7 +5,7 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
     const getRoomStatus = () => {
         if (status === 'Booked') {
             return 'Booked';
-        } else if (status === 'Rejected') {
+        } else if (status === 'Rejected' || 'Pending') {
             return 'Available';
         }
     };

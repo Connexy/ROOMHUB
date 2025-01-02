@@ -15,26 +15,54 @@ export default function BookingForm() {
         checkinDate: '',
         checkoutDate: '',
         additionalNotes: '',
-        roomId: roomId
+        document: null, // For storing the document file
+        roomId: roomId,
     });
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value,
         });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png']; // Example types
+        const maxSize = 2 * 1024 * 1024; // 2 MB
+
+        if (file && (!allowedTypes.includes(file.type) || file.size > maxSize)) {
+            alert('Please upload a valid file (PDF/JPEG/PNG, max 2MB).');
+            return;
+        }
+
+        setFormData({
+            ...formData,
+            document: file,
+        });
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submitting booking data:', formData); // Log data before submission
+
+        const formDataToSend = new FormData();
+        formDataToSend.append('fullName', formData.fullName);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('phone', formData.phone);
+        formDataToSend.append('checkinDate', formData.checkinDate);
+        formDataToSend.append('checkoutDate', formData.checkoutDate);
+        formDataToSend.append('additionalNotes', formData.additionalNotes);
+        formDataToSend.append('roomId', formData.roomId);
+        if (formData.document) {
+            formDataToSend.append('document', formData.document);
+        }
+
         try {
             const response = await fetch('http://localhost:5000/api/bookings', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formDataToSend, // Automatically sets "multipart/form-data"
             });
 
             if (response.ok) {
@@ -46,9 +74,10 @@ export default function BookingForm() {
                     checkinDate: '',
                     checkoutDate: '',
                     additionalNotes: '',
+                    document: null,
                     roomId: roomId,
                 });
-                showSuccessMessage("Booking successful");
+                showSuccessMessage('Booking successful');
                 navigate(`/user-booking-status-page`);
             } else {
                 const errorData = await response.json();
@@ -60,7 +89,6 @@ export default function BookingForm() {
             alert('An error occurred while submitting your booking.');
         }
     };
-
 
     return (
         <>
@@ -128,6 +156,17 @@ export default function BookingForm() {
                                 name="checkoutDate"
                                 value={formData.checkoutDate}
                                 onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="document">Upload Document</label>
+                            <input
+                                type="file"
+                                id="document"
+                                name="document"
+                                onChange={handleFileChange}
                                 required
                             />
                         </div>

@@ -93,6 +93,7 @@ export default function BookingList() {
                                         <th>Phone_No</th>
                                         <th>Check_in Date</th>
                                         <th>Check_out Date</th>
+                                        <th>Document</th>
                                         <th>Status</th>
                                         <th className="action">Action</th>
                                     </tr>
@@ -107,6 +108,7 @@ export default function BookingList() {
                                             <td>{booking.phone_number}</td>
                                             <td>{booking.check_in_date}</td>
                                             <td>{booking.check_out_date}</td>
+                                            <td>{booking.document_path}</td>
                                             <td>{booking.status}</td>
                                             <td className="action">
                                                 <div className="action-buttons">

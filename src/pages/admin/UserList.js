@@ -79,9 +79,11 @@ export default function UserList() {
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>User Type</th>
                                     <th>FullName</th>
                                     <th>Email</th>
                                     <th>Password</th>
+                                    <th>Image</th>
                                     {/* <th>Image</th> */}
                                     <th>Action</th>
                                 </tr>
@@ -100,9 +102,11 @@ export default function UserList() {
                                     users.map((user) => (
                                         <tr key={user.id}>
                                             <td>{user.id}</td>
+                                            <td>{user.UserType}</td>
                                             <td>{user.fullname}</td>
                                             <td>{user.email}</td>
                                             <td>{user.password}</td>
+                                            <td>{user.image}</td>
                                             {/* <td>{user.image}</td> */}
                                             <td>
                                                 <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>

@@ -8,7 +8,13 @@ import { showSuccessMessage } from '../../utils/Notification';
 export default function EditUser() {
     const navigate = useNavigate();
     const { userId } = useParams(); // Extract userId from URL
-    const [user, setUser] = useState(null); // State to hold user data
+    const [user, setUser] = useState({
+        fullname: "",
+        email: "",
+        password: "",
+        usertype: "",
+        image: null,
+    });
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -30,6 +36,9 @@ export default function EditUser() {
         const { name, value } = e.target;
         setUser((prevUser) => ({ ...prevUser, [name]: value }));
     };
+    // const handleFileChange = (e) => {
+    //     setUser((prevUser) => ({ ...prevUser, image: e.target.files[0] }));
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,6 +75,16 @@ export default function EditUser() {
 
                     <div className="box">
                         <form className="dProdAddFormBody fg1 flex fdc bor" onSubmit={handleSubmit}>
+                            <label>User Type:</label>
+                            <select
+                                name="usertype"
+                                value={user.usertype || ""}
+                                onChange={handleInputChange}
+                            >
+                                <option value="user">User</option>
+                                <option value="homeowner">Homeowner</option>
+                            </select>
+
                             <label>
                                 Full Name:
                             </label>
@@ -97,6 +116,11 @@ export default function EditUser() {
                                 value={user.password || ''}
                                 onChange={handleInputChange}
                             />
+
+
+
+                            {/* <label>Image:</label>
+                            <input type="file" name="image" onChange={handleFileChange} /> */}
 
 
 

@@ -69,6 +69,20 @@ export default function BookingStatus() {
                                 <td>{booking.full_name}</td>
                                 <td>{booking.email_address}</td>
                                 <td>{booking.phone_number}</td>
+                                <td>{new Date(booking.check_in_date).toLocaleDateString()}</td>
+                                <td>{new Date(booking.check_out_date).toLocaleDateString()}</td>
+                                <td>{booking.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    <tbody>
+                        {bookings.map((booking) => (
+                            <tr key={booking.id}>
+                                <td>{booking.id}</td>
+                                <td>{booking.room_id}</td>
+                                <td>{booking.full_name}</td>
+                                <td>{booking.email_address}</td>
+                                <td>{booking.phone_number}</td>
                                 <td>{booking.check_in_date}</td>
                                 <td>{booking.check_out_date}</td>
                                 <td>{booking.status}</td>

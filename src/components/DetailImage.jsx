@@ -17,6 +17,7 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
             }
         };
 
+
         fetchHomeownerDetails();
     }, [roomId]);
 
@@ -47,6 +48,7 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
             navigate(`/book-room/${roomId}`);
         }
     };
+
 
     return (
         <>
