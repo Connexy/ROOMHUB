@@ -4,23 +4,23 @@ import Footer from "../../components/Footer";
 import RoomCard from "../../components/RoomCard";
 import Filter from "../../components/Filter";
 
-const RentalListing = () => {
+const RentalListing = ({ onToggleFavorite }) => {
     const [rooms, setRooms] = useState([]);
     const [reset, setReset] = useState(false);
     const [filters, setFilters] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [error, setError] = useState(null); // Handle errors from backend
+    const [error, setError] = useState(null);
     const limit = 10;
+
 
     const resetFilters = () => {
         setFilters({});
         setCurrentPage(1);
-        setReset(true); // Trigger reset in Filter component
+        setReset(true);
         fetchData({});
-        setTimeout(() => setReset(false), 100); // Reset the `reset` state
+        setTimeout(() => setReset(false), 100);
     };
-
 
     const fetchData = async (filters = {}) => {
         try {
@@ -32,18 +32,15 @@ const RentalListing = () => {
             const response = await fetch(`http://localhost:5000/api/room?${queryParams.toString()}`);
             const data = await response.json();
 
-
             if (response.ok) {
                 if (data.rooms.length === 0) {
-                    // Show alert if no data is returned for the filter
                     alert("No rooms available for the selected filters. Please try different options.");
-                    setError("No rooms available."); // Optional: set error message
+                    setError("No rooms available.");
                     resetFilters();
                 } else {
                     setRooms(data.rooms);
-                    // setRooms(data.rooms);
                     setTotalPages(Math.ceil(data.total / limit));
-                    setError(null); // Clear any previous errors
+                    setError(null);
                 }
             } else {
                 console.error("Fetch error:", data);
@@ -61,17 +58,22 @@ const RentalListing = () => {
 
     const handleApplyFilters = async (newFilters) => {
         setFilters(newFilters);
-        setCurrentPage(1); // Reset to the first page on new filters
+        setCurrentPage(1);
         await fetchData(newFilters);
     };
 
     const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
     const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
     const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+    const [favoriteCount, setFavoriteCount] = useState(0);
+
+    const handleToggleFavorite = (isFavorite) => {
+        setFavoriteCount((prevCount) => (isFavorite ? prevCount + 1 : prevCount - 1));
+    };
 
     return (
         <>
-            <Navbar />
+            <Navbar favouriteCount={favoriteCount} />
             <div className="big-container">
                 <div className="heading-text">
                     <h1>Are you looking for rooms?</h1>
@@ -96,6 +98,7 @@ const RentalListing = () => {
                             price={room.room_price}
                             description={room.room_description}
                             availabilityDate={room.availability}
+                            onToggleFavorite={handleToggleFavorite}
                         />
                     ))}
                 </div>

@@ -25,18 +25,6 @@ export default function BookingList() {
         fetchBookings();
     }, [currentPage]);
 
-    // const updateStatus = (bookingId, status) => {
-    //     const endpoint = status === 'Booked' ? 'http://localhost:5000/api/bookings/accept' : 'http://localhost:5000/api/bookings/decline';
-    //     axios.post(endpoint, { bookingId })
-    //         .then(response => {
-    //             setBookings(bookings.map(booking =>
-    //                 booking.id === bookingId ? { ...booking, status } : booking
-    //             ));
-    //         })
-    //         .catch(error => {
-    //             console.error('Error updating booking status:', error);
-    //         });
-    // };
     const updateStatus = (bookingId, status) => {
         const endpoint = status === 'Booked' ? 'http://localhost:5000/api/bookings/accept' : 'http://localhost:5000/api/bookings/decline';
         console.log('Updating booking status:', bookingId, status);
@@ -91,9 +79,9 @@ export default function BookingList() {
                                         <th>FullName</th>
                                         <th>Email</th>
                                         <th>Phone_No</th>
+                                        <th>Document</th>
                                         <th>Check_in Date</th>
                                         <th>Check_out Date</th>
-                                        <th>Document</th>
                                         <th>Status</th>
                                         <th className="action">Action</th>
                                     </tr>
@@ -106,9 +94,14 @@ export default function BookingList() {
                                             <td>{booking.full_name}</td>
                                             <td>{booking.email_address}</td>
                                             <td>{booking.phone_number}</td>
-                                            <td>{booking.check_in_date}</td>
-                                            <td>{booking.check_out_date}</td>
-                                            <td>{booking.document_path}</td>
+                                            <td>
+                                                <img src={`http://localhost:5000/uploads/${booking.document_path}`}
+                                                    alt='net Err'
+                                                    style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                                                />
+                                            </td>
+                                            <td>{new Date(booking.check_in_date).toLocaleDateString()}</td>
+                                            <td>{new Date(booking.check_out_date).toLocaleDateString()}</td>
                                             <td>{booking.status}</td>
                                             <td className="action">
                                                 <div className="action-buttons">

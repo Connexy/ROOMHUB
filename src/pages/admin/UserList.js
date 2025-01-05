@@ -106,7 +106,12 @@ export default function UserList() {
                                             <td>{user.fullname}</td>
                                             <td>{user.email}</td>
                                             <td>{user.password}</td>
-                                            <td>{user.image}</td>
+                                            <td>
+                                                <img src={`http://localhost:5000/uploads/${user.image}`}
+                                                    alt='net Err'
+                                                    style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                                                />
+                                            </td>
                                             {/* <td>{user.image}</td> */}
                                             <td>
                                                 <Link to={`/admin-edit-user/${user.id}`} className="btn-edit">Edit</Link>

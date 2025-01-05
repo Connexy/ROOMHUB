@@ -16,7 +16,7 @@ export default function Sidebar() {
             <div id="mySidebar" className="sidebar">
                 <div id="mySidebar" className="sidebar">
                     <div>
-                        <Link to='/admin-dashboard-page'><i className="fa fa-tachometer"></i> Dashboard</Link>
+                        <Link to='/admin-dashboard-page/:userId'><i className="fa fa-tachometer"></i> Dashboard</Link>
                         <Link to='/admin-user-list'> <i className="fa fa-users"></i> User List</Link>
                         <Link to="/admin-post-room"><i className="fa fa-plus"></i> Post Room</Link>
                         <Link to="/admin-room-list"><i className="fa fa-home"></i> Room List</Link>

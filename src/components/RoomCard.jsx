@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { showInformationMessage } from '../utils/Notification';
 
-const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, location, description, price }) => {
+const RoomCard = ({ index, city, frontImage, status, type, location, description, price, onToggleFavorite }) => {
     const navigate = useNavigate();
     const getRoomStatus = () => {
         if (status === 'Booked') {
@@ -14,32 +16,39 @@ const RoomCard = ({ index, city, frontImage, availabilityDate, status, type, loc
         navigate(`/room-detail-page/${index}`);
     };
 
-    // // Format the availability date
-    // const formatDate = (dateString) => {
-    //     const date = new Date(dateString);
-    //     const day = date.getDate();
-    //     const month = date.toLocaleString('default', { month: 'long' });
 
-    //     // Add suffix for day (1st, 2nd, 3rd, etc.)
-    //     const daySuffix =
-    //         day % 10 === 1 && day !== 11
-    //             ? 'st'
-    //             : day % 10 === 2 && day !== 12
-    //                 ? 'nd'
-    //                 : day % 10 === 3 && day !== 13
-    //                     ? 'rd'
-    //                     : 'th';
+    const [favorite, setFavorite] = useState(false);
 
-    //     return `${day}${daySuffix} ${month}`;
-    // };
+    const toggleFavorite = () => {
+        const newFavoriteState = !favorite; // Calculate the new state
+        setFavorite(newFavoriteState); // Update the state
+        onToggleFavorite(newFavoriteState); // Notify parent about the change
+
+        // Show the appropriate message
+        if (newFavoriteState) {
+            showInformationMessage("Added to Favorites");
+        } else {
+            showInformationMessage("Removed from Favorites");
+        }
+    };
+
+
+
+
 
     return (
         <div className="card">
             <div className="image-container">
                 <img src={frontImage} style={{ borderRadius: " 5px", width: "300px", height: "200px", objectFit: "cover" }} alt="path error" />
+
+
+
                 <div className={`availability ${status === 'Booked' ? 'booked' : 'available'}`}>
                     {getRoomStatus()}
                 </div>
+                <button className="favorite-icon" onClick={toggleFavorite} title={favorite ? "Remove from Favorites" : "Add to Favorites"}>
+                    <i className={`fa-solid fa-heart ${favorite ? "filled" : "empty"}`}></i>
+                </button>
             </div>
             <div className='card-text'>
                 <div className='room-card-type'>

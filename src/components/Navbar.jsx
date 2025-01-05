@@ -3,7 +3,7 @@ import { showInformationMessage } from "../utils/Notification";
 
 
 
-const Navbar = () => {
+const Navbar = ({ favouriteCount }) => {
 
 
     const doLogout = () => {
@@ -32,6 +32,17 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="auth">
+                    <Link to="/favorites-page">
+                        <i className="fa-solid fa-heart">
+                            {favouriteCount > 0 && (
+                                <span className="badge" style={{ color: "red", fontSize: "12px", marginLeft: "5px" }}>
+                                    {favouriteCount}
+                                </span>
+                            )}
+                        </i>
+                    </Link>
+
+
                     <Link to='/user-booking-status-page'><i className="fa-solid fa-calendar"></i></Link>
                     <div className="dropdown">
                         <i className="fa-solid fa-user"></i>
