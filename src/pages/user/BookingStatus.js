@@ -86,7 +86,7 @@ export default function BookingStatus() {
                 </table>
 
             </div>
-            <nav className="pagination-container">
+            <nav className="status-container">
                 <button
                     className="pagination-button"
                     id="prev-button"

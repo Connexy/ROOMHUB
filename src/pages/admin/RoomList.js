@@ -115,7 +115,7 @@ export default function RoomList() {
                                             <td>{room.room_price}</td>
                                             <td>{room.status}</td>
                                             <td>
-                                                <Link to={`/admin-edit-room/${room.roomId}`} className="btn-edit">Edit</Link>
+                                                <Link to={`/admin-edit-room/${room.id}`} className="btn-edit">Edit</Link>
                                                 <Link onClick={() => handleDelete(room.id)} className="btn-delete"   >Delete </Link>
                                             </td>
                                         </tr>

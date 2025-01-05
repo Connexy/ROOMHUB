@@ -103,7 +103,7 @@ const RentalListing = ({ onToggleFavorite }) => {
                     ))}
                 </div>
 
-                <nav className="pagination-container">
+                <nav className="paging-container">
                     <button
                         className="pagination-button"
                         onClick={handlePrev}

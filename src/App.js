@@ -25,6 +25,8 @@ import BookingList from './pages/admin/BookingList';
 function App() {
   return (
     <>
+
+
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LandingPage />} />

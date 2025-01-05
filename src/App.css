@@ -2013,7 +2013,7 @@ table {
 
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
   word-wrap: break-word; /* Ensures long text breaks into new lines */
 }
@@ -2063,16 +2063,34 @@ tr:nth-child(even) {
   color: #fff;
   background: #2A9D8F;
 } */
-.pagination-container {
+ .status-container {
   display: flex;
-  justify-content: center;  /* Centers horizontally */
-  align-items: center;      /* Centers vertically */
-  position: relative;       /* Makes it stay within its container */
-  margin-top: 20px;         /* Adjust top margin for spacing */
+  justify-content: center;  
+  align-items: center;      
+  position: fixed;   
+  bottom: 20px;    
+  margin-left: 50%;
+  
+}
+ .paging-container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  position: relative;       
+  margin-top: 20px;        
   padding: 1rem 0;
   bottom: 20px;
   left: 0;
   right: 0;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;      /* Centers vertically */
+  position: fixed;
+ bottom: 20px;
+ left: 55%;
+ 
 }
 
 .pagination-number,
