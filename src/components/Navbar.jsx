@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { showInformationMessage } from "../utils/Notification";
 
 
-
 const Navbar = ({ favouriteCount }) => {
-
+    const userId = localStorage.getItem("userId");
 
     const doLogout = () => {
         if (localStorage.getItem('isLogin')) {
             localStorage.removeItem('isLogin');
+            localStorage.removeItem('userId');
             showInformationMessage("Logout successfully");
 
         }
@@ -32,10 +32,17 @@ const Navbar = ({ favouriteCount }) => {
                     </ul>
                 </div>
                 <div className="auth">
-                    <Link to="/favorites-page">
+                    <Link to={`/favorite-page/${userId}`}>
                         <i className="fa-solid fa-heart">
                             {favouriteCount > 0 && (
-                                <span className="badge" style={{ color: "red", fontSize: "12px", marginLeft: "5px" }}>
+                                <span
+                                    className="badge"
+                                    style={{
+                                        color: 'red',
+                                        fontSize: '12px',
+                                        marginLeft: '5px',
+                                    }}
+                                >
                                     {favouriteCount}
                                 </span>
                             )}
@@ -58,7 +65,7 @@ const Navbar = ({ favouriteCount }) => {
 
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 }

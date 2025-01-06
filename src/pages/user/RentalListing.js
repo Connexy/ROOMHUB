@@ -71,6 +71,7 @@ const RentalListing = ({ onToggleFavorite }) => {
         setFavoriteCount((prevCount) => (isFavorite ? prevCount + 1 : prevCount - 1));
     };
 
+
     return (
         <>
             <Navbar favouriteCount={favoriteCount} />
@@ -98,8 +99,9 @@ const RentalListing = ({ onToggleFavorite }) => {
                             price={room.room_price}
                             description={room.room_description}
                             availabilityDate={room.availability}
-                            onToggleFavorite={handleToggleFavorite}
+                            onToggleFavorite={handleToggleFavorite} // Pass the parent callback
                         />
+
                     ))}
                 </div>
 

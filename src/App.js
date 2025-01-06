@@ -21,6 +21,7 @@ import EditUser from './pages/admin/EditUser';
 import RoomList from './pages/admin/RoomList';
 import EditRoom from './pages/admin/EditRoom';
 import BookingList from './pages/admin/BookingList';
+import FavoriteRoom from './pages/user/FavoritePage';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='/admin-booking-list' element={<BookingList />} />
           <Route path='/admin-room-list' element={<RoomList />} />
           <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
+          <Route path='/favorite-page/:userId' element={<FavoriteRoom />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
