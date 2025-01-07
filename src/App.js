@@ -22,19 +22,17 @@ import RoomList from './pages/admin/RoomList';
 import EditRoom from './pages/admin/EditRoom';
 import BookingList from './pages/admin/BookingList';
 import FavoriteRoom from './pages/user/FavoritePage';
+import { FavoriteProvider } from './components/FavoriteContext'; // Import the FavoriteProvider
 
 function App() {
   return (
-    <>
-
-
+    <FavoriteProvider> {/* Wrap the app with FavoriteProvider */}
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/login-page' element={<Login />} />
           <Route path='/register-page' element={<Register />} />
           <Route path='/landing-page' element={<LandingPage />} />
-          {/* <Route path='/rental-listing-page' element={<RentalListing />} /> */}
           <Route path='/rental-listing-page' element={<PrivateRoute component={RentalListing} />} />
           <Route path='/how-it-works-page-tenant' element={<HowitWorks />} />
           <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
@@ -54,8 +52,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ToastContainer />
-    </>
-
+    </FavoriteProvider>
   );
 }
 

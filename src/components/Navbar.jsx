@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { showInformationMessage } from "../utils/Notification";
+import { useFavorite } from "../components/FavoriteContext";
 
 
-const Navbar = ({ favouriteCount }) => {
+
+const Navbar = () => {
     const userId = localStorage.getItem("userId");
-
+    const { favoriteCount } = useFavorite();
     const doLogout = () => {
         if (localStorage.getItem('isLogin')) {
             localStorage.removeItem('isLogin');
@@ -34,7 +36,7 @@ const Navbar = ({ favouriteCount }) => {
                 <div className="auth">
                     <Link to={`/favorite-page/${userId}`}>
                         <i className="fa-solid fa-heart">
-                            {favouriteCount > 0 && (
+                            {favoriteCount > 0 && (
                                 <span
                                     className="badge"
                                     style={{
@@ -43,7 +45,7 @@ const Navbar = ({ favouriteCount }) => {
                                         marginLeft: '5px',
                                     }}
                                 >
-                                    {favouriteCount}
+                                    {favoriteCount}
                                 </span>
                             )}
                         </i>

@@ -27,9 +27,10 @@ const Filter = ({ onApplyFilters, reset }) => {
                     <select id="city" value={city} onChange={(e) => setCity(e.target.value)}>
                         <option value="">Select a City</option>
                         <option value="Kathmandu">Kathmandu</option>
-                        <option value="Pokhara">Pokhara</option>
-                        <option value="Beni">Beni</option>
-                        <option value="Butwal">Butwal</option>
+                        <option value="Pokhara">Lalitpur</option>
+                        <option value="Beni">Bhaktapur</option>
+                        <option value="Butwal">Pokhara</option>
+                        <option value="Butwal">Beni</option>
                     </select>
                 </div>
 
