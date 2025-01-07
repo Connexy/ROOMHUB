@@ -27,11 +27,12 @@ const Filter = ({ onApplyFilters, reset }) => {
                     <select id="city" value={city} onChange={(e) => setCity(e.target.value)}>
                         <option value="">Select a City</option>
                         <option value="Kathmandu">Kathmandu</option>
-                        <option value="Pokhara">Lalitpur</option>
-                        <option value="Beni">Bhaktapur</option>
-                        <option value="Butwal">Pokhara</option>
-                        <option value="Butwal">Beni</option>
+                        <option value="Lalitpur">Lalitpur</option>
+                        <option value="Bhaktapur">Bhaktapur</option>
+                        <option value="Pokhara">Pokhara</option>
+                        <option value="Beni">Beni</option>
                     </select>
+
                 </div>
 
                 {/* Room Type Filter */}
@@ -41,7 +42,6 @@ const Filter = ({ onApplyFilters, reset }) => {
                         <option value="">Select a Type</option>
                         <option value="single">Single Room</option>
                         <option value="double">Double Room</option>
-                        <option value="shared">Shared</option>
                     </select>
                 </div>
 
@@ -51,10 +51,14 @@ const Filter = ({ onApplyFilters, reset }) => {
                     <select id="price-range" value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
                         <option value="">Select Price Range</option>
                         <option value="1000-2000">Rs1000 - Rs2000</option>
-                        <option value="2001-3000">Rs2001 - Rs3000</option>
-                        <option value="3001-4000">Rs3001 - Rs4000</option>
-                        <option value="4001-5000">Rs4001 - Rs5000</option>
-                        <option value="5001-6000">Rs5001 - Rs6000</option>
+                        <option value="2001-3000">Rs2000 - Rs3000</option>
+                        <option value="3001-4000">Rs3000 - Rs4000</option>
+                        <option value="4001-5000">Rs4000 - Rs5000</option>
+                        <option value="5001-6000">Rs5000 - Rs6000</option>
+                        <option value="5001-6000">Rs6000 - Rs7000</option>
+                        <option value="5001-6000">Rs7000 - Rs8000</option>
+                        <option value="5001-6000">Rs8000 - Rs9000</option>
+                        <option value="5001-6000">Rs9000 - Rs10000</option>
                     </select>
                 </div>
 

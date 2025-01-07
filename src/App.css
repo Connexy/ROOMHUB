@@ -888,6 +888,7 @@ header {
   }
   
   .searchbox button {
+    font-size: 16px;
     height: 40px;
     width: 100px;
     padding: 5px;

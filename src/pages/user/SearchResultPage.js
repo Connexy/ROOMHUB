@@ -1,26 +1,38 @@
+import React from 'react'
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RoomCard from "../../components/RoomCard";
 import Filter from "../../components/Filter";
 
-const RentalListing = () => {
+const SearchResultPage = () => {
     const [rooms, setRooms] = useState([]);
     const [reset, setReset] = useState(false);
     const [filters, setFilters] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [error, setError] = useState(null);
+    const [favoriteCount, setFavoriteCount] = useState(0);
     const limit = 10;
 
+    const location = useLocation();
 
-    const resetFilters = () => {
-        setFilters({});
-        setCurrentPage(1);
-        setReset(true);
-        fetchData({});
-        setTimeout(() => setReset(false), 100);
+    const getQueryParams = () => {
+        const params = new URLSearchParams(location.search);
+        return {
+            city: params.get("city") || "",
+        };
     };
+
+    useEffect(() => {
+        const queryParams = getQueryParams();
+        if (queryParams.city) {
+            handleApplyFilters({ city: queryParams.city });
+        } else {
+            fetchData();
+        }
+    }, [location.search, currentPage]);
 
     const fetchData = async (filters = {}) => {
         try {
@@ -52,25 +64,27 @@ const RentalListing = () => {
         }
     };
 
-    useEffect(() => {
-        fetchData();
-    }, [currentPage]);
-
     const handleApplyFilters = async (newFilters) => {
         setFilters(newFilters);
         setCurrentPage(1);
         await fetchData(newFilters);
     };
 
+    const resetFilters = () => {
+        setFilters({});
+        setCurrentPage(1);
+        setReset(true);
+        fetchData({});
+        setTimeout(() => setReset(false), 100);
+    };
+
     const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
     const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
     const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
-    const [favoriteCount, setFavoriteCount] = useState(0);
 
     const handleToggleFavorite = (isFavorite) => {
         setFavoriteCount((prevCount) => (isFavorite ? prevCount + 1 : prevCount - 1));
     };
-
 
     return (
         <>
@@ -101,7 +115,6 @@ const RentalListing = () => {
                             availabilityDate={room.availability}
                             onToggleFavorite={handleToggleFavorite} // Pass the parent callback
                         />
-
                     ))}
                 </div>
 
@@ -140,4 +153,4 @@ const RentalListing = () => {
     );
 };
 
-export default RentalListing;
+export default SearchResultPage;

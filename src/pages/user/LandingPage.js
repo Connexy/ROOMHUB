@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Review from '../../components/Review'
 import Navbar from '../../components/Navbar'
@@ -10,7 +12,16 @@ import LuxuryRoom from '../../components/LuxuryRoom'
 
 
 export default function LandingPage() {
+    const [searchCity, setSearchCity] = useState('');
+    const navigate = useNavigate();
 
+    const handleSearch = () => {
+        if (searchCity.trim()) {
+            navigate(`/search-result-page?city=${encodeURIComponent(searchCity.trim())}`);
+        } else {
+            alert("Please enter a city name to search.");
+        }
+    };
 
     return (
         <>
@@ -21,8 +32,14 @@ export default function LandingPage() {
                         <h1 style={{ marginBottom: "0", fontWeight: "bolder" }}>The best home everywhere</h1>
                         <p style={{ fontSize: "30px", fontWeight: "bolder" }} >Room bookable directly online</p>
                         <div className="searchbox">
-                            <input type="text" name="search " placeholder="Enter city" />
-                            <button>Search</button>
+                            <input
+                                type="text"
+                                name="search "
+                                placeholder="Enter city"
+                                value={searchCity}
+                                onChange={(e) => setSearchCity(e.target.value)}
+                            />
+                            <button onClick={handleSearch}>Search</button>
                         </div>
                     </div>
                 </div>

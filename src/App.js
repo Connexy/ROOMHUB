@@ -23,6 +23,7 @@ import EditRoom from './pages/admin/EditRoom';
 import BookingList from './pages/admin/BookingList';
 import FavoriteRoom from './pages/user/FavoritePage';
 import { FavoriteProvider } from './components/FavoriteContext'; // Import the FavoriteProvider
+import SearchResultPage from './pages/user/SearchResultPage';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='/admin-room-list' element={<RoomList />} />
           <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
           <Route path='/favorite-page/:userId' element={<FavoriteRoom />} />
+          <Route path='/search-result-page' element={<SearchResultPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
