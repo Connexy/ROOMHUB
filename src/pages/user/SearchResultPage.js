@@ -1,6 +1,5 @@
-import React from 'react'
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RoomCard from "../../components/RoomCard";
@@ -17,6 +16,7 @@ const SearchResultPage = () => {
     const limit = 10;
 
     const location = useLocation();
+    const alertShown = useRef(false); // useRef to track if alert has been shown
 
     const getQueryParams = () => {
         const params = new URLSearchParams(location.search);
@@ -45,22 +45,24 @@ const SearchResultPage = () => {
             const data = await response.json();
 
             if (response.ok) {
-                if (data.rooms.length === 0) {
-                    alert("No rooms available for the selected filters. Please try different options.");
-                    setError("No rooms available.");
-                    resetFilters();
+                if (data.rooms.length === 0 && !alertShown.current) {
+                    alert("No rooms available for the searched city");
+                    alertShown.current = true; // Mark alert as shown
                 } else {
                     setRooms(data.rooms);
                     setTotalPages(Math.ceil(data.total / limit));
                     setError(null);
+                    alertShown.current = false; // Reset flag after successful data fetch
                 }
             } else {
                 console.error("Fetch error:", data);
                 setError(data.error || "Failed to fetch data");
+                alertShown.current = false; // Reset flag on error
             }
         } catch (err) {
             setError("An error occurred while fetching data");
             console.error(err);
+            alertShown.current = false; // Reset flag on error
         }
     };
 
@@ -91,16 +93,17 @@ const SearchResultPage = () => {
             <Navbar favouriteCount={favoriteCount} />
             <div className="big-container">
                 <div className="heading-text">
-                    <h1>Are you looking for rooms?</h1>
+                    <h1>Rooms in {getQueryParams().city}</h1>
+
                 </div>
 
                 <div className="filter-thau">
                     <Filter onApplyFilters={handleApplyFilters} reset={reset} />
                 </div>
 
-                {error && <div className="error-message">{error}</div>}
-
                 <div className="containers">
+
+
                     {rooms.map((room) => (
                         <RoomCard
                             key={room.id}

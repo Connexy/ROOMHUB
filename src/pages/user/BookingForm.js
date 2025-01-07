@@ -162,6 +162,7 @@ export default function BookingForm() {
 
                         <div className="form-group">
                             <label htmlFor="document">Upload Document</label>
+                            <p style={{ fontSize: '10px', color: "grey" }}>You can upload either front or back picture of your citizenship.</p>
                             <input
                                 type="file"
                                 id="document"

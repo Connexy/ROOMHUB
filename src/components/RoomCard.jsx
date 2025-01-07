@@ -79,16 +79,14 @@ const RoomCard = ({
                 <div className={`availability ${status === "Booked" ? "booked" : "available"}`}>
                     {getRoomStatus()}
                 </div>
-                <button className="favorite-icon" onClick={toggleFavorite}>
-                    <i className={`fa-solid fa-heart ${favorite ? "filled" : "empty"}`}></i>
-                </button>
-                {/* <button
+
+                <button
                     className="favorite-icon"
                     onClick={toggleFavorite}
                     title={favorite ? "Remove from Favorites" : "Add to Favorites"}
                 >
                     <i className={`fa-solid fa-heart ${favorite ? "filled" : "empty"}`}></i>
-                </button> */}
+                </button>
             </div>
             <div className="card-text">
                 <div className="room-card-type">

@@ -7,7 +7,7 @@ export default function FavoritePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const userId = localStorage.getItem("userId");// Replace with actual user ID (e.g., from auth context or props)
+    const userId = localStorage.getItem("userId");
 
     const fetchFavorites = async () => {
         try {
@@ -53,35 +53,35 @@ export default function FavoritePage() {
             </>
         );
     }
-
     return (
         <>
             <Navbar />
             <div className="favorite-container">
-                <h1 style={{ marginTop: "100px", textAlign: "center" }}>Your Favorite Rooms</h1>
-
                 {favoriteRooms.length === 0 ? (
-                    <h2 style={{ textAlign: "center", marginTop: "50px" }}>
-                        You don't have any favorite rooms yet.
-                    </h2>
+                    <h1 style={{ paddingTop: "70px", textAlign: "center", color: "red", marginTop: "50px" }}>
+                        You don't have any favorite rooms yet!
+                    </h1>
                 ) : (
-                    <div className="containers">
-                        {favoriteRooms.map((room) => (
-                            <RoomCard
-                                key={room.id}
-                                index={room.id}
-                                frontImage={`http://localhost:5000/uploads/${room.front_image}`}
-                                status={room.booking_status}
-                                type={room.room_type}
-                                city={room.city}
-                                location={room.room_address}
-                                price={room.room_price}
-                                description={room.room_description}
-                                availabilityDate={room.availability}
-                                onToggleFavorite={() => { } /* Favorites can't be toggled here */}
-                            />
-                        ))}
-                    </div>
+                    <>
+                        <h1 style={{ marginTop: "100px", marginBottom: "50px", textAlign: "center" }}>Your Favorite Rooms</h1>
+                        <div className="containers">
+                            {favoriteRooms.map((room) => (
+                                <RoomCard
+                                    key={room.id}
+                                    index={room.id}
+                                    frontImage={`http://localhost:5000/uploads/${room.front_image}`}
+                                    status={room.booking_status}
+                                    type={room.room_type}
+                                    city={room.city}
+                                    location={room.room_address}
+                                    price={room.room_price}
+                                    description={room.room_description}
+                                    availabilityDate={room.availability}
+                                    onToggleFavorite={() => { }} /* Favorites can't be toggled here */
+                                />
+                            ))}
+                        </div>
+                    </>
                 )}
             </div>
         </>

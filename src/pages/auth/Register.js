@@ -120,7 +120,7 @@ export default function Register() {
                         />
 
                         <FileInput
-                            label='Document'
+                            label='Photo'
                             name='image'
                             onChange={handleInputChange}
                             errorMessage={errorMessages.image}

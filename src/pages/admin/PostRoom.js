@@ -1,8 +1,9 @@
 
 import Sidebar from '../../components/Sidebar';
+import { useNavigate } from 'react-router-dom';
 
 export default function PostRoom() {
-
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -36,6 +37,7 @@ export default function PostRoom() {
             const result = await response.json();
             if (response.ok) {
                 alert('Room posted successfully!');
+                navigate(`/admin-room-list`);
             } else {
                 alert(`Failed to post room: ${result.message}`);
             }
