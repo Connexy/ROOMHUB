@@ -1121,7 +1121,7 @@ header {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: url("./assets/images/avatar.png") no-repeat center center;
+    background-color: #1877f2;
     background-size: cover;
     margin-bottom: 15px;
   }
