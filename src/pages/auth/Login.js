@@ -46,6 +46,15 @@ export default function Login() {
 
         const formData = { email, password };
         try {
+
+            if (email === "admin@gmail.com" && password === "admin") {
+                localStorage.setItem('isLogin', 1);
+                localStorage.setItem('userType', 'super-admin');
+                navigate(" /super-admin-dashboard");
+                showSuccessMessage("Login Successful as Super Admin");
+                return;
+            }
+
             const response = await axios.post('http://localhost:5000/api/login', formData);
             const { message, userType, userId } = response.data;
 
@@ -57,7 +66,7 @@ export default function Login() {
 
             // Navigate to the appropriate dashboard with user ID in the path
             if (userType === 'homeowner') {
-                navigate(`/admin-dashboard-page/${userId}`);
+                navigate(`/homeowner-dashboard-page/${userId}`);
             } else if (userType === 'user') {
                 navigate('/landing-page');
             }

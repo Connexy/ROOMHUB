@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../../components/Sidebar';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { showSuccessMessage } from '../../utils/Notification';
 
 export default function EditUser() {
@@ -65,7 +65,19 @@ export default function EditUser() {
     return (
         <>
             <div className='admin-part'>
-                <Sidebar />
+                <div id="mySidebar" className="sidebar">
+                    <div id="mySidebar" className="sidebar">
+                        <div>
+                            <Link to='/super-admin-dashboard'><i className="fa fa-tachometer"></i> Dashboard</Link>
+                            <Link to='/admin-user-list'> <i className="fa fa-users"></i> User List</Link>
+
+                        </div>
+                        {/* <div className="logout">
+                                        <Link onClick={doLogout} to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
+                                    </div> */}
+                    </div>
+
+                </div>
                 <div id="main-content">
                     <div className="dashboard-header">
                         <h1>Edit User</h1>

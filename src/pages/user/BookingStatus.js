@@ -9,20 +9,28 @@ export default function BookingStatus() {
 
     useEffect(() => {
         const fetchBookings = async () => {
+            const userId = localStorage.getItem('userId'); // Get the userId from localStorage
+
+            if (!userId) {
+                console.error('User ID not found');
+                return;
+            }
+
             try {
-                const response = await axios.get('http://localhost:5000/api/bookings', {
-                    params: { page: currentPage, limit: 5 }
+                const response = await axios.get('http://localhost:5000/api/bookings/status', {
+                    params: { page: currentPage, limit: 5, userId }
                 });
-                console.log('API Response:', response.data); // Log response data
+                console.log('Bookings fetched:', response.data);
                 setBookings(response.data.bookings);
                 setTotalPages(Math.ceil(response.data.total / 5));
             } catch (error) {
-                console.error('Error fetching bookings:', error); // Log error details
+                console.error('Error fetching bookings:', error);
             }
         };
 
         fetchBookings();
     }, [currentPage]);
+
 
 
     const handleNext = () => {

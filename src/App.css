@@ -384,7 +384,7 @@ input#checked{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px 20px;
+    padding: 22px 20px;
     transition: background-color 0.3s, color 0.3s;
   }
   
@@ -1114,6 +1114,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 5px;
   }
   
   .avatar {
@@ -1151,6 +1152,7 @@ header {
   }
   
   .user_details {
+    border-radius: 5px;
     padding: 15px;
     /* margin: 18px; */
     height: 280px;

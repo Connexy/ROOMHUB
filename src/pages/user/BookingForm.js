@@ -47,6 +47,12 @@ export default function BookingForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const userId = localStorage.getItem('userId'); // Get userId from localStorage or authentication state
+        if (!userId) {
+            alert('User ID is missing. Please log in again.');
+            return;
+        }
+
         const formDataToSend = new FormData();
         formDataToSend.append('fullName', formData.fullName);
         formDataToSend.append('email', formData.email);
@@ -55,6 +61,7 @@ export default function BookingForm() {
         formDataToSend.append('checkoutDate', formData.checkoutDate);
         formDataToSend.append('additionalNotes', formData.additionalNotes);
         formDataToSend.append('roomId', formData.roomId);
+        formDataToSend.append('userId', userId); // Add userId to the form data
         if (formData.document) {
             formDataToSend.append('document', formData.document);
         }
@@ -89,6 +96,7 @@ export default function BookingForm() {
             alert('An error occurred while submitting your booking.');
         }
     };
+
 
     return (
         <>
@@ -162,7 +170,7 @@ export default function BookingForm() {
 
                         <div className="form-group">
                             <label htmlFor="document">Upload Document</label>
-                            <p style={{ fontSize: '10px', color: "grey" }}>You can upload either front or back picture of your citizenship.</p>
+                            <p style={{ fontSize: '10px', color: "grey" }}>You can upload picture of your valid Id, Citizenship.</p>
                             <input
                                 type="file"
                                 id="document"
