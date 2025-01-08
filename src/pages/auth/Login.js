@@ -50,7 +50,7 @@ export default function Login() {
             if (email === "admin@gmail.com" && password === "admin") {
                 localStorage.setItem('isLogin', 1);
                 localStorage.setItem('userType', 'super-admin');
-                navigate(" /super-admin-dashboard");
+                navigate("/super-admin-dashboard");
                 showSuccessMessage("Login Successful as Super Admin");
                 return;
             }

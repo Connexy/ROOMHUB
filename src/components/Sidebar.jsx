@@ -6,6 +6,8 @@ export default function Sidebar() {
     const doLogout = () => {
         if (localStorage.getItem('isLogin')) {
             localStorage.removeItem('isLogin');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('userId');
             showInformationMessage("Logout successfully");
 
         }
@@ -18,9 +20,9 @@ export default function Sidebar() {
                     <div>
                         <Link to='/admin-dashboard-page/:userId'><i className="fa fa-tachometer"></i> Dashboard</Link>
                         {/* <Link to='/admin-user-list'> <i className="fa fa-users"></i> User List</Link> */}
-                        <Link to="/admin-post-room"><i className="fa fa-plus"></i> Post Room</Link>
-                        <Link to="/admin-room-list"><i className="fa fa-home"></i> Room List</Link>
-                        <Link to="/admin-booking-list"><i className="fa fa-calendar"></i> Bookings</Link>
+                        <Link to="/homeowner-post-room"><i className="fa fa-plus"></i> Post Room</Link>
+                        <Link to="/homeowner-room-list"><i className="fa fa-home"></i> Room List</Link>
+                        <Link to="/homeowner-booking-list"><i className="fa fa-calendar"></i> Bookings</Link>
                     </div>
                     <div className="logout">
                         <Link onClick={doLogout} to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>

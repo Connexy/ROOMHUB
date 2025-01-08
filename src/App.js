@@ -7,7 +7,6 @@ import Register from './pages/auth/Register';
 import LandingPage from './pages/user/LandingPage';
 import RentalListing from './pages/user/RentalListing';
 import HowitWorks from './pages/user/HowitWorks';
-import Contact from './pages/user/AboutUs';
 import UserDetail from './pages/user/UserDetail';
 import RoomDetails from './pages/user/RoomDetails';
 import Dashboard from './pages/homeowner/Dashboard';
@@ -26,6 +25,7 @@ import { FavoriteProvider } from './components/FavoriteContext'; // Import the F
 import SearchResultPage from './pages/user/SearchResultPage';
 import AboutUs from './pages/user/AboutUs';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import { saveAs } from 'file-saver';
 
 function App() {
   return (
@@ -35,24 +35,26 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/login-page' element={<Login />} />
           <Route path='/register-page' element={<Register />} />
+
           <Route path='/landing-page' element={<LandingPage />} />
+          <Route path='/book-room/:roomId' element={<BookingForm />} />
           <Route path='/rental-listing-page' element={<PrivateRoute component={RentalListing} />} />
           <Route path='/how-it-works-page-tenant' element={<HowitWorks />} />
           <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
           <Route path='/about-us-page' element={<AboutUs />} />
           <Route path='/user-detail-page' element={<UserDetail />} />
           <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
-          <Route path='/homeowner-dashboard-page/:userId' element={<PrivateRoute component={Dashboard} />} />
-
-          <Route path='/admin-post-room' element={<PostRoom />} />
-          <Route path='/book-room/:roomId' element={<BookingForm />} />
           <Route path='/user-booking-status-page' element={<BookingStatus />} />
-
-          <Route path='/admin-booking-list' element={<BookingList />} />
-          <Route path='/admin-room-list' element={<RoomList />} />
-          <Route path='/admin-edit-room/:roomId' element={<EditRoom />} />
           <Route path='/favorite-page/:userId' element={<FavoriteRoom />} />
           <Route path='/search-result-page' element={<SearchResultPage />} />
+
+          <Route path='/homeowner-dashboard-page/:userId' element={<PrivateRoute component={Dashboard} />} />
+          <Route path='/homeowner-post-room' element={<PostRoom />} />
+          <Route path='/homeowner-booking-list' element={<BookingList />} />
+          <Route path='/homeowner-room-list' element={<RoomList />} />
+          <Route path='/homeowner-edit-room/:roomId' element={<EditRoom />} />
+
+
 
           <Route path='/super-admin-dashboard' element={<AdminDashboard />} />
           <Route path='/admin-user-list' element={<UserList />} />
