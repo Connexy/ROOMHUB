@@ -16,12 +16,8 @@ export default function Dashboard() {
                     {/* Overview Cards */}
                     <div className="overview">
                         <div className="admin-card">
-                            <h3>Total Rooms</h3>
+                            <h3>My Rooms</h3>
                             <p>120</p> {/* Replace with dynamic data */}
-                        </div>
-                        <div className="admin-card">
-                            <h3>Total Users</h3>
-                            <p>340</p> {/* Replace with dynamic data */}
                         </div>
                         <div className="admin-card">
                             <h3>Booked Rooms</h3>

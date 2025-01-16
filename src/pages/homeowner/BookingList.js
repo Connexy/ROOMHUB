@@ -8,22 +8,46 @@ export default function BookingList() {
     const [totalPages, setTotalPages] = useState(1);
     const [selectedBooking, setSelectedBooking] = useState(null); // For tracking selected booking
 
+    // useEffect(() => {
+    //     const fetchBookings = async () => {
+    //         try {
+    //             const response = await axios.get('http://localhost:5000/api/bookings', {
+    //                 params: { page: currentPage, limit: 5 },
+    //             });
+    //             setBookings(response.data.bookings);
+    //             setTotalPages(Math.ceil(response.data.total / 5));
+    //         } catch (error) {
+    //             console.error('Error fetching bookings:', error);
+    //         }
+    //     };
+
+    //     fetchBookings();
+
+    // }, [currentPage]);
+
+    const homeownerId = localStorage.getItem("userId");
     useEffect(() => {
         const fetchBookings = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/bookings', {
-                    params: { page: currentPage, limit: 5 },
+                    params: {
+                        homeownerId, // Replace with the actual homeowner ID
+                        page: currentPage,
+                        limit: 5
+                    },
                 });
-                setBookings(response.data.bookings);
-                setTotalPages(Math.ceil(response.data.total / 5));
+                setBookings(response.data.bookings); // Update state with bookings data
+                setTotalPages(Math.ceil(response.data.total / 5)); // Calculate total pages
             } catch (error) {
                 console.error('Error fetching bookings:', error);
             }
         };
 
         fetchBookings();
+    }, [currentPage, homeownerId]);
 
-    }, [currentPage]);
+
+
 
 
     const updateStatus = async (bookingId, status) => {

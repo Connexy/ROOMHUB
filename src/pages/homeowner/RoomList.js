@@ -10,6 +10,7 @@ export default function RoomList() {
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const homeownerId = localStorage.getItem("userId");
 
     const handleDelete = (roomId) => {
         if (window.confirm("Are you sure you want to delete this room?")) {
@@ -28,24 +29,33 @@ export default function RoomList() {
 
 
     useEffect(() => {
-        // Fetch paginated room data from the backend
-        const fetchRooms = async () => {
+        // Fetch rooms by homeowner ID from the backend
+        const fetchRoomsByOwner = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/api/room?page=${currentPage}&limit=${itemsPerPage}`
+                    `http://localhost:5000/api/rooms/by-owner`,
+                    {
+                        params: {
+                            homeownerId: homeownerId, // Replace with the actual homeowner ID
+                            page: currentPage,
+                            limit: itemsPerPage
+                        }
+                    }
                 );
+
                 setRooms(response.data.rooms); // Update state with rooms data
                 setTotalPages(Math.ceil(response.data.total / itemsPerPage)); // Calculate total pages
                 setLoading(false);
             } catch (err) {
-                console.error("Error fetching room data:", err);
+                console.error("Error fetching rooms by homeowner ID:", err);
                 setError("Failed to load room data.");
                 setLoading(false);
             }
         };
 
-        fetchRooms();
-    }, [currentPage, itemsPerPage]);
+        fetchRoomsByOwner();
+    }, [currentPage, itemsPerPage, homeownerId]);
+
 
     const handleNext = () => {
         if (currentPage < totalPages) {

@@ -1075,10 +1075,17 @@ header {
     justify-content: center;
     margin-bottom: 10px;
   }
-  .stars i {
+  /* .stars i {
     color: gold;
     margin: 0 2px;
-  }
+  } */
+  .golden-star {
+    color: gold;
+}
+
+.gray-star {
+    color: gray;
+}
   .review-card p {
     margin-left: 0px;
     margin-bottom: 10px;
@@ -1438,16 +1445,16 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 500px;
+    height: 600px;
     width: 100%;
-    margin-bottom: 80px;
-    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    /* border: 1px solid blue; */
 }
 .room-features-content{
     display: flex;
     flex-direction: column;
     /* justify-content: space-evenly; */
-    height: 400px;
+    height: 600px;
     width: 600px;
     /* border: 1px solid black; */
 }
@@ -1460,10 +1467,71 @@ header {
     padding-bottom: 40px;
     margin-bottom: 30px;
 }
-.room-reg-text{
-  margin-left: 20px;
-  line-height: 2;
+/* css for adding review */
+.room-features-review {
+  height: 400px;
+  width: auto;
+  /* border: 1px solid red; */
+  
+  box-sizing: border-box;
 }
+
+.rev-frm {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.rev-frm-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.rev-frm-field label {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  width: 50px; /* Ensures consistent width for all labels */
+}
+
+.rev-frm-field input,
+.rev-frm-field textarea,
+.rev-frm-field select {
+ flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.rev-frm-field textarea {
+  resize: none;
+}
+
+.rev-frm-submit {
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  background-color: #2A9D8F;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  width: 120px;
+  margin: auto;
+}
+
+.rev-frm-submit:hover {
+  background-color: #158074;
+}
+
+
 .owner-features{
   padding-left: 10px;
   height: 300px;
@@ -1596,7 +1664,7 @@ header {
 .room-location{
     display: flex;
     flex-direction: column; 
-    height: 400px;
+    height: 600px;
     width: 600px;
     /* border: 1px solid black; */
 }
@@ -1605,6 +1673,7 @@ header {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #333;
 }
 
 #map {
@@ -1702,7 +1771,7 @@ header {
     margin-right: 2px;
 }
 .room-reviews-box{
-    padding: 50px;
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
