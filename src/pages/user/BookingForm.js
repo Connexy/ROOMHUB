@@ -73,7 +73,18 @@ export default function BookingForm() {
             });
 
             if (response.ok) {
-                alert('Booking submitted successfully!');
+                const data = await response.json(); // Parse the JSON response
+                const { bookingId } = data; // Assume the server returns a bookingId
+
+                if (bookingId) {
+                    localStorage.setItem('bookingId', bookingId); // Save the bookingId to localStorage
+                    alert('Booking submitted successfully!');
+                    showSuccessMessage('Booking successful');
+                    navigate(`/user-booking-status-page`);
+                } else {
+                    console.warn('No bookingId returned from the server.');
+                } alert('Booking submitted successfully!');
+
                 setFormData({
                     fullName: '',
                     email: '',

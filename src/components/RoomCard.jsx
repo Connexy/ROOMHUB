@@ -44,6 +44,12 @@ const RoomCard = ({
 
     const goDetailPage = () => navigate(`/room-detail-page/${index}`);
     const displayStatus = status === "Booked" ? "Booked" : "Available";
+    const capitalizeWords = (str) => {
+        return str
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ");
+    };
     return (
         <div className="card">
             <div className="image-container">
@@ -57,8 +63,12 @@ const RoomCard = ({
                 <div className="room-card-type">
                     <p>{type.charAt(0).toUpperCase() + type.slice(1)} Room</p>
                 </div>
-                <h3>{location}, {city}</h3>
-                <p style={{ color: "gray", fontSize: "16px" }}>{description}</p>
+                <h3>
+                    {capitalizeWords(location)}, {capitalizeWords(city)}
+                </h3>
+                <p style={{ color: "gray", fontSize: "16px" }}>
+                    {capitalizeWords(description)}
+                </p>
                 <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
                 <div className="card-button">
                     <button onClick={goDetailPage} className="card-btn">View Details &gt;</button>

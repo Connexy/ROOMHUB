@@ -37,7 +37,7 @@ export default function PostRoom() {
             const result = await response.json();
             if (response.ok) {
                 alert('Room posted successfully!');
-                navigate(`/admin-room-list`);
+                navigate(`/homeowner-room-list`);
             } else {
                 alert(`Failed to post room: ${result.message}`);
             }

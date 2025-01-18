@@ -19,7 +19,7 @@ const Navbar = () => {
         <div>
             <div className="navbar">
                 <div className="logo">
-                    <Link to='/landing-page'><h1 style={{ color: "white" }}>RoomHub</h1></Link>
+                    <Link to='/landing-page'><h1 style={{ color: "white" }}>RoomLess</h1></Link>
                 </div>
                 <div className="home-content">
                     <ul>

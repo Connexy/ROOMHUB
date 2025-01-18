@@ -170,7 +170,7 @@ const RoomDetails = () => {
                         <div className="features-grid">
                             <div><i class="fas fa-bed fa-fw"></i> {roomData.bedroom} Bedroom</div>
                             <div><i class="fas fa-bath fa-fw"></i> {roomData.bathroom}  Bathroom</div>
-                            <div><i class="fas fa-wifi fa-fw"></i> Free Wi-Fi</div>
+                            {/* <div><i class="fas fa-wifi fa-fw"></i> Free Wi-Fi</div> */}
                             <div><i class="fas fa-utensils fa-fw"></i> {roomData.kitchenroom} Kitchen room</div>
                             <div><i class="fas fa-parking fa-fw"></i> {roomData.parking}</div>
                             <div><i class="fas fa-concierge-bell fa-fw"></i>{roomData.amenities}</div>

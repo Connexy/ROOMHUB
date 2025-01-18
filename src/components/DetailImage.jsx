@@ -49,7 +49,12 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
         }
     };
 
-
+    const capitalizeWords = (str) => {
+        return str
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ");
+    };
     return (
         <>
             <div className="detail-image">
@@ -86,7 +91,7 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
                                     />
                                 </div>
                                 <div className="owner-text">
-                                    <h4><i className="fas fa-user icon"></i> {homeowner.fullname}</h4>
+                                    <h4><i className="fas fa-user icon"></i> {capitalizeWords(homeowner.fullname)}</h4>
                                     <h4 className="hover-container">
                                         <a
                                             href={`mailto:${homeowner.email}`}
@@ -107,7 +112,7 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
                     <h2>About Room</h2>
                     <div className="sub-box-detail">
                         <div><i className="fas fa-hotel fa-fw"></i>{roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room</div>
-                        <div><i className="fas fa-map-marker-alt fa-fw"></i> {locations}</div>
+                        <div><i className="fas fa-map-marker-alt fa-fw"></i> {capitalizeWords(locations)}</div>
                         <div><i className="fas fa-money-bill-wave fa-fw"></i><span className="price-text">Rs {price} / per month</span></div>
                         <div className="sub-box-btn">
                             <button onClick={handleShare} className="room-detail-btn">Share to Friend</button>
