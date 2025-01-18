@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:5000', {
@@ -8,10 +6,8 @@ const socket = io('http://localhost:5000', {
 });
 
 export default function ChatOwner() {
-    const [searchParams] = useSearchParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const [userDetails, setUserDetails] = useState({});
     const homeownerId = localStorage.getItem('userId');
     const userType = localStorage.getItem('userType');
     const bookingId = `room-${localStorage.getItem("bookingId")}`; // Consistent room naming
@@ -42,7 +38,7 @@ export default function ChatOwner() {
             socket.emit('leaveRoom', { bookingId });
             socket.off('message', handleNewMessage); // Cleanup listener
         };
-    }, [homeownerId, bookingId]);
+    }, [homeownerId, bookingId, userType]);
 
     const sendMessage = () => {
         if (newMessage.trim() === '') return;
@@ -67,7 +63,7 @@ export default function ChatOwner() {
 
     return (
         <div className="chat-page">
-            <h2>Chat with {userDetails.full_name || 'User'}</h2>
+            <h2>Chat with User</h2>
             <div className="chat-window">
                 <div className="chat-messages">
                     {messages.map((msg, index) => (
@@ -76,7 +72,12 @@ export default function ChatOwner() {
                             className={`message ${msg.sender === homeownerId ? 'sent' : 'received'}`}
                         >
                             <p>{msg.text}</p>
-                            <span>{new Date(msg.timestamp).toLocaleTimeString()}</span>
+                            <span>
+                                {new Date(msg.timestamp).toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })}
+                            </span>
                         </div>
                     ))}
                 </div>
