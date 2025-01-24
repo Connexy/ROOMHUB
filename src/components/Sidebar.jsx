@@ -8,6 +8,7 @@ export default function Sidebar() {
             localStorage.removeItem('isLogin');
             localStorage.removeItem('userType');
             localStorage.removeItem('userId');
+            localStorage.removeItem('bookingId');
             showInformationMessage("Logout successfully");
 
         }

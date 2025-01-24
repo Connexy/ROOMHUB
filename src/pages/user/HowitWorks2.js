@@ -1,12 +1,15 @@
 import React from 'react'
-import Navbar from '../../components/Navbar'
 import { Link } from 'react-router-dom'
-import Footer from '../../components/Footer'
+import { useEffect } from 'react';
 
 export default function HowitWorks2() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div class="hiw-container">
                 <div class="ci-container">
                     <div class="hiw-heading">
@@ -20,7 +23,7 @@ export default function HowitWorks2() {
                     <div class="text-wrapper">
 
                         <div class="text-part">
-                            <h3>1. Post</h3>
+                            <h3>1. Post Room</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -31,8 +34,8 @@ export default function HowitWorks2() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
-                            <h3>2. Receive Rental Request</h3>
+                            <br />
+                            <h3>2. Manage Rooms</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -43,7 +46,19 @@ export default function HowitWorks2() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
+                            <br />
+                            <h3>2. Manage Bookings</h3>
+                            <p>
+                                The properties on the room less platform are all verified by our
+                                team
+                            </p>
+                            <br />
+                            <p>
+                                This means that we guarantee the reality, the authencity of the
+                                photos and the accuracy of the information in the listing so htath
+                                you can book online in complete safety
+                            </p>
+                            <br />
                             <h3>3. Deal Closed</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
@@ -62,7 +77,7 @@ export default function HowitWorks2() {
 
                 </div>
             </div >
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

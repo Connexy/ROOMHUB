@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 
-export const DetailImage = ({ status, frontImage, galleryImages, price, locations, roomType, roomId }) => {
+import { useNavigate, useLocation } from 'react-router-dom';
+import { showInformationMessage } from '../utils/Notification';
+
+
+export const DetailImage = ({ status, frontImage, galleryImages, price, locations, roomType, city, roomId, bedroom, bathroom, kitchenroom, parking, amenities, floor }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [homeowner, setHomeowner] = useState(null);
+    // const [homeowner, setHomeowner] = useState(null);
 
-    useEffect(() => {
-        const fetchHomeownerDetails = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5000/api/homeowner/${roomId}`);
-                setHomeowner(response.data);
-            } catch (error) {
-                console.error("Error fetching homeowner details:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchHomeownerDetails = async () => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:5000/api/homeowner/${roomId}`);
+    //             setHomeowner(response.data);
+    //         } catch (error) {
+    //             console.error("Error fetching homeowner details:", error);
+    //         }
+    //     };
 
 
-        fetchHomeownerDetails();
-    }, [roomId]);
+    //     fetchHomeownerDetails();
+    // }, [roomId]);
+
 
     const handleShare = () => {
         const shareableLink = `${window.location.origin}${location.pathname}?roomId=${roomId}`;
@@ -42,9 +44,17 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
     };
 
     const handleBook = () => {
+        const isLoggedIn = localStorage.getItem("isLogin");
+
         if (status === 'Booked') {
             alert('Room is booked already');
-        } else {
+            return;
+        }
+        if (!isLoggedIn) {
+            showInformationMessage("Please login first to book the room");
+            return;
+        }
+        else {
             navigate(`/book-room/${roomId}`);
         }
     };
@@ -77,10 +87,35 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
             </div>
 
             <div className="detail-content">
-                <div className="owner-features">
+                <div className="room-features">
+                    <h2> Room Features</h2>
+                    <div className="features-grid">
+                        <div><i class="fas fa-bed fa-fw"></i> {bedroom} Bedroom</div>
+                        <div><i class="fas fa-bath fa-fw"></i> {bathroom}  Bathroom</div>
+                        <div><i class="fas fa-utensils fa-fw"></i> {kitchenroom} Kitchen room</div>
+                        <div><i class="fas fa-parking fa-fw"></i> {parking}</div>
+                        <div><i class="fas fa-concierge-bell fa-fw"></i>{amenities}</div>
+                        <div><i class="fas fa-building fa-fw"></i> {floor} Floor</div>
+
+                    </div>
+                </div>
+
+                <div className="sub-box">
+                    <h2>About Room</h2>
+                    <div className="sub-box-detail">
+                        <div><i className="fas fa-hotel fa-fw"></i>{roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room</div>
+                        <div><i className="fas fa-map-marker-alt fa-fw"></i> {capitalizeWords(locations)}, {capitalizeWords(city)}</div>
+                        <div><i className="fas fa-money-bill-wave fa-fw"></i><span className="price-text">Rs {price} / per month</span></div>
+                        <div className="sub-box-btn">
+                            <button onClick={handleShare} className="room-detail-btn" >Share to Friend</button>
+                            <button onClick={handleBook} className="room-detail-btn">Book Room &gt;</button>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="owner-features">
                     <h2>Meet Your Owner</h2>
                     <p>Feel free to contact the homeowner for booking.</p>
-                    {homeowner && (
+                     {homeowner && (
                         <div className="owner-box">
                             <div className="owner">
                                 <div className="owner-image">
@@ -107,19 +142,8 @@ export const DetailImage = ({ status, frontImage, galleryImages, price, location
                             </div>
                         </div>
                     )}
-                </div>
-                <div className="sub-box">
-                    <h2>About Room</h2>
-                    <div className="sub-box-detail">
-                        <div><i className="fas fa-hotel fa-fw"></i>{roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room</div>
-                        <div><i className="fas fa-map-marker-alt fa-fw"></i> {capitalizeWords(locations)}</div>
-                        <div><i className="fas fa-money-bill-wave fa-fw"></i><span className="price-text">Rs {price} / per month</span></div>
-                        <div className="sub-box-btn">
-                            <button onClick={handleShare} className="room-detail-btn">Share to Friend</button>
-                            <button onClick={handleBook} className="room-detail-btn">Book Room</button>
-                        </div>
-                    </div>
-                </div>
+                </div>  */}
+
             </div>
         </>
     );

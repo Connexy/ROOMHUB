@@ -4,7 +4,7 @@ import axios from "axios";
 import { useFavorite } from "../components/FavoriteContext";
 
 const RoomCard = ({
-    index, city, frontImage, status, type, location, description, price
+    index, city, frontImage, status, type, location, description, price, onToggleFavorite
 }) => {
     const navigate = useNavigate();
     const [favorite, setFavorite] = useState(false);
@@ -23,6 +23,7 @@ const RoomCard = ({
         fetchFavoriteStatus();
     }, [index]);
 
+
     const toggleFavorite = async () => {
         const newFavoriteState = !favorite;
         setFavorite(newFavoriteState);
@@ -32,15 +33,18 @@ const RoomCard = ({
             if (newFavoriteState) {
                 await axios.post("http://localhost:5000/api/favorites", { userId, roomId: index });
                 incrementFavorite();
+                if (onToggleFavorite) onToggleFavorite(true); // Call parent callback
             } else {
                 await axios.delete(`http://localhost:5000/api/favorites/${userId}/${index}`);
                 decrementFavorite();
+                if (onToggleFavorite) onToggleFavorite(false); // Call parent callback
             }
         } catch (error) {
             console.error("Failed to toggle favorite:", error);
             setFavorite(!newFavoriteState);
         }
     };
+
 
     const goDetailPage = () => navigate(`/room-detail-page/${index}`);
     const displayStatus = status === "Booked" ? "Booked" : "Available";
@@ -69,7 +73,7 @@ const RoomCard = ({
                 <p style={{ color: "gray", fontSize: "16px" }}>
                     {capitalizeWords(description)}
                 </p>
-                <p style={{ color: "green", fontSize: "18px" }}><b>{price}/Month</b></p>
+                <p style={{ color: "green", fontSize: "18px" }}><b>Rs {price}/Month</b></p>
                 <div className="card-button">
                     <button onClick={goDetailPage} className="card-btn">View Details &gt;</button>
                 </div>

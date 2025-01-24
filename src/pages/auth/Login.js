@@ -56,9 +56,9 @@ export default function Login() {
             }
 
             const response = await axios.post('http://localhost:5000/api/login', formData);
-            const { message, userType, userId } = response.data;
+            const { userType, userId } = response.data;
 
-            console.log(message);
+
 
             localStorage.setItem('isLogin', 1);
             localStorage.setItem('userType', userType);
@@ -105,10 +105,10 @@ export default function Login() {
                             onChange={handleInputChange}
                             errorMessage={errorMessages.password}
                         />
-                        <div className="forgot-section">
+                        {/* <div className="forgot-section">
                             <span><input type="checkbox" name="remember" id="checked" /> Remember Me</span>
                             <span><a href="/">Forgot Password ?</a></span>
-                        </div>
+                        </div> */}
 
                         <Button
                             id="login-btn"

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
 import { DetailImage } from "../../components/DetailImage";
 import { showInformationMessage, showSuccessMessage } from '../../utils/Notification';
 import RoomReview from '../../components/RoomReview';
@@ -14,7 +12,7 @@ const RoomDetails = () => {
     const [roomData, setRoomData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    // const [homeowner, setHomeowner] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [reviewData, setReviewData] = useState({
         name: '',
@@ -22,7 +20,12 @@ const RoomDetails = () => {
         review_text: '',
         rating: ''
     });
-
+    const [validationErrors, setValidationErrors] = useState({
+        name: '',
+        review_date: '',
+        review_text: '',
+        rating: ''
+    });
 
     // useEffect(() => {
     //     axios.get(`http://localhost:5000/api/roomdetails/${roomId}`)
@@ -66,6 +69,19 @@ const RoomDetails = () => {
             .catch(error => console.error("Error fetching reviews:", error.response || error.message));
     }, [roomId]);
 
+    // useEffect(() => {
+    //     const fetchHomeownerDetails = async () => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:5000/api/homeowner/${roomId}`);
+    //             setHomeowner(response.data);
+    //         } catch (error) {
+    //             console.error("Error fetching homeowner details:", error);
+    //         }
+    //     };
+
+
+    //     fetchHomeownerDetails();
+    // }, [roomId]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -81,15 +97,69 @@ const RoomDetails = () => {
 
     const handleReviewChange = (e) => {
         const { name, value } = e.target;
+
+        // Update review data
         setReviewData({
             ...reviewData,
-            [name]: value
+            [name]: value,
         });
+
+        // Clear validation error for the specific field
+        if (value.trim()) {
+            setValidationErrors((prevErrors) => ({
+                ...prevErrors,
+                [name]: '',
+            }));
+        }
     };
+
+    // const handleReviewSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     // Include the room ID in the review data
+    //     const dataToSubmit = { ...reviewData, room_id: roomId };
+
+    //     axios.post('http://localhost:5000/api/reviews', dataToSubmit)
+    //         .then(response => {
+    //             console.log("Review submitted:", response.data);
+    //             showSuccessMessage("Review Submitted");
+
+    //             // Clear the form fields
+    //             setReviewData({
+    //                 name: '',
+    //                 review_date: '',
+    //                 review_text: '',
+    //                 rating: ''
+    //             });
+
+
+    //         })
+    //         .catch(error => {
+    //             console.error("Error submitting review:", error);
+    //             showInformationMessage('Failed to submit review. Please try again.');
+    //         });
+    // };
     const handleReviewSubmit = (e) => {
         e.preventDefault();
 
-        // Include the room ID in the review data
+        // Validation
+        const errors = {};
+        if (!reviewData.name.trim()) errors.name = "Name is required";
+        if (!reviewData.review_date) errors.review_date = "Date is required";
+        if (!reviewData.review_text.trim()) errors.review_text = "Review text is required";
+        if (!reviewData.rating) errors.rating = "Rating is required";
+
+        if (Object.keys(errors).length > 0) {
+            setValidationErrors(errors);
+            return;
+        }
+        const isLoggedIn = localStorage.getItem("isLogin");
+        if (!isLoggedIn) {
+            showInformationMessage("Please login first to submit the review");
+            return; // Prevent submission if not logged in
+        }
+        // If no errors, clear validation messages and submit
+        setValidationErrors({});
         const dataToSubmit = { ...reviewData, room_id: roomId };
 
         axios.post('http://localhost:5000/api/reviews', dataToSubmit)
@@ -104,20 +174,25 @@ const RoomDetails = () => {
                     review_text: '',
                     rating: ''
                 });
-
-
             })
             .catch(error => {
                 console.error("Error submitting review:", error);
                 showInformationMessage('Failed to submit review. Please try again.');
             });
     };
+    // const capitalizeWords = (str) => {
+    //     return str
+    //         .split(" ")
+    //         .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    //         .join(" ");
+    // };
+
 
 
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="room-detail-headings">
                 <h1>Room Details</h1>
             </div>
@@ -131,57 +206,143 @@ const RoomDetails = () => {
                     roomType={roomData.room_type}
                     roomId={roomId}
                     status={roomData.status}
+                    city={roomData.city}
+                    bedroom={roomData.bedroom}
+                    bathroom={roomData.bathroom}
+                    kitchenroom={roomData.kitchenroom}
+                    parking={roomData.parking}
+                    amenities={roomData.amenities}
+                    floor={roomData.floor}
                 />
             </div>
-
-            {/*         
-                // <div className="room-checkout">
-                //     <div className="checkout-box">
-                //         <div className="checkout-header"><h2>Contact Owner (Book Room)</h2></div>
-                //         <div className="contact-form">
-                //             <h3>Contact Form</h3>
-                //             <div className="form-group">
-                //                 <label htmlFor="name">Name *</label>
-                //                 <input type="text" id="name" />
-                //             </div>
-                //             <div className="form-group">
-                //                 <label htmlFor="contact-number">Contact number *</label>
-                //                 <input type="number" id="contact-number" />
-                //             </div>
-                //             <div className="form-group">
-                //                 <label htmlFor="email">Email *</label>
-                //                 <input type="email" id="email" />
-                //             </div>
-                //             <div className="form-group">
-                //                 <label htmlFor="message">Message</label>
-                //                 <textarea id="message"></textarea>
-                //             </div>
-                //             <button className="contact-form-button">Submit</button>
-                //         </div>
-                //     </div>
-                // </div>
-                 */}
 
             <div className="room-detail-contents">
                 <div className="room-features-content">
 
-                    <div className="room-features">
+                    {/* <div className="room-features">
                         <h2> Room Features</h2>
                         <div className="features-grid">
                             <div><i class="fas fa-bed fa-fw"></i> {roomData.bedroom} Bedroom</div>
                             <div><i class="fas fa-bath fa-fw"></i> {roomData.bathroom}  Bathroom</div>
-                            {/* <div><i class="fas fa-wifi fa-fw"></i> Free Wi-Fi</div> */}
                             <div><i class="fas fa-utensils fa-fw"></i> {roomData.kitchenroom} Kitchen room</div>
                             <div><i class="fas fa-parking fa-fw"></i> {roomData.parking}</div>
                             <div><i class="fas fa-concierge-bell fa-fw"></i>{roomData.amenities}</div>
                             <div><i class="fas fa-building fa-fw"></i> {roomData.floor} Floor</div>
 
                         </div>
-                    </div>
+                    </div> 
+                     <div className="owner-features">
+                        <h2>Meet Your Owner</h2>
+                        <p>Feel free to contact the homeowner for booking.</p>
+                        {homeowner && (
+                            <div className="owner-box">
+                                <div className="owner">
+                                    <div className="owner-image">
+                                        <img
+                                            src={`http://localhost:5000/uploads/${homeowner.image}`}
+                                            alt="Owner"
+                                            style={{ height: "80px", width: "80px", borderRadius: "50%" }}
+                                        />
+                                    </div>
+                                    <div className="owner-text">
+                                        <h4><i className="fas fa-user icon"></i> {capitalizeWords(homeowner.fullname)}</h4>
+                                         <h4 className="hover-container">
+                                            <a
+                                                href={`mailto:${homeowner.email}`}
+                                                style={{ textDecoration: "none", color: "inherit" }}
+                                            >
+                                                <i className="fas fa-envelope icon"></i> {homeowner.email}
+                                            </a>
+                                            <span className="hover-tooltip" style={{ fontSize: "12px", height: "15px" }}>
+                                                Click to Send Email
+                                            </span>
+                                        </h4> 
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div> 
+                    */}
+
                     <div className="room-features-review">
                         <h2 style={{ marginBottom: '10px' }}>Add Your Review</h2>
                         <form class="rev-frm" onSubmit={handleReviewSubmit}>
-                            <div class="rev-frm-field">
+                            <div className="rev-frm-field">
+                                <label htmlFor="name">Name:</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder={validationErrors.name || "Enter your name"}
+                                    value={reviewData.name}
+                                    onChange={handleReviewChange}
+
+                                    className={validationErrors.name ? "error-input" : ""}
+                                />
+                            </div>
+
+
+
+
+                            <div className="rev-frm-field">
+                                <label htmlFor="date">Date:</label>
+                                <input
+                                    type="date"
+                                    id="date"
+                                    name="review_date"
+                                    placeholder={validationErrors.review_date || ""}
+                                    style={{
+                                        color: validationErrors.review_date ? 'red' : 'black'
+
+                                    }}
+                                    value={reviewData.review_date}
+                                    onChange={handleReviewChange}
+                                    min={new Date().toISOString().split('T')[0]}
+                                />
+                            </div>
+
+
+                            <div className="rev-frm-field">
+                                <label htmlFor="review">Review:</label>
+                                <textarea
+                                    id="review"
+                                    name="review_text"
+                                    placeholder={validationErrors.review_text || "Enter your comments"}
+                                    rows="3"
+                                    value={reviewData.review_text}
+                                    onChange={handleReviewChange}
+                                    className={validationErrors.review_text ? "error-input" : ""}
+                                ></textarea>
+
+                            </div>
+
+
+
+                            <div className="rev-frm-field">
+                                <label htmlFor="stars">Rating:</label>
+                                <select
+                                    id="stars"
+                                    name="rating"
+                                    placeholder={validationErrors.rating || ""}
+                                    style={{
+                                        color: validationErrors.rating ? 'red' : 'black'
+                                    }}
+                                    value={reviewData.rating}
+                                    onChange={handleReviewChange}
+                                >
+                                    <option value="">Select Rating</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+
+
+                            <button type="submit" className="rev-frm-submit">Submit</button>
+
+                            {/* <div class="rev-frm-field">
                                 <label for="name">Name:</label>
                                 <input type="text" id="name" name="name" placeholder="Enter your name" required
                                     value={reviewData.name}
@@ -194,6 +355,7 @@ const RoomDetails = () => {
                                 <input type="date" id="date" name="review_date" required
                                     value={reviewData.review_date}
                                     onChange={handleReviewChange}
+                                    min={new Date().toISOString().split('T')[0]}
                                 />
                             </div>
 
@@ -220,14 +382,14 @@ const RoomDetails = () => {
                                 </select>
                             </div>
 
-                            <button type="submit" class="rev-frm-submit" >Submit</button>
+                            <button type="submit" class="rev-frm-submit" >Submit</button> */}
                         </form>
 
                     </div>
 
                 </div>
 
-                <div className="room-location">
+                {/* <div className="room-location">
                     <div className="location-header"><p>Map</p></div>
                     <div id="map">
                         <iframe
@@ -242,51 +404,54 @@ const RoomDetails = () => {
                         ></iframe>
 
                     </div>
-                </div>
-
-
-            </div>
-            <div className="room-review">
-                <h2>Reviews</h2>
-                <div className="room-reviews-box">
-                    {/* <div className="room-review-card">
-                        <div className="room-reviewer-info">
-                            <img src="/" alt="room-reviewer " class="room-reviewer-image" />
-                            <div className="room-reviewer-details">
-                                <h3 className="room-reviewer-name">Chunhua</h3>
-                                <p className="room-review-date">March 2024</p>
-                            </div>
-                        </div>
-                        <div className="room-review-content">
-                            <p className="room-review-text">The landlord Santa is very friendly and kind, with an angelic smile. She
-                                provided
-                                a lot of local travel tips and took me to many local activities. She can provide meals at any
-                                time,
-                                which...</p>
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div> */}
-                    {reviews.map((review, index) => (
-                        <RoomReview
-                            reviewerName={review.name}
-                            Date={review.review_date}
-                            Review={review.review_text}
-                            Star={review.rating}
-                        />
-
-                    ))}
-
+                </div> */}
+                <div className="room-location">
+                    <div className="location-header"><p>Map</p></div>
+                    <div id="map">
+                        {roomData && roomData.room_address && roomData.city ? (
+                            <button
+                                className="map-button"
+                                onClick={() =>
+                                    window.open(
+                                        `https://www.google.com/maps?q=${encodeURIComponent(
+                                            `${roomData.room_address}, ${roomData.city}`
+                                        )}`,
+                                        "_blank"
+                                    )
+                                }
+                            >
+                                Open Location in Google Maps
+                            </button>
+                        ) : (
+                            <p>Loading map location...</p>
+                        )}
+                    </div>
                 </div>
 
             </div>
 
-            <Footer />
+            {reviews && reviews.length > 0 && (
+                <div className="room-review">
+                    <h2>Reviews</h2>
+                    <div className="room-reviews-box">
+
+                        {reviews.map((review, index) => (
+                            <RoomReview
+                                reviewerName={review.name}
+                                Date={review.review_date}
+                                Review={review.review_text}
+                                Star={review.rating}
+                            />
+
+                        ))}
+
+                    </div>
+
+                </div>
+            )}
+
+
+            {/* <Footer /> */}
         </div>
     );
 };

@@ -110,7 +110,7 @@ export default function RoomList() {
                                             <td>{room.city}</td>
                                             <td>{room.room_address}</td>
                                             <td>{room.room_price}</td>
-                                            <td>{room.status}</td>
+                                            <td>{room.approval}</td>
                                             <td>
                                                 <Link to={`/homeowner-edit-room/${room.id}`} className="btn-edit">Edit</Link>
                                                 <Link onClick={() => handleDelete(room.id)} className="btn-delete"   >Delete </Link>

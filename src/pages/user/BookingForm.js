@@ -1,101 +1,114 @@
-import React, { useState } from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import { showSuccessMessage } from '../../utils/Notification';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { showInformationMessage } from '../../utils/Notification';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 export default function BookingForm() {
     const { roomId } = useParams();
     const navigate = useNavigate();
+    const userId = localStorage.getItem("userId");
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
         phone: '',
-        checkinDate: '',
-        checkoutDate: '',
         additionalNotes: '',
-        document: null, // For storing the document file
         roomId: roomId,
+        userId: userId,
     });
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
+    const [errorMessages, setErrorMessages] = useState({});
+
+    // Validate form inputs
+    const validateForm = () => {
+        const errors = {};
+
+        // Full Name validation
+        if (!formData.fullName.trim()) {
+            errors.fullName = 'Full Name is required';
+        }
+
+        // Email validation
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.email = 'Invalid email format';
+        }
+
+
+        // Phone validation
+        if (!formData.phone.trim()) {
+            errors.phone = 'Phone number is required';
+        } else if (!/^\d{10}$/.test(formData.phone)) {
+            errors.phone = 'Phone number must be 10 digits';
+        }
+
+
+        setErrorMessages(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
         });
+        setErrorMessages((prev) => ({ ...prev, [name]: '' }));
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png']; // Example types
-        const maxSize = 2 * 1024 * 1024; // 2 MB
+    // Handle file upload
+    // const handleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+    //     const maxSize = 2 * 1024 * 1024;
 
-        if (file && (!allowedTypes.includes(file.type) || file.size > maxSize)) {
-            alert('Please upload a valid file (PDF/JPEG/PNG, max 2MB).');
-            return;
-        }
+    //     if (file && (!allowedTypes.includes(file.type) || file.size > maxSize)) {
+    //         setErrorMessages((prev) => ({
+    //             ...prev,
+    //             document: 'Please upload a valid file (PDF/JPEG/PNG, max 2MB)',
+    //         }));
+    //         return;
+    //     }
 
-        setFormData({
-            ...formData,
-            document: file,
-        });
-    };
+    //     setFormData({
+    //         ...formData,
+    //         document: file,
+    //     });
+    //     setErrorMessages((prev) => ({ ...prev, document: '' }));
+    // };
 
-
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const userId = localStorage.getItem('userId'); // Get userId from localStorage or authentication state
-        if (!userId) {
-            alert('User ID is missing. Please log in again.');
-            return;
-        }
+        if (!validateForm()) return;
 
         const formDataToSend = new FormData();
-        formDataToSend.append('fullName', formData.fullName);
-        formDataToSend.append('email', formData.email);
-        formDataToSend.append('phone', formData.phone);
-        formDataToSend.append('checkinDate', formData.checkinDate);
-        formDataToSend.append('checkoutDate', formData.checkoutDate);
-        formDataToSend.append('additionalNotes', formData.additionalNotes);
-        formDataToSend.append('roomId', formData.roomId);
-        formDataToSend.append('userId', userId); // Add userId to the form data
-        if (formData.document) {
-            formDataToSend.append('document', formData.document);
-        }
+        Object.keys(formData).forEach((key) => {
+            formDataToSend.append(key, formData[key]);
+        });
 
         try {
             const response = await fetch('http://localhost:5000/api/bookings', {
                 method: 'POST',
-                body: formDataToSend, // Automatically sets "multipart/form-data"
+                body: formDataToSend,
             });
 
             if (response.ok) {
-                const data = await response.json(); // Parse the JSON response
-                const { bookingId } = data; // Assume the server returns a bookingId
-
-                if (bookingId) {
-                    localStorage.setItem('bookingId', bookingId); // Save the bookingId to localStorage
-                    alert('Booking submitted successfully!');
-                    showSuccessMessage('Booking successful');
-                    navigate(`/user-booking-status-page`);
-                } else {
-                    console.warn('No bookingId returned from the server.');
-                } alert('Booking submitted successfully!');
-
                 setFormData({
                     fullName: '',
                     email: '',
                     phone: '',
-                    checkinDate: '',
-                    checkoutDate: '',
                     additionalNotes: '',
-                    document: null,
                     roomId: roomId,
+                    userId: userId,
                 });
-                showSuccessMessage('Booking successful');
+
+                showInformationMessage('Please check your booking status');
                 navigate(`/user-booking-status-page`);
             } else {
                 const errorData = await response.json();
@@ -108,16 +121,17 @@ export default function BookingForm() {
         }
     };
 
-
     return (
         <>
-            <Navbar />
             <div className="booking-outlet">
                 <div className="booking-form">
                     <h2>Book a Room</h2>
+
                     <form onSubmit={handleSubmit}>
+                        {/* Full Name */}
                         <div className="form-group">
                             <label htmlFor="name">Full Name</label>
+                            {errorMessages.fullName && <p style={{ color: "red", fontSize: "12px" }}>{errorMessages.fullName}</p>}
                             <input
                                 type="text"
                                 id="name"
@@ -125,12 +139,16 @@ export default function BookingForm() {
                                 placeholder="Enter your full name"
                                 value={formData.fullName}
                                 onChange={handleChange}
-                                required
+
                             />
                         </div>
 
+                        {/* Email */}
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
+                            {errorMessages.email && (
+                                <p style={{ color: "red", fontSize: "12px" }}>{errorMessages.email}</p>
+                            )}
                             <input
                                 type="email"
                                 id="email"
@@ -138,12 +156,13 @@ export default function BookingForm() {
                                 placeholder="Enter your email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                required
                             />
                         </div>
 
+                        {/* Phone Number */}
                         <div className="form-group">
                             <label htmlFor="phone">Phone Number</label>
+                            {errorMessages.phone && <p style={{ color: "red", fontSize: "12px" }}>{errorMessages.phone}</p>}
                             <input
                                 type="number"
                                 id="phone"
@@ -151,46 +170,30 @@ export default function BookingForm() {
                                 placeholder="Enter your phone number"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                required
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="checkin">Check-in Date</label>
-                            <input
-                                type="date"
-                                id="checkin"
-                                name="checkinDate"
-                                value={formData.checkinDate}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="checkout">Check-out Date</label>
-                            <input
-                                type="date"
-                                id="checkout"
-                                name="checkoutDate"
-                                value={formData.checkoutDate}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
+                        {/* Document Upload */}
+                        {/* <div className="form-group">
                             <label htmlFor="document">Upload Document</label>
-                            <p style={{ fontSize: '10px', color: "grey" }}>You can upload picture of your valid Id, Citizenship.</p>
+                            <p style={{ fontSize: '12px', color: 'grey' }}>
+                                {errorMessages.document ? (
+                                    <p style={{ color: "red", fontSize: "12px" }}>{errorMessages.document}</p>
+                                ) : (
+                                    <p style={{ fontSize: "10px", color: "grey" }}>
+                                        You can upload a picture of your valid ID, citizenship, etc.
+                                    </p>
+                                )}
+                            </p>
                             <input
                                 type="file"
                                 id="document"
                                 name="document"
                                 onChange={handleFileChange}
-                                required
                             />
-                        </div>
+                        </div> */}
 
+                        {/* Additional Notes */}
                         <div className="form-group">
                             <label htmlFor="notes">Additional Notes</label>
                             <textarea
@@ -202,13 +205,13 @@ export default function BookingForm() {
                             />
                         </div>
 
+                        {/* Submit Button */}
                         <div className="form-group-btn">
                             <button type="submit">Submit Booking</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }

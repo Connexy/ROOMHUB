@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../../components/Sidebar';
-import { useNavigate } from 'react-router-dom';
 
 export default function BookingList() {
-    const navigate = useNavigate();
     const [bookings, setBookings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [selectedBooking, setSelectedBooking] = useState(null); // For tracking selected booking
+    const [actionDisabled, setActionDisabled] = useState({});
 
     const homeownerId = localStorage.getItem("userId");
     const saveBookingIdToLocalStorage = (bookingId) => {
@@ -39,6 +38,42 @@ export default function BookingList() {
         fetchBookings();
     }, [currentPage, homeownerId]);
 
+    // const updateStatus = async (bookingId, status) => {
+    //     try {
+    //         const endpoint =
+    //             status === 'Booked'
+    //                 ? 'http://localhost:5000/api/bookings/accept'
+    //                 : 'http://localhost:5000/api/bookings/decline';
+
+    //         const response = await axios.post(endpoint, { bookingId });
+    //         console.log('Booking status updated:', response.data);
+
+    //         alert(`Booking has been ${status === 'Booked' ? 'accepted' : 'rejected'}.`);
+
+    //         // Update the status in the bookings list
+    //         setBookings((prevBookings) =>
+    //             prevBookings.map((booking) =>
+    //                 booking.id === bookingId ? { ...booking, status } : booking
+    //             )
+    //         );
+
+    //         // Update the selected booking status if it's the same
+    //         if (selectedBooking?.id === bookingId) {
+    //             setSelectedBooking({ ...selectedBooking, status });
+    //         }
+    //         // Disable the action buttons for this booking
+    //         setActionDisabled((prevState) => ({
+    //             ...prevState,
+    //             [bookingId]: {
+    //                 accept: status === 'Booked',
+    //                 reject: status === 'Rejected',
+    //             },
+    //         }));
+
+    //     } catch (error) {
+    //         console.error('Error updating booking status:', error);
+    //     }
+    // };
     const updateStatus = async (bookingId, status) => {
         try {
             const endpoint =
@@ -49,21 +84,34 @@ export default function BookingList() {
             const response = await axios.post(endpoint, { bookingId });
             console.log('Booking status updated:', response.data);
 
-            // Update the status in the bookings list
+            alert(`Booking has been ${status === 'Booked' ? 'accepted' : 'rejected'}.`);
+
+            // Update the booking status
             setBookings((prevBookings) =>
                 prevBookings.map((booking) =>
                     booking.id === bookingId ? { ...booking, status } : booking
                 )
             );
 
-            // Update the selected booking status if it's the same
+            // Update selected booking
             if (selectedBooking?.id === bookingId) {
                 setSelectedBooking({ ...selectedBooking, status });
             }
+
+            // Toggle button states
+            setActionDisabled((prevState) => ({
+                ...prevState,
+                [bookingId]: {
+                    accept: status === 'Booked', // Disable "Accept" if clicked
+                    reject: status === 'Rejected', // Disable "Reject" if clicked
+                },
+            }));
         } catch (error) {
             console.error('Error updating booking status:', error);
         }
     };
+
+
 
     const handleToggleDetails = (booking) => {
         if (selectedBooking?.id === booking.id) {
@@ -73,11 +121,11 @@ export default function BookingList() {
         }
     };
 
-    const openChat = (booking) => {
-        // Redirect to the chat page or open a chat modal
-        // Pass booking.user_id as a parameter for identifying the chat
-        navigate(`/homeowner-chat-page/${booking.user_id}`);
-    };
+    // const openChat = (booking) => {
+    //     // Redirect to the chat page or open a chat modal
+    //     // Pass booking.user_id as a parameter for identifying the chat
+    //     navigate(`/homeowner-chat-page/${booking.user_id}`);
+    // };
 
     return (
         <div>
@@ -97,100 +145,95 @@ export default function BookingList() {
                                             <th>Room ID</th>
                                             <th>Status</th>
                                             <th>Details</th>
-                                            <th>Chat</th>
+                                            {/* <th>Chat</th> */}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {bookings.map((booking) => (
-                                            <tr key={booking.id}>
-                                                <td>{booking.id}</td>
-                                                <td>{booking.room_id}</td>
-                                                <td>{booking.status}</td>
-                                                <td>
-                                                    <button
-                                                        className="btn-list"
-                                                        onClick={() => handleToggleDetails(booking)}
-                                                    >
-                                                        {selectedBooking?.id === booking.id
-                                                            ? "Hide"
-                                                            : "View"}
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        className="btn-chat"
-                                                        onClick={() => openChat(booking)}
-                                                    >
-                                                        Chat
-                                                    </button>
+                                        {bookings.length > 0 ? (
+                                            bookings.map((booking) => (
+                                                <tr key={booking.id}>
+                                                    <td>{booking.id}</td>
+                                                    <td>{booking.room_id}</td>
+                                                    <td>{booking.status}</td>
+                                                    <td>
+                                                        <button
+                                                            className="btn-list"
+                                                            onClick={() => handleToggleDetails(booking)}
+                                                        >
+                                                            {selectedBooking?.id === booking.id ? "Hide" : "View"}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan="4" style={{ textAlign: "center", padding: "10px", color: "red" }}>
+                                                    No bookings available
                                                 </td>
                                             </tr>
-                                        ))}
+                                        )}
                                     </tbody>
+
                                 </table>
                             </div>
 
                             {selectedBooking && (
                                 <div className="list-details">
                                     <div className="list-user-bio">
-                                        <div className="user-bio-img"></div>
+                                        <div className="user-bio-img">
+
+                                        </div>
                                         <div className="user-bio-txt">
-                                            <span>{selectedBooking.full_name}</span>
-                                            <span>{selectedBooking.email_address}</span>
-                                            <span>{selectedBooking.phone_number}</span>
-                                            <span>
-                                                Check-In:{" "}
-                                                {new Date(selectedBooking.check_in_date).toLocaleDateString()}
-                                            </span>
-                                            <span>
-                                                Check-Out:{" "}
-                                                {new Date(selectedBooking.check_out_date).toLocaleDateString()}
-                                            </span>
-                                            <div className="user-bio-btn">
-                                                <button
-                                                    className="btn-accept"
-                                                    onClick={() =>
-                                                        updateStatus(selectedBooking.id, "Booked")
-                                                    }
-                                                >
-                                                    Accept
-                                                </button>
-                                                <button
-                                                    className="btn-decline"
-                                                    onClick={() =>
-                                                        updateStatus(selectedBooking.id, "Rejected")
-                                                    }
-                                                >
-                                                    Reject
-                                                </button>
+                                            <div className="row">
+                                                <span>Room ID : {selectedBooking.room_id}</span>
+                                                <span>Name : {selectedBooking.full_name}</span>
+                                                <span>Email: {selectedBooking.email_address}</span>
+                                                <span>Contact: {selectedBooking.phone_number}</span>
                                             </div>
+
+
+                                        </div>
+                                        <div className="user-bio-btn">
+
+                                            <button
+                                                className="btn-accept bk-btn"
+                                                onClick={() => updateStatus(selectedBooking.id, 'Booked')}
+                                                disabled={selectedBooking.status === 'Booked' || actionDisabled[selectedBooking.id]?.accept}
+                                            >
+                                                Accept
+                                            </button>
+
+                                            <button
+                                                className="btn-decline bk-btn"
+                                                onClick={() => updateStatus(selectedBooking.id, 'Rejected')}
+                                                disabled={selectedBooking.status === 'Rejected' || actionDisabled[selectedBooking.id]?.reject}
+                                            >
+                                                Reject
+                                            </button>
+
                                         </div>
                                     </div>
                                     <div className="list-user-doc">
                                         <div className="user-doc-img">
-                                            <a
-                                                href={`http://localhost:5000/uploads/${selectedBooking.document_path}`}
-                                                download
-                                                style={{ display: "block", width: "400px", height: "340px" }}
-                                            >
-                                                <img
-                                                    src={`http://localhost:5000/uploads/${selectedBooking.document_path}`}
-                                                    alt="Document"
-                                                    style={{
-                                                        width: "400px",
-                                                        height: "340px",
-                                                        borderRadius: "5px",
-                                                        cursor: "pointer"
-                                                    }}
-                                                />
-                                            </a >
+
+                                            <img
+                                                src={`http://localhost:5000/uploads/${selectedBooking.document_path}`}
+                                                alt="Document"
+                                                style={{
+                                                    width: "550px",
+                                                    height: "360px",
+                                                    borderRadius: "5px",
+                                                    cursor: "pointer"
+                                                }}
+                                            />
+
                                         </div >
                                     </div >
                                 </div >
                             )
                             }
 
-                            <nav className="pagination-container">
+                            <nav className="book-paging" style={{ marginTop: "20px" }}>
                                 <button
                                     className="pagination-button"
                                     onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}

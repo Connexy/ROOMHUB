@@ -1,13 +1,16 @@
 import React from 'react'
-import Navbar from '../../components/Navbar'
 import { Link } from 'react-router-dom'
-import Footer from '../../components/Footer'
+import { useEffect } from 'react';
 
 export default function HowitWorks() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div class="hiw-container">
                 <div class="ci-container">
                     <div class="hiw-heading">
@@ -32,7 +35,7 @@ export default function HowitWorks() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
+                            <br />
                             <h3>2. search</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
@@ -44,7 +47,7 @@ export default function HowitWorks() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
+                            <br />
                             <h3>3. Book</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
@@ -56,8 +59,8 @@ export default function HowitWorks() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
-                            <h3>4. Confirm</h3>
+                            <br />
+                            <h3>4. Check Status</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -68,8 +71,8 @@ export default function HowitWorks() {
                                 photos and the accuracy of the information in the listing so htath
                                 you can book online in complete safety
                             </p>
-
-                            <h3>5. Post Confirmation</h3>
+                            <br />
+                            <h3>5. Review Room</h3>
                             <p>
                                 The properties on the room less platform are all verified by our
                                 team
@@ -85,7 +88,7 @@ export default function HowitWorks() {
 
                 </div>
             </div >
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

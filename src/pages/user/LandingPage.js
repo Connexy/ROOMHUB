@@ -1,9 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../../components/Footer'
 import Review from '../../components/Review'
-import Navbar from '../../components/Navbar'
 import lux1 from '../../assets/images/image1.jpg'
 import lux2 from '../../assets/images/image2.jpg'
 import lux3 from '../../assets/images/image3.jpg'
@@ -16,17 +14,22 @@ export default function LandingPage() {
     const navigate = useNavigate();
 
     const handleSearch = () => {
-        if (searchCity.trim()) {
-            navigate(`/search-result-page?city=${encodeURIComponent(searchCity.trim())}`);
+        const trimmedCity = searchCity.trim(); // Trim the city name to remove extra spaces
+        if (trimmedCity) {
+            navigate(`/search-result-page?city=${encodeURIComponent(trimmedCity)}`);
         } else {
             alert("Please enter a city name to search.");
         }
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
             <header>
-                <Navbar />
+
                 <div className="cont">
                     <div className="element">
                         <h1 style={{ marginBottom: "0", fontWeight: "bolder" }}>The best home everywhere</h1>
@@ -65,12 +68,12 @@ export default function LandingPage() {
 
                     <LuxuryRoom
                         image={lux3}
-                        title="Benifitted Rooms"
+                        title="Deluxe Rooms"
                         description="Detail and finishes of excellence, unique properties complete with every service"
                     />
                     <LuxuryRoom
                         image={lux4}
-                        title="Super Rooms"
+                        title="Standard Rooms"
                         description="Detail and finishes of excellence, unique properties complete with every service"
                     />
 
@@ -101,7 +104,7 @@ export default function LandingPage() {
             </div> */}
 
             <section className="reviews-section">
-                <h1 style={{ textAlign: "center", marginTop: "40px" }}>Guaranteed by our reviews</h1>
+                <h1 style={{ textAlign: "center", marginTop: "40px", paddingTop: "30px" }}>Guaranteed by our reviews</h1>
                 <p style={{ textAlign: "center", color: "#7A7A7A" }}>Our customers are 100% satisfied and our reviews speak for us!</p>
                 <div className="review-box">
 
@@ -162,7 +165,7 @@ export default function LandingPage() {
                 </div>
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

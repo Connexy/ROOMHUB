@@ -69,12 +69,13 @@ export default function EditUser() {
                     <div id="mySidebar" className="sidebar">
                         <div>
                             <Link to='/super-admin-dashboard'><i className="fa fa-tachometer"></i> Dashboard</Link>
-                            <Link to='/admin-user-list'> <i className="fa fa-users"></i> User List</Link>
+                            <Link to='/admin-user-list' style={{ backgroundColor: "#ddd" }}> <i className="fa fa-users"></i> User List</Link>
+                            <Link to='/admin-room-list'> <i className="fa fa-home"></i> Room List</Link>
 
                         </div>
-                        {/* <div className="logout">
-                                        <Link onClick={doLogout} to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
-                                    </div> */}
+                        <div className="logout">
+                            <Link to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
+                        </div>
                     </div>
 
                 </div>

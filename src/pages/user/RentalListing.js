@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import RoomCard from "../../components/RoomCard";
 import Filter from "../../components/Filter";
+import { showInformationMessage } from "../../utils/Notification";
 
 const RentalListing = () => {
     const [rooms, setRooms] = useState([]);
@@ -34,7 +33,7 @@ const RentalListing = () => {
 
             if (response.ok) {
                 if (data.rooms.length === 0) {
-                    alert("No rooms available for the selected filters. Please try different options.");
+                    showInformationMessage("No room available for selected filter");
                     setError("No rooms available.");
                     resetFilters();
                 } else {
@@ -53,6 +52,7 @@ const RentalListing = () => {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchData();
     }, [currentPage]);
 
@@ -68,13 +68,18 @@ const RentalListing = () => {
     const [favoriteCount, setFavoriteCount] = useState(0);
 
     const handleToggleFavorite = (isFavorite) => {
-        setFavoriteCount((prevCount) => (isFavorite ? prevCount + 1 : prevCount - 1));
+        if (isFavorite) {
+            setFavoriteCount((prevCount) => prevCount + 1);
+            showInformationMessage("Room added to Favorite");
+        } else {
+            setFavoriteCount((prevCount) => prevCount - 1);
+            showInformationMessage("Room removed from Favorite");
+        }
     };
 
 
     return (
         <>
-            <Navbar favouriteCount={favoriteCount} />
             <div className="big-container">
                 <div className="heading-text">
                     <h1>Are you looking for rooms?</h1>
@@ -135,7 +140,6 @@ const RentalListing = () => {
                     </button>
                 </nav>
             </div>
-            <Footer />
         </>
     );
 };

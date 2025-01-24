@@ -25,8 +25,10 @@ import { FavoriteProvider } from './components/FavoriteContext'; // Import the F
 import SearchResultPage from './pages/user/SearchResultPage';
 import AboutUs from './pages/user/AboutUs';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import ChatOwner from './pages/homeowner/ChatOwner';
-import Chat from './pages/user/Chat';
+// import ChatOwner from './pages/homeowner/ChatOwner';
+// import Chat from './pages/user/Chat';
+import Layout from './pages/Layout';
+import AdminRoomList from './pages/admin/AdminRoomList';
 
 
 function App() {
@@ -34,38 +36,41 @@ function App() {
     <FavoriteProvider> {/* Wrap the app with FavoriteProvider */}
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LandingPage />} />
+          <Route path="/" element={<Layout />} >
+            <Route path='/landing-page' element={<LandingPage />} />
+            <Route path='/book-room/:roomId' element={<PrivateRoute component={BookingForm} />} />
+            {/* <Route path='/rental-listing-page' element={<PrivateRoute component={RentalListing} />} /> */}
+            <Route path='/rental-listing-page' element={<RentalListing />} />
+            <Route path='/how-it-works-page-tenant' element={<HowitWorks />} />
+            <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
+            <Route path='/about-us-page' element={<AboutUs />} />
+            <Route path='/user-detail-page' element={<PrivateRoute component={UserDetail} />} />
+            <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
+            <Route path='/user-booking-status-page' element={<PrivateRoute component={BookingStatus} />} />
+            <Route path='/favorite-page/:userId' element={<PrivateRoute component={FavoriteRoom} />} />
+            {/* <Route path='/search-result-page' element={<PrivateRoute component={SearchResultPage} />} /> */}
+            <Route path='/search-result-page' element={<SearchResultPage />} />
+            {/* <Route path='user-chat-page/:BookingId' element={<Chat />} /> */}
+          </Route>
+
+
+
           <Route path='/login-page' element={<Login />} />
           <Route path='/register-page' element={<Register />} />
 
-          <Route path='/landing-page' element={<LandingPage />} />
-          <Route path='/book-room/:roomId' element={<BookingForm />} />
-          {/* <Route path='/rental-listing-page' element={<PrivateRoute component={RentalListing} />} /> */}
-          <Route path='rental-listing-page' element={<RentalListing />} />
-
-
-          <Route path='/how-it-works-page-tenant' element={<HowitWorks />} />
-          <Route path='/how-it-works-page-landlord' element={<HowitWorks2 />} />
-          <Route path='/about-us-page' element={<AboutUs />} />
-          <Route path='/user-detail-page' element={<UserDetail />} />
-          <Route path='/room-detail-page/:roomId' element={<RoomDetails />} />
-          <Route path='/user-booking-status-page' element={<BookingStatus />} />
-          <Route path='/favorite-page/:userId' element={<FavoriteRoom />} />
-          <Route path='/search-result-page' element={<SearchResultPage />} />
-          <Route path='user-chat-page/:BookingId' element={<Chat />} />
-
           <Route path='/homeowner-dashboard-page/:userId' element={<PrivateRoute component={Dashboard} />} />
-          <Route path='/homeowner-post-room' element={<PostRoom />} />
-          <Route path='/homeowner-booking-list' element={<BookingList />} />
-          <Route path='/homeowner-room-list' element={<RoomList />} />
-          <Route path='/homeowner-edit-room/:roomId' element={<EditRoom />} />
-          <Route path='/homeowner-chat-page/:userId' element={<ChatOwner />} />
+          <Route path='/homeowner-post-room' element={<PrivateRoute component={PostRoom} />} />
+          <Route path='/homeowner-booking-list' element={<PrivateRoute component={BookingList} />} />
+          <Route path='/homeowner-room-list' element={<PrivateRoute component={RoomList} />} />
+          <Route path='/homeowner-edit-room/:roomId' element={<PrivateRoute component={EditRoom} />} />
+          {/* <Route path='/homeowner-chat-page/:userId' element={<ChatOwner />} /> */}
 
 
 
           <Route path='/super-admin-dashboard' element={<AdminDashboard />} />
           <Route path='/admin-user-list' element={<UserList />} />
           <Route path='/admin-edit-user/:userId' element={<EditUser />} />
+          <Route path='/admin-room-list' element={<AdminRoomList />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

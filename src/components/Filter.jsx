@@ -51,14 +51,14 @@ const Filter = ({ onApplyFilters, reset }) => {
                     <select id="price-range" value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
                         <option value="">Select Price Range</option>
                         <option value="1000-2000">Rs1000 - Rs2000</option>
-                        <option value="2001-3000">Rs2000 - Rs3000</option>
-                        <option value="3001-4000">Rs3000 - Rs4000</option>
-                        <option value="4001-5000">Rs4000 - Rs5000</option>
-                        <option value="5001-6000">Rs5000 - Rs6000</option>
-                        <option value="5001-6000">Rs6000 - Rs7000</option>
-                        <option value="5001-6000">Rs7000 - Rs8000</option>
-                        <option value="5001-6000">Rs8000 - Rs9000</option>
-                        <option value="5001-6000">Rs9000 - Rs10000</option>
+                        <option value="2000-3000">Rs2000 - Rs3000</option>
+                        <option value="3000-4000">Rs3000 - Rs4000</option>
+                        <option value="4000-5000">Rs4000 - Rs5000</option>
+                        <option value="5000-6000">Rs5000 - Rs6000</option>
+                        <option value="6000-7000">Rs6000 - Rs7000</option>
+                        <option value="7000-8000">Rs7000 - Rs8000</option>
+                        <option value="8000-9000">Rs8000 - Rs9000</option>
+                        <option value="9000-10000">Rs9000 - Rs10000</option>
                     </select>
                 </div>
 

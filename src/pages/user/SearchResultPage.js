@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import RoomCard from "../../components/RoomCard";
 import Filter from "../../components/Filter";
 
@@ -90,7 +88,7 @@ const SearchResultPage = () => {
 
     return (
         <>
-            <Navbar favouriteCount={favoriteCount} />
+            {/* <Navbar favouriteCount={favoriteCount} /> */}
             <div className="big-container">
                 <div className="heading-text">
                     <h1>Rooms in {getQueryParams().city}</h1>
@@ -151,7 +149,7 @@ const SearchResultPage = () => {
                     </button>
                 </nav>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

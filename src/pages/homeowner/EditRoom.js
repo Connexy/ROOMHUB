@@ -51,7 +51,7 @@ export default function EditRoom() {
             const result = await response.json();
             if (response.ok) {
                 alert('Room updated successfully!');
-                navigate(`/admin-room-list`);
+                navigate(`/homeowner-room-list`);
             } else {
                 alert(`Failed to update room: ${result.error}`);
             }
@@ -184,6 +184,7 @@ export default function EditRoom() {
                                         id="availability"
                                         name="availability"
                                         defaultValue={roomData.availability}
+                                        min={new Date().toISOString().split('T')[0]}
                                         required
                                     />
 

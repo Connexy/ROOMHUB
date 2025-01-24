@@ -7,7 +7,7 @@ export default function UserList() {
 
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10); // Match backend limit
+    const [itemsPerPage] = useState(6); // Match backend limit
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState(null);
 
@@ -70,11 +70,12 @@ export default function UserList() {
                     <div>
                         <Link to='/super-admin-dashboard'><i className="fa fa-tachometer"></i> Dashboard</Link>
                         <Link to='/admin-user-list'> <i className="fa fa-users"></i> User List</Link>
+                        <Link to='/admin-room-list'> <i className="fa fa-home"></i> Room List</Link>
 
                     </div>
-                    {/* <div className="logout">
-                                    <Link onClick={doLogout} to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
-                                </div> */}
+                    <div className="logout">
+                        <Link to="/login-page"><i className="fa fa-sign-out"></i> Logout</Link>
+                    </div>
                 </div>
 
             </div>
@@ -93,8 +94,8 @@ export default function UserList() {
                                     <th>User Type</th>
                                     <th>FullName</th>
                                     <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Image</th>
+
+                                    <th>Document</th>
                                     {/* <th>Image</th> */}
                                     <th>Action</th>
                                 </tr>
@@ -116,7 +117,6 @@ export default function UserList() {
                                             <td>{user.UserType}</td>
                                             <td>{user.fullname}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.password}</td>
                                             <td>
                                                 <img src={`http://localhost:5000/uploads/${user.image}`}
                                                     alt='net Err'

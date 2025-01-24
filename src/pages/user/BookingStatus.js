@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export default function BookingStatus() {
     const [bookings, setBookings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const navigate = useNavigate(); // For navigation to the chat page
 
     useEffect(() => {
         const fetchBookings = async () => {
@@ -22,7 +19,7 @@ export default function BookingStatus() {
                 const response = await axios.get('http://localhost:5000/api/bookings/status', {
                     params: { page: currentPage, limit: 5, userId }
                 });
-                console.log('Bookings fetched:', response.data);
+                console.log("Booking data fetched");
                 setBookings(response.data.bookings);
                 setTotalPages(Math.ceil(response.data.total / 5));
             } catch (error) {
@@ -49,16 +46,16 @@ export default function BookingStatus() {
         setCurrentPage(page);
     };
 
-    const handleChat = (bookingId, homeownerId) => {
-        // Redirect to the chat page with booking and homeowner information
-        navigate(`/user-chat-page/${bookingId}`, { state: { bookingId, homeownerId } });
-    };
+    // const handleChat = (bookingId, homeownerId) => {
+    //     // Redirect to the chat page with booking and homeowner information
+    //     navigate(`/user-chat-page/${bookingId}`, { state: { bookingId, homeownerId } });
+    // };
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="status-heading">
-                <h1>Check your room status!</h1>
+                <h1 style={{ paddingTop: "100px" }}>Check your room status!</h1>
             </div>
             <div className="booking-table">
                 <table>
@@ -70,41 +67,46 @@ export default function BookingStatus() {
                             <th>Email</th>
                             <th>Phone-No</th>
                             <th>Document</th>
-                            <th>Check-In Date</th>
-                            <th>Check-Out Date</th>
                             <th>Status</th>
-                            <th>Chat</th>
+                            {/* <th>Chat</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {bookings.map((booking) => (
-                            <tr key={booking.id}>
-                                <td>{booking.id}</td>
-                                <td>{booking.room_id}</td>
-                                <td>{booking.full_name}</td>
-                                <td>{booking.email_address}</td>
-                                <td>{booking.phone_number}</td>
-                                <td>
-                                    <img
-                                        src={`http://localhost:5000/uploads/${booking.document_path}`}
-                                        alt="Document"
-                                        style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-                                    />
-                                </td>
-                                <td>{new Date(booking.check_in_date).toLocaleDateString()}</td>
-                                <td>{new Date(booking.check_out_date).toLocaleDateString()}</td>
-                                <td>{booking.status}</td>
-                                <td>
-                                    <button
-                                        className="btn-chat"
-                                        onClick={() => handleChat(booking.id, booking.homeowner_id)}
-                                    >
-                                        Chat
-                                    </button>
+                        {bookings.length > 0 ? (
+                            bookings.map((booking) => (
+                                <tr key={booking.id}>
+                                    <td>{booking.id}</td>
+                                    <td>{booking.room_id}</td>
+                                    <td>{booking.full_name}</td>
+                                    <td>{booking.email_address}</td>
+                                    <td>{booking.phone_number}</td>
+                                    <td>
+                                        <img
+                                            src={`http://localhost:5000/uploads/${booking.document_path}`}
+                                            alt="Document"
+                                            style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                                        />
+                                    </td>
+                                    <td>{booking.status}</td>
+                                    {/* <td>
+                                        <button
+                                            className="btn-chat"
+                                            onClick={() => handleChat(booking.id, booking.homeowner_id)}
+                                        >
+                                            Chat
+                                        </button>
+                                    </td> */}
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="7" style={{ textAlign: "center", color: "red" }}>
+                                    No booking status available
                                 </td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
+
                 </table>
             </div>
             <nav className="status-container">

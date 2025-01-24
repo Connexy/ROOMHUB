@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/Navbar';
 import RoomCard from '../../components/RoomCard';
+import { showInformationMessage } from '../../utils/Notification';
 
 export default function FavoritePage() {
     const [favoriteRooms, setFavoriteRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [favoriteCount, setFavoriteCount] = useState(0);
 
     const userId = localStorage.getItem("userId");
+    const handleToggleFavorite = (isFavorite) => {
+        if (isFavorite) {
+            setFavoriteCount((prevCount) => prevCount + 1);
+            showInformationMessage("Room added to Favorite");
+        } else {
+            setFavoriteCount((prevCount) => prevCount - 1);
+            showInformationMessage("Room removed from Favorite");
+            window.location.reload();
+        }
+    };
 
     const fetchFavorites = async () => {
         try {
@@ -34,10 +45,11 @@ export default function FavoritePage() {
         fetchFavorites();
     }, []);
 
+
     if (loading) {
         return (
             <>
-                <Navbar />
+
                 <h1 style={{ marginTop: "100px", textAlign: "center" }}>Loading favorite rooms...</h1>
             </>
         );
@@ -46,7 +58,7 @@ export default function FavoritePage() {
     if (error) {
         return (
             <>
-                <Navbar />
+
                 <h1 style={{ marginTop: "100px", textAlign: "center", color: "red" }}>
                     {error}
                 </h1>
@@ -55,11 +67,12 @@ export default function FavoritePage() {
     }
     return (
         <>
-            <Navbar />
-            <div className="favorite-container">
+            {/* <Navbar /> */}
+            <div className="favorite-container" style={{ minHeight: "42.7vh" }}>
+
                 {favoriteRooms.length === 0 ? (
-                    <h1 style={{ paddingTop: "70px", textAlign: "center", color: "red", marginTop: "50px" }}>
-                        You don't have any favorite rooms yet!
+                    <h1 style={{ paddingTop: "50px", textAlign: "center", color: "red", marginTop: "50px" }}>
+                        No favorite rooms yet!
                     </h1>
                 ) : (
                     <>
@@ -77,7 +90,7 @@ export default function FavoritePage() {
                                     price={room.room_price}
                                     description={room.room_description}
                                     availabilityDate={room.availability}
-                                    onToggleFavorite={() => { }} /* Favorites can't be toggled here */
+                                    onToggleFavorite={() => { handleToggleFavorite() }} /* Favorites can't be toggled here */
                                 />
                             ))}
                         </div>

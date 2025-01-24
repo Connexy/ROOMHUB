@@ -65,7 +65,7 @@ export default function Register() {
         formData.append('fullname', fullname);
         formData.append('email', email);
         formData.append('password', password);
-        formData.append('userType', userType); // Append user type
+        formData.append('userType', userType);
         formData.append('image', image);
         try {
             const response = await axios.post('http://localhost:5000/api/register', formData, {
@@ -120,7 +120,7 @@ export default function Register() {
                         />
 
                         <FileInput
-                            label='Photo'
+                            label='Document'
                             name='image'
                             onChange={handleInputChange}
                             errorMessage={errorMessages.image}
@@ -139,10 +139,10 @@ export default function Register() {
                             errorMessage={errorMessages.userType}
                         />
 
-                        <div className="forgot-section">
+                        {/* <div className="forgot-section">
                             <span><input type="checkbox" name="remember" id="checked" />Remember Me</span>
                             <span><a href="/">Forgot Password ?</a></span>
-                        </div>
+                        </div> */}
 
                         <Button
                             id='register-btn'

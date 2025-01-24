@@ -166,12 +166,12 @@ input#checked{
     overflow: hidden;
 }
 #login-btn{
-    background-color: #1877f2;
+    background-color: #2A9D8F;
     border-radius: 15px;
     
 }
 #register-btn{
-    background-color: #60BB46;
+    background-color: #2A9D8F;
     border-radius: 15px;
 }
 
@@ -354,11 +354,15 @@ input#checked{
     display: flex;
     align-items: center;
     z-index: 10;
-    border: 1px solid #d0cfcd;
+  }
+  .active-link {
+    color: #2A9D8F;
+    background-color: white;
   }
   
+  
   .logo {
-    margin-left: 20px;
+    margin-left: 40px;
     cursor: pointer;
   }
   
@@ -388,19 +392,17 @@ input#checked{
     transition: background-color 0.3s, color 0.3s;
   }
   
-   .home-content ul li a:hover {
-  
+  .home-content ul li a:hover {
     background-color: white;
     color: #158074;
-    transform: scale(1.05); /* Optional slight scaling effect */
-    
-    
+    transform: scale(1.05); 
   } 
+   
  
 
   
   .auth {
-    margin-left: 450px;
+    margin-left: 490px;
     height: 60px;
     width: 200px;
     display: flex;
@@ -516,6 +518,8 @@ input#checked{
 
 
 .footer {
+ 
+  height: 300px;
     background-color: #2A9D8F;
     color: #fff;
 }
@@ -537,7 +541,7 @@ input#checked{
     margin-left: auto;
     margin-right: auto;
     max-width: 1230px;
-    padding: 40px 15px 450px;
+    padding: 40px 15px 210px;
     position: relative;
 }
 
@@ -820,7 +824,6 @@ input#checked{
         margin-left: auto;
         margin-right: auto;
         max-width: 1230px;
-        padding: 40px 15px 450px;
         position: relative;
     }
 
@@ -843,7 +846,6 @@ width: 49.99%;
 
 .main-body {
     flex: 1;
-    padding: 20px; /* Optional: Add padding if needed */
     overflow-y: auto; /* Optional: Add vertical scroll if content overflows */
 }
 
@@ -1129,7 +1131,7 @@ header {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #1877f2;
+    background-color: white;
     background-size: cover;
     margin-bottom: 15px;
   }
@@ -1159,6 +1161,10 @@ header {
   }
   
   .user_details {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 50px;
     border-radius: 5px;
     padding: 15px;
     /* margin: 18px; */
@@ -1363,7 +1369,7 @@ header {
   /* css for room details */
   .room-detail-headings {
     text-align: center;
-    padding-top: 80px;
+    padding-top: 100px;
     
   }
   .detail-container {
@@ -1465,7 +1471,6 @@ header {
     flex-direction: column;
     height: 130px;
     padding-bottom: 40px;
-    margin-bottom: 30px;
 }
 /* css for adding review */
 .room-features-review {
@@ -1480,7 +1485,7 @@ header {
   width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   padding-left: 20px;
 }
 
@@ -1534,7 +1539,7 @@ header {
 
 .owner-features{
   padding-left: 10px;
-  height: 300px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   /* border: 1px solid black; */
@@ -1557,7 +1562,7 @@ header {
     font-size: 16px;
 }
 .owner{
-    height: 220px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -1674,7 +1679,12 @@ header {
 }
 
 #map {
-    height: 400px;
+  background: url('./assets/images/map.jpg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    height: 350px;
     width: 100%;
     /* border: 1px solid black; */
 }
@@ -1682,7 +1692,7 @@ header {
 
 .room-review {
     background-color: #d7e6e4;
-    margin-top: 20px;
+    margin-bottom: 20px;
     height: auto;
     width: 100%;
     /* border: 1px solid black; */
@@ -1819,13 +1829,12 @@ header {
 .hiw-container {
   height: auto;
   width: 100%;
-padding-top: 90px;
+padding-top: 100px;
 }
 .ci-container {
   padding: 0 32px;
 }
 .hiw-heading h1 {
-  /* line-height: 52px; */
   text-align: center;
  
 }
@@ -2138,10 +2147,8 @@ tr:nth-child(even) {
  .status-container {
   display: flex;
   justify-content: center;  
-  align-items: center;      
-  position: fixed;   
-  bottom: 20px;    
-  margin-left: 50%;
+  align-items: center;   
+  bottom: 20px; 
   
 }
  .paging-container {
@@ -2187,6 +2194,15 @@ tr:nth-child(even) {
   color: #fff;
   background: #2A9D8F;
 }
+.book-paging{
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;      /* Centers vertically */
+  
+ bottom: 0px;
+ left: 55%;
+  
+}
 
 
 /* edit and delete btn in user list */
@@ -2200,6 +2216,7 @@ a {
   color: #fff;
   padding: 5px 10px;
   border-radius: 4px;
+  border: none;
 }
 
 .btn-delete {
@@ -2208,6 +2225,7 @@ a {
   padding: 5px 10px;
   border-radius: 4px;
   margin-left: 1em;
+  border: none;
 }
 .table-responsive tr:hover{
 background-color: #ddd;
@@ -2325,6 +2343,7 @@ background-position: center;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  background-color: #FFFFFF;
 }
 
 .form-group textarea {
@@ -2386,11 +2405,11 @@ background-position: center;
 
 /* booking status css */
 .status-heading{
-  margin-top: 80px;
+  margin-top: 100 px;
   text-align: center;
 }
 .booking-table {
-  margin: 0 100px; /* Gap of 100px on left and right */
+  margin: 0 100px 40px; /* Gap of 100px on left and right */
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -2458,6 +2477,13 @@ background-position: center;
   border: none; /* Remove default border */
   text-align: center; /* Ensure text is centered within the button */
   line-height: normal; /* Ensure consistent line height */
+}
+
+.bk-btn[disabled] {
+  background-color: #d3d3d3;
+  color: #a9a9a9; 
+  cursor: not-allowed; 
+  opacity: 0.6; 
 }
 
  .btn-accept {
@@ -2532,23 +2558,20 @@ background-position: center;
 }
 .list-details{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 420px;
-  width: calc(100%-510px);
-  padding: 10px;
+  height: auto;
+  width: 100%;
+  padding: 10px;    
   display: flex;
-}
-.table-detail-list{
-  display: flex;
-}
+} 
+
 
 .list-user-bio{
-  padding-left: 20px;
+  padding-left: 50px;
   padding-top: 20px;
   display: flex;
   flex-direction: column;
   height: 400px;
-  width: 300px;
-  /* background-color: #60BB46; */
+  width: 500px;
 }
 .list-user-doc{
   height: 400px;
@@ -2557,18 +2580,25 @@ background-position: center;
   padding-left: 20px;
 }
 
-.user-bio-img{
+ .user-bio-img{
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  background-color: #2A9D8F;
-}
+  background:url("./assets/images/avatar.png");
+  background-size: cover;
+} 
 .user-bio-txt{
   margin-left: 10px;
   margin-top: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  /* flex-direction: column; */
+  gap: 30px;
+}
+.user-bio-txt .row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; /* Adjust spacing between items */
+  gap: 10px; /* Space between spans */
 }
 .user-bio-txt span{
   font-size: 18px;
@@ -2589,7 +2619,7 @@ background-position: center;
 
 
 /* chat css */
-.chat-page {
+/* .chat-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2666,4 +2696,57 @@ background-position: center;
 
 .chat-input button:hover {
   background-color: #0056b3;
+} */
+
+
+.map-button {
+  padding: 10px 20px;
+  background-color: #2A9D8F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }
+
+.map-button:hover {
+  background-color: #158074;
+}
+
+input.error::placeholder {
+  color: red; /* Red placeholder text for validation errors */
+}
+input.error-input::placeholder {
+  color: red;
+}
+textarea.error-input::placeholder {
+  color: red;
+}
+.h-btn{
+    height: auto;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 550;
+    color: #2A9D8F;
+    background-color: white;
+    cursor: pointer;
+    z-index: 1;
+
+}
+.h-btn:hover{
+  background-color: #158074;
+  color: white;
+  transition: 0.3s;
+}
+.ap-btn:disabled{
+  background-color: #cccccc; /* Light gray background */
+  color: #666666; /* Darker gray text */
+  cursor: not-allowed; /* Show not-allowed cursor */
+  pointer-events: none; /* Prevent any interaction */
+  opacity: 0.6; /* Make it look slightly faded */
+}
+

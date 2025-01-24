@@ -1,6 +1,7 @@
 
 import Sidebar from '../../components/Sidebar';
 import { useNavigate } from 'react-router-dom';
+import { showInformationMessage } from '../../utils/Notification';
 
 export default function PostRoom() {
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function PostRoom() {
 
             const result = await response.json();
             if (response.ok) {
-                alert('Room posted successfully!');
+                showInformationMessage('Room posted Check your Approval Status!');
                 navigate(`/homeowner-room-list`);
             } else {
                 alert(`Failed to post room: ${result.message}`);
@@ -147,7 +148,7 @@ export default function PostRoom() {
                             </div>
 
                             <label htmlFor="availability">Available From</label>
-                            <input type="date" id="availability" name="availability" required />
+                            <input type="date" id="availability" name="availability" min={new Date().toISOString().split('T')[0]} required />
 
                             <label htmlFor="room-description">Description</label>
                             <textarea id="room-description" name="roomdescription" rows="5" required></textarea>
